@@ -8,8 +8,79 @@ import { components } from '../data/components';
   <PageHero
     eyebrow="Componentes"
     title="Camada de componentes em processo de refatoração"
-    summary="A análise do arquivo atual mostrou bons sinais visuais, mas também indicou que a biblioteca ainda mistura componentes base, variants e patterns. Esta página registra a leitura inicial da v1."
+    summary="A análise do arquivo atual mostrou bons sinais visuais, mas também indicou que a biblioteca ainda mistura componentes base, variants e patterns. Esta página traduz a leitura inicial em uma vitrine visual, para o portal comunicar sistema e não só inventário."
   />
+
+  <section class="section">
+    <div class="container">
+      <div class="component-showcase-grid">
+        <article class="component-demo-card">
+          <div class="component-demo-head">
+            <span class="eyebrow">Button</span>
+            <h2>API única, não coleção de exceções</h2>
+            <p>O sistema deve consolidar mini button, botão com ícone e CTA de WhatsApp em uma única família com propriedades semânticas.</p>
+          </div>
+          <div class="component-demo-body">
+            <div class="button-row">
+              <button class="showcase-btn neon" type="button">Primary</button>
+              <button class="showcase-btn fuchsia" type="button">Secondary</button>
+              <button class="showcase-btn ghost-dark" type="button">Ghost</button>
+            </div>
+            <div class="button-row">
+              <button class="component-chip" type="button">iconLeading</button>
+              <button class="component-chip" type="button">iconTrailing</button>
+              <button class="component-chip" type="button">size</button>
+              <button class="component-chip" type="button">state</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo-card">
+          <div class="component-demo-head">
+            <span class="eyebrow">Accordion</span>
+            <h2>Comportamento e acessibilidade antes do estilo</h2>
+            <p>Esse é um bom candidato para documentação rápida porque já existe visualmente e exige pouca abstração para virar padrão confiável.</p>
+          </div>
+          <div class="component-demo-body">
+            <div class="accordion-demo">
+              <details open>
+                <summary>O que entra no Bit System</summary>
+                <p>Famílias recorrentes, states previsíveis, anatomy definida e regras de uso que designers, devs e IA consigam aplicar sem depender de interpretação local.</p>
+              </details>
+              <details>
+                <summary>O que fica fora</summary>
+                <p>Casos únicos de campanha, exceções de cliente e composições que já podem ser resolvidas por patterns ou templates.</p>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <article class="component-demo-card">
+          <div class="component-demo-head">
+            <span class="eyebrow">Content blocks</span>
+            <h2>Parte componente, parte pattern</h2>
+            <p>Na realidade da agência, muitos blocos visuais precisam ser reclassificados como patterns ou templates, não tratados como componente base.</p>
+          </div>
+          <div class="component-demo-body">
+            <div class="content-block-demo">
+              <div class="content-block hero">
+                <strong>Hero section</strong>
+                <small>headline, supporting copy, CTA</small>
+              </div>
+              <div class="content-block quote">
+                <strong>Proof section</strong>
+                <small>social proof, logos, metric highlight</small>
+              </div>
+              <div class="content-block cta">
+                <strong>Offer section</strong>
+                <small>value proposition, urgency, next action</small>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section class="section">
     <div class="container component-table">

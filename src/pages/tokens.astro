@@ -12,6 +12,28 @@ import { tokenGroups } from '../data/tokens';
   />
 
   <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-meta">primitive</span>
+          <h2>Paleta e escala bruta</h2>
+          <p>Cores, spacing e tipografia começam como valores base. Essa camada evita improviso e facilita herança posterior.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">semantic</span>
+          <h2>Nomes orientados ao uso</h2>
+          <p>O portal privilegia nomes como `color.bg.brand.primary` e `type.body.md`, porque eles comunicam intenção e não só aparência.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">operational</span>
+          <h2>Pronto para docs e IA</h2>
+          <p>A estrutura de tokens precisa servir o Figma, o front end, os templates e os playbooks de geração assistida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container token-layout">
       {tokenGroups.map((group) => (
         <article class="token-group" id={group.id}>

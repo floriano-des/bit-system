@@ -23,6 +23,28 @@ const entries = (await getCollection('ai-playbooks'))
 
   <section class="section">
     <div class="container">
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-meta">input</span>
+          <h2>Brief antes de brilho visual</h2>
+          <p>A IA precisa receber objetivo, canal, densidade e restrições. O sistema não pode depender de inspiração genérica.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">output</span>
+          <h2>Estrutura antes de ornamentação</h2>
+          <p>Cada playbook define blocos obrigatórios, erros a evitar e como aplicar a assinatura visual do Bit System.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">governança</span>
+          <h2>IA alimentada por regra viva</h2>
+          <p>Quando o portal muda, os playbooks precisam mudar junto. Sem isso, a IA começa a propagar uma versão antiga do sistema.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <CardGrid items={entries} />
     </div>
   </section>

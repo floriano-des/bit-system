@@ -1,7 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import CardGrid from '../components/CardGrid.astro';
+import FoundationVisuals from '../components/FoundationVisuals.astro';
+import HeroVisual from '../components/HeroVisual.astro';
 import Layout from '../layouts/Layout.astro';
+import SystemShowcase from '../components/SystemShowcase.astro';
+import TemplatePreviewGrid from '../components/TemplatePreviewGrid.astro';
+
+type PreviewTheme = 'dark' | 'light' | 'mix';
 
 const [foundations, patterns, templates, aiPlaybooks, governance] = await Promise.all([
   getCollection('foundations'),
@@ -31,6 +37,17 @@ const latestLinks = [
     meta: 'AI Playbook',
   })),
 ];
+
+const featuredTemplates = templates
+  .slice()
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry, index) => ({
+    href: `/templates/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: entry.data.format,
+    theme: (index === 0 ? 'dark' : index === 1 ? 'light' : 'mix') as PreviewTheme,
+  }));
 ---
 
 <Layout
@@ -40,33 +57,39 @@ const latestLinks = [
   <section class="page-hero">
     <div class="container hero-grid">
       <div class="hero-panel">
-        <p class="eyebrow">Sistema operacional de marca</p>
-        <h1>Bit System para design, conteúdo, web e IA.</h1>
+        <p class="eyebrow">Bit System v1.0 | Player 1 ready</p>
+        <h1>Bit System</h1>
         <p class="hero-summary">
-          O Bit System nasce como um portal público para concentrar foundations, tokens,
-          templates, patterns e instruções operacionais da 2P Growth Lab. O Figma continua
-          como camada visual. O portal passa a ser a fonte de verdade consultável.
+          O sistema oficial da 2P Growth Lab para marca, templates, conteúdo, web e IA.
+          Foundations, patterns, templates e governança organizados em uma camada pública,
+          navegável e pronta para acelerar criação sem perder consistência.
         </p>
         <div class="hero-actions">
-          <a class="button button-primary" href="/templates">Explorar templates</a>
-          <a class="button button-secondary" href="/ai-playbooks">Abrir AI Playbooks</a>
+          <a class="button button-primary" href="/templates">START templates</a>
+          <a class="button button-secondary" href="/showcase">Ver showcase</a>
         </div>
       </div>
+      <HeroVisual />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="stats">
         <div class="stat-panel">
-          <div class="stat-label">Coleções vivas na v1</div>
+          <div class="stat-label">Collections online</div>
           <div class="stat-value">5</div>
         </div>
         <div class="stat-panel">
-          <div class="stat-label">Tokens semânticos base</div>
+          <div class="stat-label">Tokens base</div>
           <div class="stat-value">17</div>
         </div>
         <div class="stat-panel">
-          <div class="stat-label">Templates prioritários</div>
+          <div class="stat-label">Templates ativos</div>
           <div class="stat-value">{templates.length}</div>
         </div>
         <div class="stat-panel">
-          <div class="stat-label">Playbooks de IA</div>
+          <div class="stat-label">AI playbooks</div>
           <div class="stat-value">{aiPlaybooks.length}</div>
         </div>
       </div>
@@ -75,11 +98,42 @@ const latestLinks = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">O que este portal resolve</h2>
+      <h2 class="section-title">00 | Visual system</h2>
       <p class="section-summary">
-        Em vez de concentrar tudo no Figma ou no WordPress principal, o Bit System organiza
-        o conhecimento operacional da 2P em uma camada própria, pública e preparada para
-        humanos e IA.
+        A camada visual do Bit System precisa convencer rápido. Aqui o portal mostra a estética
+        do sistema aplicada em interface, documentação, CTA e templates, sem depender só do Figma.
+      </p>
+      <SystemShowcase />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">01 | Foundations</h2>
+      <p class="section-summary">
+        Cor, tipografia, espaçamento e grid aparecem como linguagem aplicada.
+        Não é só especificação, é comportamento visual do sistema.
+      </p>
+      <FoundationVisuals />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">02 | Templates</h2>
+      <p class="section-summary">
+        Cada template oficial recebe uma cena visual própria para comunicar formato, densidade e intenção.
+      </p>
+      <TemplatePreviewGrid items={featuredTemplates} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">03 | O que resolve</h2>
+      <p class="section-summary">
+        Em vez de concentrar tudo no Figma ou no WordPress principal, o Bit System organiza o
+        conhecimento operacional da 2P em uma camada própria, preparada para humanos e IA.
       </p>
       <div class="card-grid">
         <article class="card">
@@ -90,12 +144,12 @@ const latestLinks = [
         <article class="card">
           <span class="card-meta">Execução</span>
           <h2>Base para decks, propostas e landing pages</h2>
-          <p>O sistema prioriza os entregáveis centrais de uma agência de marketing e criação orientada por performance.</p>
+          <p>O sistema prioriza os entregáveis centrais da agência e organiza a produção recorrente com clareza.</p>
         </article>
         <article class="card">
           <span class="card-meta">IA</span>
           <h2>Conteúdo pronto para alimentar agentes</h2>
-          <p>As regras são escritas de forma semântica e versionável, o que facilita uso em prompts, buscas e automações futuras.</p>
+          <p>As regras são escritas de forma semântica e versionável, o que facilita uso em prompts, busca e automações.</p>
         </article>
       </div>
     </div>
@@ -103,30 +157,30 @@ const latestLinks = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Áreas da v1</h2>
+      <h2 class="section-title">04 | Áreas da v1</h2>
       <p class="section-summary">
-        A primeira versão já nasce com arquitetura orientada a foundations, padrões, templates e governança.
+        A primeira versão nasce orientada a foundations, patterns, templates e governança.
       </p>
       <div class="card-grid">
         <a class="card" href="/foundations">
           <span class="card-meta">Foundations</span>
-          <h2>{foundations.length} documentos ativos</h2>
+          <h2>{foundations.length} docs ativos</h2>
           <p>Cores, tipografia, grid e princípios para manter consistência entre design, web e IA.</p>
         </a>
         <a class="card" href="/patterns">
           <span class="card-meta">Patterns</span>
-          <h2>{patterns.length} estruturas de referência</h2>
+          <h2>{patterns.length} estruturas</h2>
           <p>Padrões para deck, landing page e outros formatos recorrentes na operação da agência.</p>
         </a>
         <a class="card" href="/templates">
           <span class="card-meta">Templates</span>
-          <h2>{templates.length} templates prioritários</h2>
-          <p>Material base para apresentação institucional, proposta comercial e páginas de oferta.</p>
+          <h2>{templates.length} modelos prioritários</h2>
+          <p>Base para apresentação institucional, proposta comercial e páginas de oferta.</p>
         </a>
         <a class="card" href="/governance">
           <span class="card-meta">Governança</span>
-          <h2>{governance.length} políticas iniciais</h2>
-          <p>Critérios para entrada, atualização e ownership do sistema.</p>
+          <h2>{governance.length} políticas</h2>
+          <p>Critérios para entrada, atualização, ownership e evolução do sistema.</p>
         </a>
       </div>
     </div>
@@ -134,7 +188,7 @@ const latestLinks = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title">Comece por aqui</h2>
+      <h2 class="section-title">05 | Start here</h2>
       <p class="section-summary">
         Entradas rápidas para quem vai produzir, revisar ou automatizar conteúdo.
       </p>

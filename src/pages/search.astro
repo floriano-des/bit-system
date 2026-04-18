@@ -78,7 +78,7 @@ const searchIndex = [
     </div>
   </section>
 
-  <script define:vars={{ searchIndex }}>
+  <script is:inline define:vars={{ searchIndex }}>
     const input = document.querySelector('#search-input');
     const results = document.querySelector('#search-results');
 
@@ -106,7 +106,9 @@ const searchIndex = [
     renderResults(searchIndex.slice(0, 8));
 
     input?.addEventListener('input', (event) => {
-      const value = event.target.value.trim().toLowerCase();
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement)) return;
+      const value = target.value.trim().toLowerCase();
       if (!value) {
         renderResults(searchIndex.slice(0, 8));
         return;

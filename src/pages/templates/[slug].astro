@@ -21,12 +21,11 @@ const { Content } = await render(entry);
     summary={entry.data.summary}
     audience={entry.data.audience}
   >
-    <Content />
     {entry.data.figmaUrl && (
       <p>
-        Referência visual no Figma:{' '}
-        <a href={entry.data.figmaUrl} target="_blank" rel="noreferrer">abrir template</a>.
+        <a href={entry.data.figmaUrl} target="_blank" rel="noreferrer">Abrir referência no Figma</a>
       </p>
     )}
+    <Content />
   </MarkdownDocLayout>
 </Layout>

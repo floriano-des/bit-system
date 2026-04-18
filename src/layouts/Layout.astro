@@ -13,10 +13,13 @@ const {
   title = siteMeta.title,
   description = siteMeta.description,
 } = Astro.props;
+
+const canonicalUrl = Astro.url;
+const socialImage = new URL('/og-image.svg', Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,15 +27,24 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#100F0F" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="Bit System" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
   </head>
   <body>
     <div class="shell">
+      <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <SiteHeader />
-      <main class="page">
+      <main class="page" id="conteudo">
         <slot />
       </main>
       <SiteFooter />

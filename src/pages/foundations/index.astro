@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import CardGrid from '../../components/CardGrid.astro';
+import FoundationVisuals from '../../components/FoundationVisuals.astro';
 import PageHero from '../../components/PageHero.astro';
 import Layout from '../../layouts/Layout.astro';
 
@@ -23,6 +24,16 @@ const foundations = (await getCollection('foundations'))
 
   <section class="section">
     <div class="container">
+      <FoundationVisuals />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Documentação por foundation</h2>
+      <p class="section-summary">
+        Cada foundation tem uma página com racional, regras de uso e impacto operacional para design, conteúdo, front end e IA.
+      </p>
       <CardGrid items={foundations} />
     </div>
   </section>

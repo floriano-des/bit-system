@@ -23,8 +23,8 @@ Dar consistência à assinatura visual da 2P sem transformar cor em exceção lo
 ## Regras de uso
 
 - Neon e fuchsia são cores de energia e presença. Use como destaque, não como superfície dominante em todos os contextos.
-- O texto longo deve priorizar neutros escuros em fundo claro para manter legibilidade.
-- Em decks e landing pages, a combinação neon mais neutro escuro funciona melhor do que neon com fuchsia em blocos grandes.
+- O texto longo deve priorizar neutros claros sobre fundo escuro, ou neutros escuros sobre fundo claro, para manter legibilidade.
+- Em decks e landing pages, a combinação neon mais neutro escuro costuma funcionar melhor do que neon com fuchsia em blocos grandes.
 
 ## Quando usar
 

@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'zod';
 
 const baseSchema = z.object({
   title: z.string(),
@@ -27,7 +28,7 @@ const templates = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/templates' }),
   schema: baseSchema.extend({
     format: z.enum(['presentation', 'proposal', 'landing-page']),
-    figmaUrl: z.string().url().optional(),
+    figmaUrl: z.url().optional(),
   }),
 });
 

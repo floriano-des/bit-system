@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#100F0F"/>
+  <rect x="52" y="52" width="1096" height="526" fill="#221F20" stroke="#393838" stroke-width="2"/>
+  <rect x="88" y="88" width="10" height="10" fill="#00FFD1"/>
+  <rect x="108" y="88" width="10" height="10" fill="#FF00FF"/>
+  <rect x="128" y="88" width="10" height="10" fill="#8DFFDF"/>
+  <text x="88" y="200" fill="#00FFD1" font-family="Courier New, monospace" font-size="140" font-weight="700">BIT</text>
+  <text x="88" y="312" fill="#00FFD1" font-family="Courier New, monospace" font-size="140" font-weight="700">SYSTEM</text>
+  <text x="96" y="220" fill="#FF00FF" font-family="Courier New, monospace" font-size="140" font-weight="700">BIT</text>
+  <text x="96" y="332" fill="#FF00FF" font-family="Courier New, monospace" font-size="140" font-weight="700">SYSTEM</text>
+  <text x="92" y="420" fill="#AFAEAF" font-family="Inconsolata, monospace" font-size="34">brand system, templates, content and AI playbooks</text>
+  <rect x="88" y="474" width="202" height="54" fill="#00FFD1"/>
+  <text x="112" y="511" fill="#100F0F" font-family="Courier New, monospace" font-size="32" font-weight="700">2P Growth Lab</text>
+</svg>

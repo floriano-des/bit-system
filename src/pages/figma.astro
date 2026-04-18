@@ -12,6 +12,21 @@ import { figmaLinks } from '../data/figma-links';
   />
 
   <section class="section">
+    <div class="container figma-bridge">
+      <article class="figma-bridge-card figma-bridge-dark">
+        <span class="eyebrow">Source visual</span>
+        <h2>O Figma concentra biblioteca, templates e exploração</h2>
+        <p>As decisões visuais continuam nascendo nos frames, component sets e variables. O portal entra para dar taxonomia, contexto e governança.</p>
+      </article>
+      <article class="figma-bridge-card">
+        <span class="eyebrow">Source operacional</span>
+        <h2>O portal transforma o arquivo em sistema consultável</h2>
+        <p>Cada área importante deve ter regra, preview, contexto de uso e um link profundo para o ponto certo do Figma. Assim o time não precisa navegar no escuro.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container link-grid">
       {figmaLinks.map((item) => (
         <a class="link-card" href={item.href} target="_blank" rel="noreferrer">

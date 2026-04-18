@@ -1,9 +1,9 @@
 ---
-title: Layout and grid
-summary: Grade responsiva e escala espacial para páginas, decks e materiais da agência.
+title: Layout grid
+summary: Grade responsiva para landing pages, páginas de documentação, propostas e apresentações com densidade controlada.
 audience:
   - design
-  - desenvolvimento
+  - front-end
   - ia
 status: active
 order: 3
@@ -12,27 +12,25 @@ category: layout
 
 ## Objetivo
 
-Permitir que o sistema produza layouts consistentes em múltiplos formatos, do slide ao site.
+Permitir que o sistema mantenha ritmo, alinhamento e escaneabilidade em múltiplos formatos, sem depender de ajustes manuais a cada peça.
 
 ## Breakpoints de referência
 
-- XL: 1920
-- LG: 1440
-- MD: 1280
-- SM: 720
-- XS: 360
+1. Mobile com 4 colunas
+2. Tablet com 8 colunas
+3. Desktop com 12 colunas
 
-## Regras
+## Regras de uso
 
-- Use grid como estrutura de composição, não como adorno visual.
-- Prefira margens generosas em decks e materiais institucionais.
-- Para landing pages, preserve hierarquia vertical clara e áreas de respiro entre seções.
+- Use grid como estrutura de alinhamento, não como jaula visual.
+- O conteúdo principal deve ocupar menos colunas quando a peça exige leitura longa.
+- Para landing pages, deixe o hero respirar. Para documentos, privilegie legibilidade e hierarquia linear.
 
 ## Relação com IA
 
-Toda geração assistida deve declarar:
+Toda geração assistida deve receber, no mínimo:
 
 - formato de saída
 - densidade de conteúdo
-- quantidade de colunas
-- prioridade entre leitura e impacto visual
+- presença ou ausência de sidebar
+- necessidade de leitura linear ou escaneável

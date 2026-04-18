@@ -9,13 +9,13 @@ export const figmaLinks = [
     title: 'Página Colors',
     href: 'https://www.figma.com/design/HXUvqiIZK4wdkpdUObXw30/Bit-System?node-id=29-3261',
     description:
-      'Paleta e racional visual das cores centrais da marca.',
+      'Paleta, contraste e racional visual das cores centrais da marca.',
   },
   {
     title: 'Página Typography',
     href: 'https://www.figma.com/design/HXUvqiIZK4wdkpdUObXw30/Bit-System?node-id=29-3647',
     description:
-      'Hierarquia tipográfica aplicada e tabela de estilos.',
+      'Hierarquia tipográfica aplicada, famílias oficiais e regras de uso.',
   },
   {
     title: 'Página Buttons',

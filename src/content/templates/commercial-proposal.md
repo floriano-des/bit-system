@@ -1,32 +1,32 @@
 ---
 title: Template de proposta comercial
-summary: Estrutura modular para propostas que precisam ser rápidas de adaptar e fáceis de gerar com assistência de IA.
+summary: Estrutura base para propostas objetivas, com leitura clara de problema, solução, escopo e próximos passos.
 audience:
+  - design
   - vendas
-  - estrategia
   - ia
 status: active
 order: 2
 format: proposal
+figmaUrl: https://www.figma.com/design/HXUvqiIZK4wdkpdUObXw30/Bit-System?node-id=57-7761
 ---
 
 ## Uso recomendado
 
-- propostas personalizadas
-- escopo inicial
-- apresentação de investimento
+- apresentação de solução
+- propostas sob medida
+- formalização de escopo e investimento
 
 ## Blocos obrigatórios
 
-- contexto do cliente
-- objetivo
-- escopo
+- contexto
+- proposta de solução
 - entregáveis
 - investimento
 - próximos passos
 
-## Regras
+## Restrições
 
-- manter linguagem objetiva
 - destacar o racional antes do preço
-- usar tabelas só quando aumentarem clareza
+- usar tabelas só quando melhorarem clareza
+- evitar linguagem genérica de agência

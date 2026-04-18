@@ -33,6 +33,7 @@ src/
 ## Rotas da v1
 
 - `/`
+- `/showcase`
 - `/foundations`
 - `/tokens`
 - `/components`
@@ -63,7 +64,7 @@ src/
 
 ```bash
 git add .
-git commit -m "feat: initial public Bit System portal"
+git commit -m "feat: bit system portal v1"
 git remote add origin <URL_DO_REPOSITORIO>
 git push -u origin main
 ```

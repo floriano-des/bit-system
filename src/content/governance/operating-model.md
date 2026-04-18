@@ -1,35 +1,35 @@
 ---
-title: Modelo operacional do Bit System
-summary: Regras de ownership, atualização e classificação do sistema.
+title: Modelo operacional
+summary: Regras de ownership e manutenção do portal, do Figma e da camada de templates e playbooks.
 audience:
+  - operacao
   - design
-  - desenvolvimento
-  - lideranca
+  - front-end
 status: active
 order: 1
-owner: Floriano Silva
+owner: Core team
 ---
 
-## Papel do portal
+## Camadas do sistema
 
-O portal é a fonte de verdade pública do sistema. Ele concentra taxonomia, documentação, padrões e playbooks.
+O portal é a fonte de verdade consultável.
 
-## Papel do Figma
+O Figma é a camada visual e editável.
 
-O Figma é a camada visual e operacional. Ele deve refletir o sistema, não substituir sua governança.
+O código implementa o que já está estabilizado.
 
 ## Critério de entrada
 
-Algo só entra no sistema quando:
+Algo só entra no sistema se:
 
-- resolve problema recorrente
-- tem regra clara
-- pode ser reutilizado
+- aparece de forma recorrente
+- pode ser explicado com regra clara
 - não depende de contexto único
+- gera valor para mais de um uso
 
 ## Critério de revisão
 
 - consistência semântica
-- aplicabilidade real
-- clareza para humanos e IA
-- custo de manutenção controlado
+- clareza documental
+- impacto em design e código
+- custo de manutenção

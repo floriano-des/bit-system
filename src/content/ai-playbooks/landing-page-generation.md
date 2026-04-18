@@ -1,10 +1,10 @@
 ---
 title: Geração de landing page
-summary: Instrução para IA montar landing pages de conversão a partir de padrões oficiais da 2P.
+summary: Instruções para IA montar páginas de oferta com hero forte, prova, explicação e CTA consistente.
 audience:
   - ia
   - design
-  - desenvolvimento
+  - front-end
 status: active
 order: 3
 outputType: landing-page
@@ -12,19 +12,25 @@ outputType: landing-page
 
 ## Objetivo
 
-Gerar páginas de conversão que respeitem a marca e a hierarquia da oferta.
+Gerar páginas de campanha e oferta com leitura rápida, hierarquia clara e CTA visível desde o início.
 
 ## Entradas mínimas
 
-- oferta
 - público
-- dor principal
-- CTA
+- oferta
+- objetivo da página
 - prova disponível
 
-## Regras para IA
+## Regras
 
-- escrever heros com promessa específica
-- manter uma CTA dominante
-- inserir prova antes do fechamento
-- evitar excesso de variação cromática por seção
+- escrever heros com promessa clara
+- usar prova antes de aprofundar a explicação
+- evitar excesso de seções
+- manter CTA recorrente e explícito
+
+## Saída esperada
+
+- estrutura da página
+- headline e supporting copy
+- ordem de blocos
+- recomendações visuais de densidade

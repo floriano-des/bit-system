@@ -1,32 +1,33 @@
 ---
-title: Estrutura base de landing page
-summary: Ordem recomendada para páginas de conversão da 2P e de clientes atendidos pela agência.
+title: Estrutura de landing page
+summary: Ordem recomendada para páginas de oferta, captura e explicação comercial com foco em escaneabilidade.
 audience:
   - design
-  - desenvolvimento
+  - front-end
   - ia
 status: active
 order: 2
 channel: landing-page
 ---
 
-## Estrutura recomendada
+## Estrutura base
 
-1. Hero com promessa clara
-2. Dor ou oportunidade
-3. Prova ou credencial
-4. Explicação da solução
-5. Oferta ou próximo passo
-6. CTA
+1. Hero
+2. Prova
+3. Explicação da solução
+4. Oferta ou próximo passo
+5. CTA final
 
 ## Regras de composição
 
-- Hero precisa declarar benefício e próximo passo.
-- Prova deve aparecer cedo.
-- CTA não deve depender de leitura exaustiva para fazer sentido.
+- Hero precisa declarar valor rapidamente.
+- CTA deve aparecer cedo e reaparecer no fluxo.
+- Blocos de prova devem sustentar credibilidade real.
+- A página deve ser escaneável em poucos segundos.
 
 ## Anti padrões
 
 - heros genéricos
-- CTA escondido
-- excesso de blocos competindo visualmente
+- CTA escondido no fim
+- excesso de seções antes da prova
+- blocos com muita densidade textual

@@ -2,16 +2,28 @@
 import { getCollection } from 'astro:content';
 import CardGrid from '../../components/CardGrid.astro';
 import PageHero from '../../components/PageHero.astro';
+import TemplatePreviewGrid from '../../components/TemplatePreviewGrid.astro';
 import Layout from '../../layouts/Layout.astro';
 
-const templates = (await getCollection('templates'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .map((entry) => ({
-    href: `/templates/${entry.id}/`,
-    title: entry.data.title,
-    summary: entry.data.summary,
-    meta: entry.data.format,
-  }));
+type PreviewTheme = 'dark' | 'light' | 'mix';
+
+const templateEntries = (await getCollection('templates'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const templates = templateEntries.map((entry) => ({
+  href: `/templates/${entry.id}/`,
+  title: entry.data.title,
+  summary: entry.data.summary,
+  meta: entry.data.format,
+}));
+
+const templatePreviews = templateEntries.map((entry, index) => ({
+  href: `/templates/${entry.id}/`,
+  title: entry.data.title,
+  summary: entry.data.summary,
+  type: entry.data.format,
+  theme: (index === 0 ? 'dark' : index === 1 ? 'light' : 'mix') as PreviewTheme,
+}));
 ---
 
 <Layout title="Templates | Bit System">
@@ -23,6 +35,16 @@ const templates = (await getCollection('templates'))
 
   <section class="section">
     <div class="container">
+      <TemplatePreviewGrid items={templatePreviews} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Lista navegável</h2>
+      <p class="section-summary">
+        Além do preview visual, cada template continua documentado com critérios de uso, blocos obrigatórios e restrições.
+      </p>
       <CardGrid items={templates} />
     </div>
   </section>

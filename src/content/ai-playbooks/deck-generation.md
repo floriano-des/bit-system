@@ -1,10 +1,10 @@
 ---
-title: Geração de deck institucional
-summary: Instrução operacional para IA criar apresentações aderentes ao Bit System.
+title: Geração de deck
+summary: Instruções para IA produzir apresentações com estrutura, tom e linguagem visual coerentes com o Bit System.
 audience:
   - ia
   - design
-  - estrategia
+  - vendas
 status: active
 order: 1
 outputType: presentation
@@ -12,25 +12,25 @@ outputType: presentation
 
 ## Objetivo
 
-Gerar apresentações institucionais coerentes com a marca e com densidade de conteúdo controlada.
+Gerar apresentações institucionais ou comerciais com narrativa clara, alta escaneabilidade e identidade compatível com a 2P.
 
 ## Entradas mínimas
 
 - objetivo do deck
 - público
+- contexto da oferta
 - número de slides
-- oferta ou narrativa principal
 
-## Regras para IA
+## Regras
 
 - usar um tema visual dominante por apresentação
-- manter títulos curtos e claros
-- usar prova social ou credencial quando houver
-- evitar slides lotados
+- manter títulos curtos e assertivos
+- alternar slides de argumento e slides de prova
+- evitar blocos com excesso de texto
 
 ## Saída esperada
 
-- outline slide a slide
-- proposta visual por slide
-- recomendação de template
-- CTA final
+- estrutura slide a slide
+- título por slide
+- sugestão de conteúdo principal
+- recomendação de tom visual

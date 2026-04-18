@@ -23,6 +23,28 @@ const entries = (await getCollection('governance'))
 
   <section class="section">
     <div class="container">
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-meta">source of truth</span>
+          <h2>Portal primeiro</h2>
+          <p>Regra estrutural nasce aqui. O Figma materializa visualmente e o código implementa o que já está semanticamente definido.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">entrada</span>
+          <h2>Recorrência antes de inclusão</h2>
+          <p>Nada entra só porque funcionou em um job. O sistema aceita o que se repete, explica e mantém com clareza.</p>
+        </article>
+        <article class="card">
+          <span class="card-meta">manutenção</span>
+          <h2>Versão viva, não arquivo morto</h2>
+          <p>Governança existe para dar ritmo de atualização, depreciação e comunicação. Sem isso, a biblioteca envelhece rápido.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <CardGrid items={entries} />
     </div>
   </section>

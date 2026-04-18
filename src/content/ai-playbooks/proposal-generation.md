@@ -1,10 +1,10 @@
 ---
-title: Geração de proposta comercial
-summary: Instrução para IA estruturar propostas comerciais com clareza, racional e consistência visual.
+title: Geração de proposta
+summary: Instruções para IA estruturar propostas objetivas, comerciais e coerentes com a linguagem do Bit System.
 audience:
   - ia
   - vendas
-  - estrategia
+  - design
 status: active
 order: 2
 outputType: document
@@ -12,27 +12,25 @@ outputType: document
 
 ## Objetivo
 
-Gerar propostas objetivas, persuasivas e fáceis de adaptar.
+Gerar propostas objetivas e persuasivas, com leitura clara do contexto, da solução, do escopo e do investimento.
 
 ## Entradas mínimas
 
-- nome do cliente
-- contexto
 - problema
+- objetivo
 - solução
-- escopo
-- investimento
+- entregáveis
 
-## Regras para IA
+## Regras
 
-- racional antes do preço
-- linguagem direta
-- bullets curtos
-- não inflar escopo
+- racional antes de preço
+- clareza antes de ornamentação
+- não inflar escopo para parecer robusto
+- manter a proposta escaneável
 
 ## Saída esperada
 
-- estrutura de proposta
+- estrutura da proposta
 - texto por seção
 - observações visuais
-- CTA final
+- recomendação de blocos obrigatórios

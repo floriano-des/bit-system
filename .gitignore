@@ -22,6 +22,9 @@ pnpm-debug.log*
 *.zip
 _fig_extract/
 _portal_scaffold/
+claude-design-system/
+preview.log
+preview.pid
 
 # editor and OS files
 .DS_Store

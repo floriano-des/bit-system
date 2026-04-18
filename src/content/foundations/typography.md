@@ -1,6 +1,6 @@
 ---
 title: Typography
-summary: Hierarquia pensada para unir assinatura digital, leitura clara e aplicação multicanal.
+summary: Hierarquia tipográfica do Bit System, combinando display pixel com leitura mono para peças de alto impacto e documentação.
 audience:
   - design
   - conteudo
@@ -12,35 +12,22 @@ category: typography
 
 ## Objetivo
 
-Sustentar a personalidade da marca sem comprometer clareza. A família display tem função expressiva. A família de leitura tem função operacional.
+Sustentar a personalidade do sistema sem sacrificar leitura. A tipografia precisa comunicar presença de marca, mas também funcionar em docs, propostas e páginas.
 
-## Estrutura recomendada
+## Papéis tipográficos
 
-- Display para statements e headings principais
-- Mono humanizada para leitura, apoio, documentos e descrição
+1. VT323 para títulos de impacto, capas e statements curtos
+2. Inconsolata para corpo, metadados, labels e documentação
 
 ## Regras de uso
 
-- Não use a família display em blocos longos.
-- Headlines devem priorizar impacto curto e densidade baixa de texto.
-- Corpo de texto deve manter entrelinha confortável e contraste alto.
+- Não use a família display para parágrafos longos.
+- Corpo de texto deve preservar espaçamento generoso e contraste forte.
+- Títulos devem ser curtos, diretos e visuais.
 
 ## Aplicação por canal
 
-### Decks
-
-- Headings fortes
-- corpo enxuto
-- frases curtas
-
-### Propostas e documentos
-
-- peso de leitura mais alto
-- foco em escaneabilidade
-- largura de linha mais controlada
-
-### Landing pages
-
-- contraste entre hero e conteúdo
-- títulos curtos
-- apoio textual objetivo
+- Deck: alto contraste, títulos curtos, blocos de leitura curta
+- Proposta: leitura estável, hierarquia clara, menos ruído visual
+- Landing page: hero marcante com texto de apoio controlado
+- Portal: títulos pixel, corpo mono, labels em uppercase

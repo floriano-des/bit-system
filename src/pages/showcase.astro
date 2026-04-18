@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import FoundationVisuals from '../components/FoundationVisuals.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SystemShowcase from '../components/SystemShowcase.astro';
+import TemplatePreviewGrid from '../components/TemplatePreviewGrid.astro';
+
+type PreviewTheme = 'dark' | 'light' | 'mix';
+
+const templates = (await getCollection('templates'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry, index) => ({
+    href: `/templates/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    type: entry.data.format,
+    theme: (index === 0 ? 'dark' : index === 1 ? 'light' : 'mix') as PreviewTheme,
+  }));
+---
+
+<Layout title="Showcase | Bit System" description="Catálogo visual do Bit System em sua primeira versão pública.">
+  <PageHero
+    eyebrow="Showcase"
+    title="Visão rápida do sistema visual"
+    summary="Esta página concentra previews de foundations, templates e blocos de interface para apresentar o Bit System como catálogo visual, não só como documentação."
+  />
+
+  <section class="section">
+    <div class="container">
+      <SystemShowcase />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Foundations</h2>
+      <p class="section-summary">
+        Previews diretos da linguagem base, com foco em cor, tipografia, espaçamento e grid.
+      </p>
+      <FoundationVisuals />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Templates</h2>
+      <p class="section-summary">
+        A primeira versão pública prioriza os formatos que mais aparecem na rotina da agência.
+      </p>
+      <TemplatePreviewGrid items={templates} />
+    </div>
+  </section>
+</Layout>

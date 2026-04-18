@@ -1,34 +1,34 @@
 ---
-title: Estrutura base de deck
-summary: Padrão recomendável para apresentações institucionais, comerciais e de diagnóstico.
+title: Estrutura de deck
+summary: Padrão recomendado para apresentações comerciais, institucionais e de posicionamento da 2P.
 audience:
-  - estrategia
   - design
+  - vendas
   - ia
 status: active
 order: 1
 channel: deck
 ---
 
-## Estrutura recomendada
+## Estrutura base
 
 1. Capa
 2. Contexto
-3. Problema
-4. Diagnóstico
-5. Solução
-6. Prova
-7. Plano
-8. CTA final
+3. Diagnóstico
+4. Solução
+5. Prova
+6. Próximo passo
 
 ## Regras de composição
 
-- Um argumento principal por slide
-- No máximo uma metáfora visual dominante por slide
-- Dados e prova social devem aparecer antes do fechamento
+- Cada slide precisa ter uma função clara.
+- No máximo uma mensagem principal por slide.
+- Títulos devem caber em uma ou duas linhas.
+- Elementos visuais servem a narrativa, não o contrário.
 
 ## Anti padrões
 
-- slides com excesso de texto
-- múltiplas mensagens concorrentes
-- uso de cor vibrante em todos os blocos com o mesmo peso
+- múltiplas mensagens concorrentes no mesmo slide
+- excesso de texto corrido
+- capa sem posicionamento claro
+- CTA final genérico

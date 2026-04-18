@@ -5,6 +5,7 @@ export const siteMeta = {
 };
 
 export const navItems = [
+  { href: '/showcase', label: 'Showcase' },
   { href: '/foundations', label: 'Foundations' },
   { href: '/tokens', label: 'Tokens' },
   { href: '/components', label: 'Componentes' },

@@ -1,29 +1,31 @@
 ---
 title: Fluxo de contribuição
-summary: Como novos templates, patterns e componentes entram no Bit System.
+summary: Etapas mínimas para propor, revisar, aprovar e publicar itens novos no Bit System.
 audience:
   - design
-  - desenvolvimento
-  - conteudo
+  - front-end
+  - operacao
 status: active
 order: 2
-owner: Floriano Silva
+owner: Core team
 ---
 
 ## Fluxo
 
-1. Propor
-2. Avaliar recorrência
-3. Definir classificação
-4. Documentar
-5. Publicar no portal
-6. Refletir no Figma
+1. Identificar o problema recorrente
+2. Avaliar recorrência real
+3. Definir classificação correta
+4. Propor solução
+5. Revisar impacto
+6. Publicar
 
 ## Classificação obrigatória
 
+Antes de entrar no sistema, o item precisa ser classificado como:
+
 - foundation
 - token
-- component
+- componente
 - pattern
 - template
 - guideline
@@ -31,5 +33,5 @@ owner: Floriano Silva
 ## Anti padrões
 
 - subir exceção local como padrão
-- criar componente novo quando composição resolve
+- criar componente quando composição resolve
 - documentar só no Figma
