@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import MarkdownDocLayout from '../../components/MarkdownDocLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('governance');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} | Governança | Bit System`} description={entry.data.summary}>
+  <MarkdownDocLayout
+    title={entry.data.title}
+    summary={entry.data.summary}
+    audience={entry.data.audience}
+  >
+    <Content />
+  </MarkdownDocLayout>
+</Layout>

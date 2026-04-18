@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { figmaLinks } from '../data/figma-links';
+---
+
+<Layout title="Figma | Bit System" description="Links profundos do arquivo visual do Bit System no Figma.">
+  <PageHero
+    eyebrow="Figma"
+    title="Camada visual conectada ao portal"
+    summary="O portal documenta e estrutura. O Figma continua como ambiente de execução visual, prototipação, biblioteca e template editável."
+  />
+
+  <section class="section">
+    <div class="container link-grid">
+      {figmaLinks.map((item) => (
+        <a class="link-card" href={item.href} target="_blank" rel="noreferrer">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+          <span class="card-link">Abrir no Figma</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

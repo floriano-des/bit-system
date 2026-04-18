@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import CardGrid from '../../components/CardGrid.astro';
+import PageHero from '../../components/PageHero.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const entries = (await getCollection('governance'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    href: `/governance/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    meta: entry.data.owner,
+  }));
+---
+
+<Layout title="Governança | Bit System">
+  <PageHero
+    eyebrow="Governança"
+    title="Como o Bit System evolui sem virar acervo caótico"
+    summary="Governança leve, mas explícita, para preservar consistência entre portal, Figma, templates e futuras integrações com IA."
+  />
+
+  <section class="section">
+    <div class="container">
+      <CardGrid items={entries} />
+    </div>
+  </section>
+</Layout>

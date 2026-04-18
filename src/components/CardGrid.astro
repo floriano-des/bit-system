@@ -1,0 +1,25 @@
+---
+interface CardItem {
+  href: string;
+  title: string;
+  summary: string;
+  meta?: string;
+}
+
+interface Props {
+  items: CardItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="card-grid">
+  {items.map((item) => (
+    <a href={item.href} class="card">
+      {item.meta && <span class="card-meta">{item.meta}</span>}
+      <h2>{item.title}</h2>
+      <p>{item.summary}</p>
+      <span class="card-link">Abrir</span>
+    </a>
+  ))}
+</div>

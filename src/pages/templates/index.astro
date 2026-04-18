@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import CardGrid from '../../components/CardGrid.astro';
+import PageHero from '../../components/PageHero.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const templates = (await getCollection('templates'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    href: `/templates/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    meta: entry.data.format,
+  }));
+---
+
+<Layout title="Templates | Bit System">
+  <PageHero
+    eyebrow="Templates"
+    title="Templates oficiais da primeira versão"
+    summary="A v1 prioriza os artefatos que mais movem a rotina da agência: deck institucional, proposta comercial e landing page de oferta."
+  />
+
+  <section class="section">
+    <div class="container">
+      <CardGrid items={templates} />
+    </div>
+  </section>
+</Layout>

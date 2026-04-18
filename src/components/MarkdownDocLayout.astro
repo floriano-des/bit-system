@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  audience: string[];
+}
+
+const { title, summary, audience } = Astro.props;
+---
+
+<article class="doc container">
+  <header class="doc-header">
+    <p class="eyebrow">Documento</p>
+    <h1>{title}</h1>
+    <p class="hero-summary">{summary}</p>
+    <ul class="pill-list" aria-label="Público alvo">
+      {audience.map((item) => <li>{item}</li>)}
+    </ul>
+  </header>
+  <div class="doc-body">
+    <slot />
+  </div>
+</article>

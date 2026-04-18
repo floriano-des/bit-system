@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { components } from '../data/components';
+---
+
+<Layout title="Componentes | Bit System" description="Mapa inicial da camada de componentes do Bit System.">
+  <PageHero
+    eyebrow="Componentes"
+    title="Camada de componentes em processo de refatoração"
+    summary="A análise do arquivo atual mostrou bons sinais visuais, mas também indicou que a biblioteca ainda mistura componentes base, variants e patterns. Esta página registra a leitura inicial da v1."
+  />
+
+  <section class="section">
+    <div class="container component-table">
+      <h2>Mapa inicial</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Componente</th>
+            <th>Categoria</th>
+            <th>Status</th>
+            <th>Leitura atual</th>
+            <th>Próximo passo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {components.map((component) => (
+            <tr>
+              <td>{component.name}</td>
+              <td>{component.category}</td>
+              <td>{component.status}</td>
+              <td>{component.summary}</td>
+              <td>{component.guidance}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

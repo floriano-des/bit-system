@@ -1,0 +1,121 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { tokenGroups } from '../data/tokens';
+import { components } from '../data/components';
+
+const [foundations, patterns, templates, aiPlaybooks, governance] = await Promise.all([
+  getCollection('foundations'),
+  getCollection('patterns'),
+  getCollection('templates'),
+  getCollection('ai-playbooks'),
+  getCollection('governance'),
+]);
+
+const searchIndex = [
+  ...foundations.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/foundations/${entry.id}/`,
+    type: 'foundation',
+  })),
+  ...patterns.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/patterns/${entry.id}/`,
+    type: 'pattern',
+  })),
+  ...templates.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/templates/${entry.id}/`,
+    type: 'template',
+  })),
+  ...aiPlaybooks.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/ai-playbooks/${entry.id}/`,
+    type: 'ai-playbook',
+  })),
+  ...governance.map((entry) => ({
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/governance/${entry.id}/`,
+    type: 'governance',
+  })),
+  ...tokenGroups.map((group) => ({
+    title: group.title,
+    summary: group.description,
+    href: `/tokens#${group.id}`,
+    type: 'token-group',
+  })),
+  ...components.map((component) => ({
+    title: component.name,
+    summary: component.summary,
+    href: '/components',
+    type: 'component',
+  })),
+];
+---
+
+<Layout title="Busca | Bit System" description="Busca textual pública da primeira versão do Bit System.">
+  <PageHero
+    eyebrow="Busca"
+    title="Busca textual da v1"
+    summary="A primeira versão nasce com busca textual pública. Busca semântica com embeddings entra depois, quando a taxonomia estiver mais estável."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="search-panel">
+        <form>
+          <label for="search-input">Pesquise por foundation, template, token, pattern ou playbook</label>
+          <input id="search-input" type="search" placeholder="Ex.: proposta, typography, landing page, button" />
+        </form>
+        <div class="search-results" id="search-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ searchIndex }}>
+    const input = document.querySelector('#search-input');
+    const results = document.querySelector('#search-results');
+
+    const renderResults = (items) => {
+      if (!results) return;
+      if (!items.length) {
+        results.innerHTML = '<article><strong>Nenhum resultado encontrado.</strong><p>Tente outro termo ou navegue pelas coleções principais.</p></article>';
+        return;
+      }
+
+      results.innerHTML = items
+        .map(
+          (item) => `
+            <article>
+              <span class="card-meta">${item.type}</span>
+              <h2>${item.title}</h2>
+              <p>${item.summary}</p>
+              <a class="card-link" href="${item.href}">Abrir</a>
+            </article>
+          `
+        )
+        .join('');
+    };
+
+    renderResults(searchIndex.slice(0, 8));
+
+    input?.addEventListener('input', (event) => {
+      const value = event.target.value.trim().toLowerCase();
+      if (!value) {
+        renderResults(searchIndex.slice(0, 8));
+        return;
+      }
+
+      const filtered = searchIndex.filter((item) =>
+        `${item.title} ${item.summary} ${item.type}`.toLowerCase().includes(value)
+      );
+      renderResults(filtered);
+    });
+  </script>
+</Layout>

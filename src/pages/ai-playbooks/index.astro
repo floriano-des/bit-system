@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import CardGrid from '../../components/CardGrid.astro';
+import PageHero from '../../components/PageHero.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const entries = (await getCollection('ai-playbooks'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    href: `/ai-playbooks/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    meta: entry.data.outputType,
+  }));
+---
+
+<Layout title="AI Playbooks | Bit System">
+  <PageHero
+    eyebrow="AI Playbooks"
+    title="Regras operacionais para IA produzir com consistência"
+    summary="Os playbooks transformam o Bit System em contexto acionável para geração de decks, propostas e landing pages."
+  />
+
+  <section class="section">
+    <div class="container">
+      <CardGrid items={entries} />
+    </div>
+  </section>
+</Layout>

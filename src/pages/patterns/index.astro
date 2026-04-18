@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import CardGrid from '../../components/CardGrid.astro';
+import PageHero from '../../components/PageHero.astro';
+import Layout from '../../layouts/Layout.astro';
+
+const patterns = (await getCollection('patterns'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((entry) => ({
+    href: `/patterns/${entry.id}/`,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    meta: entry.data.channel,
+  }));
+---
+
+<Layout title="Patterns | Bit System">
+  <PageHero
+    eyebrow="Patterns"
+    title="Estruturas recorrentes para decks, propostas e páginas"
+    summary="Patterns formalizam blocos recorrentes da operação da 2P para reduzir improviso e facilitar geração assistida por IA."
+  />
+
+  <section class="section">
+    <div class="container">
+      <CardGrid items={patterns} />
+    </div>
+  </section>
+</Layout>
