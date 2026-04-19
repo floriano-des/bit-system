@@ -107,15 +107,38 @@
   .principle p  { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relax); }
 
   footer { margin-top: var(--space-24); padding-top: var(--space-6); border-top: var(--border-1) solid var(--color-border); font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); display: flex; justify-content: space-between; letter-spacing: var(--ls-wide); text-transform: uppercase; }
+
+  /* a11y: skip link — visível somente no focus de teclado */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-4);
+    z-index: var(--z-toast);
+    padding: var(--space-2) var(--space-5);
+    background: var(--brand-primary);
+    color: var(--brand-primary-ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--fs-body-sm);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: var(--border-2) solid var(--neutral-950);
+    transition: top 0.1s;
+  }
+  .skip-link:focus { top: var(--space-2); }
 </style>
 </head>
 <body>
+
+<!-- a11y: skip link para leitores de tela e navegação por teclado -->
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
 
 <div class="shell">
 
   <div class="top-bar">
     <div class="brand">
-      <img src="assets/logo-lettering-neon.png" alt="doispalitos growth lab">
+      <img src="assets/logo-lettering-neon.png" alt="Dois Palitos Growth Lab — logotipo Bit System">
       <span class="meta">bit system · v2.0</span>
     </div>
     <div class="theme-toggle" role="group" aria-label="Tema">
@@ -124,7 +147,7 @@
     </div>
   </div>
 
-  <section class="hero">
+  <section class="hero" id="conteudo-principal" tabindex="-1">
     <div>
       <div class="kicker"><span class="dot"></span> DESIGN SYSTEM INTERNO</div>
       <h1>Bit<br>System</h1>

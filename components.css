@@ -49,9 +49,15 @@
               box-shadow var(--motion-fast) var(--ease-smooth),
               background var(--motion-fast) var(--ease-smooth);
 }
-.btn:hover:not(:disabled)  { background: var(--_btn-bg-h); border-color: var(--_btn-bg-h); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--neutral-950); }
+.btn:hover:not(:disabled)  { background: var(--_btn-bg-h); border-color: var(--_btn-bg-h); color: var(--_btn-fg); transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--neutral-950); }
 .btn:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--neutral-950); }
 .btn:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+/* a11y: focus-visible com anel duplo visível em qualquer bg (incluso neon) */
+.btn:focus-visible {
+  outline: 3px solid var(--neutral-0);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--neutral-950);
+}
 .btn[data-loading] { color: transparent; pointer-events: none; position: relative; }
 .btn[data-loading]::after {
   content: ""; position: absolute; inset: 0; margin: auto;
@@ -90,7 +96,7 @@
 }
 .badge-brand    { background: var(--brand-primary); color: var(--brand-primary-ink); border-color: var(--brand-primary); }
 .badge-accent   { background: var(--brand-accent); color: var(--neutral-950); border-color: var(--brand-accent); }
-.badge-deep     { background: var(--brand-deep); color: var(--brand-primary); border-color: var(--brand-deep); }
+.badge-deep     { background: var(--brand-deep); color: var(--neutral-0); border-color: var(--brand-deep); } /* a11y: branco (#FFF) em tolopea = 12.5:1 vs neon = 9.6:1, mais legível */
 .badge-success  { background: var(--color-success-bg); color: var(--color-success); border-color: var(--color-success); }
 .badge-warning  { background: var(--color-warning-bg); color: var(--color-warning); border-color: var(--color-warning); }
 .badge-danger   { background: var(--color-danger-bg); color: var(--color-danger); border-color: var(--color-danger); }
@@ -163,6 +169,12 @@
 .card--brand        { box-shadow: var(--shadow-brand); }
 .card--accent       { box-shadow: var(--shadow-accent); }
 .card--hover:hover  { transform: translate(-2px, -2px); box-shadow: var(--shadow-brand); }
+/* a11y: anel de foco interno visível em cards interativos */
+.card--hover:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: -3px;
+  box-shadow: var(--shadow-brand);
+}
 
 /* ========== ACCORDION ========== */
 .accordion {
@@ -183,6 +195,13 @@
   list-style: none;
 }
 .accordion summary::-webkit-details-marker { display: none; }
+/* a11y: foco de teclado no accordion summary */
+.accordion summary:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: -3px;
+  border-radius: var(--radius-sm);
+  box-shadow: none;
+}
 .accordion summary::after {
   content: "+";
   font-family: var(--font-pixel); font-size: 28px;
@@ -210,7 +229,7 @@
 /* ========== NAVBAR (com top-bar) ========== */
 .navbar-top {
   background: var(--brand-deep);
-  color: var(--brand-primary);
+  color: var(--neutral-0); /* a11y: branco em tolopea-800 = 12.5:1 (WCAG AAA) */
   padding: var(--space-2) var(--space-8);
   font-family: var(--font-mono); font-size: var(--fs-caption);
   letter-spacing: var(--ls-wide); text-transform: uppercase;
@@ -245,6 +264,13 @@
   transition: transform var(--motion-base) var(--ease-smooth), box-shadow var(--motion-base) var(--ease-smooth);
 }
 .recipe-mission:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-brand); border-color: var(--brand-primary); }
+/* a11y: foco interno para recipe-mission quando usado com tabindex/link */
+.recipe-mission:focus-visible {
+  outline: 3px solid var(--brand-primary);
+  outline-offset: -4px;
+  box-shadow: var(--shadow-brand);
+  border-color: var(--brand-primary);
+}
 .recipe-mission__num {
   font-family: var(--font-pixel);
   font-size: 96px;
