@@ -1,0 +1,76 @@
+{
+  "$schema": "./templates.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19"
+  },
+  "templates": [
+    {
+      "id": "landing-page",
+      "status": "current",
+      "maturity": "canonical_example_available",
+      "target_output": "marketing_landing_page",
+      "preferred_theme": "dark",
+      "required_sections": ["navbar", "hero", "proof_or_stats", "services_or_missions", "social_proof", "cta", "footer"],
+      "preferred_recipes": ["console", "mission", "boss-stats", "player", "save-point", "ticker"],
+      "canonical_references": ["../examples/landing-page.html"],
+      "notes": ["This is the strongest runtime example for web output in the repository."]
+    },
+    {
+      "id": "proposal-document",
+      "status": "current",
+      "maturity": "canonical_example_available",
+      "target_output": "commercial_proposal",
+      "preferred_theme": "light",
+      "required_sections": ["cover", "diagnosis", "scope", "offer", "timeline", "proof", "cta_or_next_step"],
+      "preferred_recipes": ["boss-stats", "player"],
+      "canonical_references": ["../examples/proposta-comercial.html"],
+      "notes": ["Prefer cleaner density and stronger readability over decorative motion."]
+    },
+    {
+      "id": "monthly-report",
+      "status": "current",
+      "maturity": "canonical_example_available",
+      "target_output": "performance_report",
+      "preferred_theme": "light",
+      "required_sections": ["summary", "kpis", "insights", "channel_breakdown", "next_actions"],
+      "preferred_recipes": ["boss-stats", "alert"],
+      "canonical_references": ["../examples/relatorio.html"],
+      "notes": ["This context should prioritize clarity, hierarchy, and contrast over brand theatrics."]
+    },
+    {
+      "id": "institutional-site-page",
+      "status": "current",
+      "maturity": "composed_from_existing_patterns",
+      "target_output": "site_page",
+      "preferred_theme": "dark",
+      "required_sections": ["hero", "positioning", "services_or_capabilities", "proof", "cta", "footer"],
+      "preferred_recipes": ["console", "mission", "player", "save-point"],
+      "canonical_references": ["../examples/landing-page.html", "../pages/sections.html"],
+      "notes": ["No standalone canonical institutional site file exists yet, so compose from sections and landing patterns."]
+    },
+    {
+      "id": "pitch-deck",
+      "status": "current",
+      "maturity": "supported_but_no_canonical_html_example",
+      "target_output": "presentation_deck",
+      "preferred_theme": "dark",
+      "required_sections": ["opening_frame", "problem", "solution", "proof", "offer", "next_step"],
+      "preferred_recipes": ["boss-stats", "mission", "player", "console"],
+      "canonical_references": ["../pages/creative.html", "../pages/recipes.html"],
+      "notes": ["Supported by brand and recipe system, but there is no dedicated canonical deck example in code yet."]
+    },
+    {
+      "id": "social-media-material",
+      "status": "current",
+      "maturity": "supported_but_no_canonical_html_example",
+      "target_output": "social_post_or_carousel",
+      "preferred_theme": "dark",
+      "required_sections": ["hook", "core_message", "proof_or_metric", "cta_or_prompt"],
+      "preferred_recipes": ["ticker", "boss-stats"],
+      "canonical_references": ["../pages/creative.html", "../pages/voice.html", "../pages/logos.html"],
+      "notes": ["Supported by brand rules, assets, and typography, but no dedicated canonical HTML social file exists."]
+    }
+  ]
+}

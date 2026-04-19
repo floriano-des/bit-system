@@ -1,0 +1,77 @@
+{
+  "$schema": "./system.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19",
+    "purpose": "Generic AI distribution layer for understanding and using the Bit System with minimal ambiguity."
+  },
+  "preferred_reading_order": [
+    "./llms.txt",
+    "./index.md",
+    "./system.md",
+    "./system.json",
+    "./decision-rules.json",
+    "./components.json",
+    "./recipes.json",
+    "./templates.json",
+    "./assets.json",
+    "../tokens.json",
+    "../assets/manifest.json"
+  ],
+  "source_of_truth": {
+    "tokens": "../tokens.json",
+    "runtime_tokens_css": "../tokens.css",
+    "runtime_components_css": "../components.css",
+    "assets": "../assets/manifest.json",
+    "icon_sprite": "../assets/icons.svg"
+  },
+  "trust_order": [
+    "ai/*.json",
+    "../tokens.json",
+    "../assets/manifest.json",
+    "../tokens.css and ../components.css",
+    "../SKILL.md and ../docs/ai-guide.md",
+    "../pages/* and ../examples/* as reference only"
+  ],
+  "contracts": [
+    {
+      "id": "package-index",
+      "file": "./system.json",
+      "purpose": "Package entrypoint, trust model, reading order, and file map."
+    },
+    {
+      "id": "operational-rules",
+      "file": "./decision-rules.json",
+      "purpose": "Global system rules, precedence, and anti-patterns."
+    },
+    {
+      "id": "components",
+      "file": "./components.json",
+      "purpose": "Canonical list of layout primitives and UI components for AI use."
+    },
+    {
+      "id": "recipes",
+      "file": "./recipes.json",
+      "purpose": "Brand compositions and their allowed contexts."
+    },
+    {
+      "id": "templates",
+      "file": "./templates.json",
+      "purpose": "Agency output contexts, maturity, required sections, and preferred recipes."
+    },
+    {
+      "id": "assets",
+      "file": "./assets.json",
+      "purpose": "Condensed asset guidance for logo, symbol, and icon selection."
+    }
+  ],
+  "global_rules": [
+    "Use semantic tokens in new implementation work.",
+    "Use VT323 for display only.",
+    "Use Inconsolata for body and UI.",
+    "Use at most one primary neon CTA per viewport.",
+    "Prefer current assets and avoid legacy assets in new work.",
+    "Trust JSON contracts over HTML showcase pages."
+  ]
+}

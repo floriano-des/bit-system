@@ -1,0 +1,202 @@
+{
+  "$schema": "./components.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19"
+  },
+  "layout_primitives": [
+    {
+      "id": "container",
+      "status": "current",
+      "purpose": "Centered page container for standard content width.",
+      "classes": {
+        "base": ["bs-container"],
+        "variants": ["bs-container-xl"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "monthly_report", "pitch_deck"],
+      "contexts_forbidden": ["full_bleed_marquee_without_internal_content"],
+      "required_tokens": ["--container-lg", "--container-xl", "--space-8"],
+      "anti_patterns": ["Creating ad hoc container widths in every page."],
+      "source_of_truth": ["../styles/layout.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "stack",
+      "status": "current",
+      "purpose": "Vertical rhythm helper.",
+      "classes": {
+        "base": ["bs-stack"],
+        "variants": ["bs-stack-lg"]
+      },
+      "contexts_allowed": ["all"],
+      "contexts_forbidden": [],
+      "required_tokens": ["--space-4", "--space-8"],
+      "anti_patterns": ["Manual margin stacks repeated across sections."],
+      "source_of_truth": ["../styles/layout.css", "../components.css"],
+      "example_references": ["../pages/components.html"]
+    },
+    {
+      "id": "row",
+      "status": "current",
+      "purpose": "Inline flex row with wrap and standard gap.",
+      "classes": {
+        "base": ["bs-row"]
+      },
+      "contexts_allowed": ["all"],
+      "contexts_forbidden": [],
+      "required_tokens": ["--space-4"],
+      "anti_patterns": ["Hand-built button rows with custom gaps in every file."],
+      "source_of_truth": ["../styles/layout.css", "../components.css"],
+      "example_references": ["../index.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "grid",
+      "status": "current",
+      "purpose": "Standard column grids for cards and recipes.",
+      "classes": {
+        "base": ["bs-grid-2", "bs-grid-3", "bs-grid-4"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "monthly_report"],
+      "contexts_forbidden": ["narrow_mobile_only_layout_without_breakpoint_handling"],
+      "required_tokens": ["--space-6"],
+      "anti_patterns": ["One-off card grids with custom column math."],
+      "source_of_truth": ["../styles/layout.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    }
+  ],
+  "components": [
+    {
+      "id": "button",
+      "status": "current",
+      "purpose": "Primary and secondary action control.",
+      "classes": {
+        "base": ["btn"],
+        "variants": ["btn-primary", "btn-accent", "btn-ghost", "btn-danger", "btn-whatsapp"],
+        "sizes": ["btn-sm", "btn-lg", "btn-xl"],
+        "states": ["disabled", "data-loading"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "monthly_report", "pitch_deck", "social_media_material"],
+      "contexts_forbidden": ["using_multiple_primary_neon_ctas_in_same_viewport"],
+      "required_tokens": ["--color-action-bg", "--color-action-text", "--color-action-ghost-border", "--shadow-md", "--size-hit"],
+      "anti_patterns": ["More than one primary neon CTA per viewport.", "Using raw primitive colors instead of semantic action tokens."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "badge",
+      "status": "current",
+      "purpose": "Compact status, label, or emphasis indicator.",
+      "classes": {
+        "base": ["badge"],
+        "variants": ["badge-brand", "badge-accent", "badge-deep", "badge-success", "badge-warning", "badge-danger", "badge-live"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "monthly_report", "pitch_deck", "social_media_material"],
+      "contexts_forbidden": ["paragraph_substitute"],
+      "required_tokens": ["--color-surface", "--color-border", "--brand-primary", "--brand-accent", "--brand-deep"],
+      "anti_patterns": ["Using badges as the main heading.", "Using feedback badges decoratively without status meaning."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "input",
+      "status": "current",
+      "purpose": "Single-line or multi-line form field.",
+      "classes": {
+        "base": ["input", "label", "field-help", "field-error"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document"],
+      "contexts_forbidden": ["dense_data_table"],
+      "required_tokens": ["--color-surface", "--color-border", "--brand-primary", "--color-danger", "--size-hit"],
+      "anti_patterns": ["Removing focus treatment.", "Using inputs without label or clear context."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html"]
+    },
+    {
+      "id": "selection-control",
+      "status": "current",
+      "purpose": "Checkbox and radio controls.",
+      "classes": {
+        "base": ["checkbox", "radio"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document"],
+      "contexts_forbidden": ["decorative_use"],
+      "required_tokens": ["--color-border-strong", "--brand-primary", "--brand-primary-ink"],
+      "anti_patterns": ["Replacing state colors with unrelated decorative colors."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html"]
+    },
+    {
+      "id": "card",
+      "status": "current",
+      "purpose": "Surface wrapper for grouped content.",
+      "classes": {
+        "base": ["card"],
+        "variants": ["card--raised", "card--brand", "card--accent", "card--hover"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "monthly_report", "pitch_deck"],
+      "contexts_forbidden": [],
+      "required_tokens": ["--color-surface", "--color-border", "--shadow-brand", "--shadow-accent"],
+      "anti_patterns": ["Using multiple visual elevations without purpose.", "Adding custom shadows per page instead of card variants."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html"]
+    },
+    {
+      "id": "accordion",
+      "status": "current",
+      "purpose": "Expandable disclosure for FAQs and dense text.",
+      "classes": {
+        "base": ["accordion", "accordion-body"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document"],
+      "contexts_forbidden": ["critical_content_hidden_without_summary"],
+      "required_tokens": ["--color-surface", "--color-border", "--brand-primary"],
+      "anti_patterns": ["Replacing native details behavior with custom JS without need."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "alert",
+      "status": "current",
+      "purpose": "Inline feedback block for status or warning.",
+      "classes": {
+        "base": ["alert"],
+        "variants": ["alert-info", "alert-success", "alert-warning", "alert-danger"]
+      },
+      "contexts_allowed": ["proposal_document", "monthly_report", "internal_documentation", "landing_page"],
+      "contexts_forbidden": ["decorative_section_header"],
+      "required_tokens": ["--color-info", "--color-success", "--color-warning", "--color-danger"],
+      "anti_patterns": ["Using danger styling for normal emphasis.", "Using feedback colors decoratively."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/components.html"]
+    },
+    {
+      "id": "navbar-top",
+      "status": "current",
+      "purpose": "Thin top utility bar with brand-deep background.",
+      "classes": {
+        "base": ["navbar-top"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page"],
+      "contexts_forbidden": ["proposal_document", "monthly_report"],
+      "required_tokens": ["--brand-deep", "--brand-deep-ink"],
+      "anti_patterns": ["Using neon text on deep surfaces when contrast decision prefers deep ink token."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/sections.html"]
+    },
+    {
+      "id": "navbar",
+      "status": "current",
+      "purpose": "Primary navigation bar for site and landing contexts.",
+      "classes": {
+        "base": ["navbar"]
+      },
+      "contexts_allowed": ["landing_page", "institutional_site_page"],
+      "contexts_forbidden": ["proposal_document", "monthly_report"],
+      "required_tokens": ["--color-bg", "--color-border", "--color-text", "--brand-primary"],
+      "anti_patterns": ["Treating it as a generic card wrapper.", "Using multiple unrelated text styles inside primary nav."],
+      "source_of_truth": ["../styles/components-core.css", "../components.css"],
+      "example_references": ["../pages/sections.html", "../examples/landing-page.html"]
+    }
+  ]
+}

@@ -1,167 +1,117 @@
-# Bit System - 2P Growth Lab
+# Bit System
 
-Design System oficial da **Dois Palitos Growth Lab** (2P Growth Lab) - uma
-agência de marketing de performance que se posiciona como *laboratório de
-crescimento* e não como "agência padrão". A identidade visual é inspirada em
-consoles de videogame 8/16-bit e pixel art: START, CHECKPOINT, SAVE GAME,
-scanlines, fosforescência neon.
+Design System interno da 2P Growth Lab.
 
-Este design system foi portado de um arquivo Figma ("Bit System") para HTML/CSS
-limpo, pronto para uso em landing pages, decks comerciais, relatórios mensais,
-posts de redes sociais, propostas e qualquer peça digital da 2P.
+O Bit System não é só uma biblioteca de componentes. Ele organiza linguagem de marca, tokens, componentes CSS, recipes, templates e assets para uso em site, landing page, proposta comercial, relatório, pitch deck e social media.
 
----
+## O que é canônico
 
-## CONTENT FUNDAMENTALS
+Cada domínio do sistema tem uma fonte de verdade própria:
 
-### Voz e tom
+| Domínio | Arquivo canônico | Papel operacional |
+|---|---|---|
+| Tokens | `tokens.json` | Contrato estrutural dos tokens |
+| Runtime de tokens | `tokens.css` | Entrypoint público que importa os módulos em `styles/` |
+| Componentes e recipes | `components.css` | Entrypoint público para o CSS de UI |
+| Assets | `assets/manifest.json` | Catálogo canônico de logos, símbolos e ícones |
+| Sprite de ícones | `assets/icons.svg` | Implementação real dos ids de ícones |
+| Pacote genérico para IA | `ai/` | Camada universal para modelos, automações e RAG |
+| Instruções para IA | `SKILL.md` | Ordem de leitura e guardrails para agentes |
+| Onboarding humano | `README.md` e `docs/` | Visão geral, arquitetura e governança |
 
-- **Direta, desafiadora, sem enrolação.** A 2P se compara a um jogador que
-  *não morre no primeiro chefão*. Frases como "SEM MEDO DE PERDER A PARTIDA"
-  e "INSERT COIN TO START" são bem-vindas em headlines.
-- **Informal, mas técnica.** Fale de ROAS, CAC, CPA, funil, LTV - sem medo
-  do jargão. Mas traduza com metáforas de videogame quando possível:
-  *"seu funil está no modo fácil"*, *"vamos subir de level"*.
-- **Brasileira.** Português do Brasil, tom paulistano. Gírias moderadas são
-  permitidas ("meio-mundo", "da hora", "fala sério"). Evite "ass. atte."
-  e outros formalismos de e-mail corporativo.
-- **Sempre aponta para ação.** Todo bloco de texto termina em um CTA ou em
-  uma pergunta direta. Não deixe o leitor sem próximo passo.
+Observação importante: nesta fase, `tokens.json` é a referência estrutural dos tokens, mas o CSS ainda não é gerado automaticamente. Mudanças em tokens devem ser refletidas também em `styles/tokens-core.css`.
 
-### Glossário de termos 2P (use à vontade)
+## Estrutura
 
-| Termo gamer | O que significa no contexto 2P |
-|---|---|
-| **START** | CTA inicial (começar uma conversa, um projeto) |
-| **CHECKPOINT** | Marco / entrega / etapa concluída |
-| **SAVE GAME** | Relatório, case salvo, material pronto |
-| **LEVEL UP** | Crescimento, evolução de métrica, novo ciclo |
-| **POWER-UP** | Serviço adicional, otimização, feature |
-| **BOSS** | Desafio grande (cliente grande, campanha complexa) |
-| **RESPAWN** | Retomada, recomeço após teste ruim |
-| **GAME OVER** | Campanha encerrada, projeto finalizado |
-| **2P (Player 2)** | A agência é o "jogador 2" - o parceiro de co-op do cliente |
-| **CO-OP** | Parceria, trabalho conjunto |
-| **HUD** | Painel / dashboard do cliente |
-| **INSERT COIN** | Primeiro investimento, começo do projeto |
-| **HIGH SCORE** | Melhor mês, recorde de resultado |
+```text
+tokens.css
+components.css
+tokens.json
+SKILL.md
+index.html
 
-### Headline framework
+styles/
+  tokens-core.css
+  base.css
+  legacy-aliases.css
+  layout.css
+  components-core.css
+  recipes.css
+  responsive.css
 
-**Fórmula 1 - comando direto em caixa alta (VT323):**
-> PRESS START TO LEVEL UP
-> INSIRA FICHA. VAMOS JOGAR.
-> CHECKPOINT DESBLOQUEADO.
-
-**Fórmula 2 - oposição (o outro é o jogo fácil, a 2P é o hard mode):**
-> AGÊNCIA COMUM É MODO FÁCIL. NÓS JOGAMOS NO HARDCORE.
-
-**Fórmula 3 - métrica com metáfora gamer:**
-> +320% DE ROAS. NOVO HIGH SCORE DESBLOQUEADO.
-
-### O que evitar
-
-- "Soluções inovadoras e estratégicas" - genérico de agência padrão.
-- Emojis (o ícone visual é o pixel, não o emoji).
-- "Parceiros" soltos sem contexto - use "co-op" ou "player 2".
-- Gradientes complexos de 4+ cores em textos.
-- "Unleash your potential", "synergy", "disruptive" e outro corporativês traduzido.
-
----
-
-## VISUAL FOUNDATIONS
-
-### Princípios visuais
-
-1. **Retrô-gamer nos acentos, moderno na base.** O sistema NÃO é 100% pixel art -
-   a base é limpa (Poppins, Inconsolata, espaçamento generoso). O pixel entra
-   nos CTAs (VT323 32px em botões), badges, headlines-punch e elementos de marca.
-2. **Alto contraste sempre.** Verde neon em preto é a assinatura. Acessibilidade
-   AA é o mínimo; busque AAA em texto sobre neon.
-3. **Sombras sólidas, nunca difusas.** Sombras são `offset + 0 blur` em neon ou
-   fúchsia. Nunca `box-shadow` com blur difuso estilo Material.
-4. **Cantos retos ou levemente arredondados.** Radius 0 ou 2–8px. Nada de pill
-   buttons gigantes.
-5. **Tipografia como personagem.** VT323 é a voz da marca em headlines e CTAs.
-   Não substitua por outra fonte pixel.
-
-### Paleta resumida
-
-- **Primary / Neon** `#00FFD1` (rgb 0,255,209) - CTAs principais, destaques.
-- **Accent / Fuchsia** `#FF00FF` - hover states, acentos, personalidade.
-- **Secondary / Tolopea** `#2409A9` - backgrounds estruturais, títulos.
-- **Neutral Black** `#100F0F` (16,15,15) - fundo principal do dark theme.
-- **Neutral White** `#FAFAFA` - fundo principal do light theme.
-- **Feedback** success `#4CFF4C`, warning `#FFD54C`, error `#FF7C71`.
-
-Escala completa em `tokens.css` e nas páginas de preview.
-
-### Tipografia resumida
-
-- **Headlines pixel (punch)**: VT323 - use em CTAs, números grandes,
-  headlines-assinatura. Sempre caixa alta. Tamanhos: 24, 32, 48, 64, 104px.
-- **Headlines & labels**: Poppins Bold/SemiBold - títulos de seção, labels
-  de UI, navegação. Inter SemiBold é a alternativa.
-- **Body**: Inconsolata (monoespaçada) 16–18px para textos longos, caption,
-  metadata. Poppins Regular como alternativa para textos mais institucionais.
-- **Download das fontes**: Google Fonts (VT323, Inconsolata, Poppins, Inter).
-
-### Espaçamento
-
-Escala baseada em 4px. Tokens: `spacing-none`, `spacing-xs` (4), `spacing-sm` (8),
-`spacing-md` (12), `spacing-lg` (16), `spacing-xl` (20), `spacing-2xl` (24),
-`spacing-3xl` (32), `spacing-4xl` (40), `spacing-5xl` (48), `spacing-6xl` (56),
-`spacing-7xl` (64).
-
-### Bordas e raios
-
-- **Border widths**: 1.5px (fino), 2px (padrão), 4px, 8px, 12px, 16px, 20px.
-- **Radius**: 2, 4, 8, 12, 16, 100% (pill). **Padrão: 0** em botões CTA (retangular
-  é mais retrô); 8–12px em cards.
-
-### Sombras
-
-Apenas duas, ambas sólidas, offset `5px 5px 0`:
-- **Shadow Green** `5px 5px 0 #00FFD1` - cards primários.
-- **Shadow Fuchsia** `5px 5px 0 #FF00FF` - cards de destaque, CTAs.
-
-### Grid
-
-12 colunas, gutter 24px, margem 120px no desktop (1440). Mobile: 4 colunas,
-gutter 16px, margem 24px.
-
----
-
-## Estrutura dos arquivos
-
-```
-tokens.css              → design tokens (cores, tipo, espaçamento, sombras, bordas)
-components.css          → componentes base (botões, cards, inputs, badges, etc.)
-
-index.html              → hub do design system (console retrô)
 pages/
-  colors.html           → paleta completa
-  typography.html       → tipografia + exemplos
-  tokens.html           → espaçamento, bordas, sombras, tamanhos
-  logos.html            → logos e marca
-  icons.html            → biblioteca de ícones
-  components.html       → botões, inputs, checkboxes, cards, accordions
-  sections.html         → navbar, hero, CTA, FAQ, footer
-
 examples/
-  landing-page.html     → exemplo completo de landing
-  deck-comercial.html   → deck de pitch comercial
-  post-instagram.html   → carrossel de post
-
-assets/                 → logos, ícones, imagens
-
-SKILL.md                → instruções para agentes reutilizarem este DS
-README.md               → este arquivo
+assets/
+ai/
+docs/
+scripts/
 ```
 
-## Começando
+## Como começar
 
-1. Abra `index.html` no navegador - hub principal.
-2. Para construir algo novo, importe `tokens.css` e `components.css` e siga
-   os padrões das páginas em `examples/`.
-3. Consulte `SKILL.md` se for um agente automatizado produzindo peças.
+1. Abra `index.html` para navegar pelo sistema.
+2. Importe `tokens.css` e `components.css` em qualquer HTML novo.
+3. Defina `data-theme="dark"` ou `data-theme="light"` no elemento `<html>`.
+4. Consulte `pages/recipes.html` antes de construir blocos do zero.
+5. Consulte `assets/manifest.json` antes de escolher logos ou ícones.
+
+Setup mínimo:
+
+```html
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="components.css" />
+</head>
+```
+
+## Temas e tipografia
+
+- Tema padrão: `dark`
+- Tema alternativo: `light`, para propostas, relatórios e materiais mais editoriais
+- Display: `VT323`
+- Texto e interface: `Inconsolata`
+
+As decisões de contraste, foco e uso por contexto ficam em `tokens.json` e no CSS modular em `styles/`.
+
+## Documentação
+
+- `ai/`: pacote de distribuição para IA genérica
+- `docs/system-architecture.md`: fronteiras, fonte de verdade e responsabilidades
+- `docs/ai-guide.md`: ordem de leitura e regras de consumo por agentes
+- `docs/governance.md`: release checklist, deprecações e manutenção
+
+## Validação
+
+Rode o validador local antes de publicar mudanças estruturais:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-bit-system.ps1
+```
+
+Ele valida:
+
+- JSON do manifest
+- existência dos assets referenciados
+- ids de ícones declarados no manifest
+- correspondência com `assets/icons.svg`
+
+Para validar o pacote de IA:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-ai-package.ps1
+```
+
+## Princípios operacionais
+
+- Componentes devem consumir tokens semânticos, não primitivos diretos.
+- Assets v2 são o padrão. Assets v1 ficam isolados como legado.
+- PNG é o formato operacional padrão para peças da agência.
+- SVG é usado quando o contexto exige escala vetorial ou integração técnica.
+- Recipes existem para acelerar produção com consistência. Use-os antes de abrir exceções.
+
+## Limitações atuais
+
+- Ainda não existe pipeline para gerar CSS automaticamente a partir de `tokens.json`.
+- Alguns exemplos em `examples/` ainda usam estilos inline e precisam de refino adicional para virarem templates parametrizáveis.
+- O sprite de ícones está consolidado, mas o catálogo histórico tinha ids legados que agora foram explicitamente mapeados ou marcados como obsoletos.

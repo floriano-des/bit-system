@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bit-system/ai/assets.schema.json",
+  "title": "Bit System Assets Contract",
+  "type": "object",
+  "required": ["metadata", "asset_entries", "icon_system"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["system", "version", "updated"],
+      "properties": {
+        "system": { "type": "string" },
+        "version": { "type": "string" },
+        "updated": { "type": "string" }
+      }
+    },
+    "asset_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "kind", "path"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string" },
+          "kind": { "type": "string" },
+          "path": { "type": "string" },
+          "preferred_for": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "avoid_for": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "icon_system": {
+      "type": "object",
+      "required": ["sprite", "id_prefix", "rules"],
+      "properties": {
+        "sprite": { "type": "string" },
+        "id_prefix": { "type": "string" },
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

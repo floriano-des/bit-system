@@ -1,0 +1,42 @@
+# Bit System
+
+Bit System is the internal design system for 2P Growth Lab, a Brazilian marketing agency.
+It combines brand rules, design tokens, CSS components, recipes, templates, assets, and AI-facing guidance.
+
+This folder is the preferred entrypoint for generic AI systems.
+Do not start from HTML showcase pages unless you need visual reference.
+
+Preferred reading order:
+1. ./index.md
+2. ./system.md
+3. ./system.json
+4. ./decision-rules.json
+5. ./components.json
+6. ./recipes.json
+7. ./templates.json
+8. ./assets.json
+9. ../tokens.json
+10. ../assets/manifest.json
+
+Source of truth by domain:
+- Tokens: ../tokens.json
+- Runtime tokens CSS: ../tokens.css
+- Components and recipes runtime CSS: ../components.css
+- Assets: ../assets/manifest.json
+- Icon sprite: ../assets/icons.svg
+
+Critical rules:
+- Use semantic tokens, not primitive tokens, in new components.
+- Use VT323 for display only.
+- Use Inconsolata for body and UI.
+- Use at most one primary neon CTA per viewport.
+- Prefer current assets. Do not open new work with legacy assets.
+- Trust JSON contracts more than HTML examples.
+
+Key files in this folder:
+- ./system.json: package index and trust model
+- ./decision-rules.json: operational rules and precedence
+- ./components.json: canonical component and layout API for AI
+- ./recipes.json: brand compositions
+- ./templates.json: supported agency contexts and their maturity
+- ./assets.json: condensed asset guidance for AI

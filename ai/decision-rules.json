@@ -1,0 +1,78 @@
+{
+  "$schema": "./decision-rules.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19"
+  },
+  "trust_order": [
+    "ai/*.json",
+    "../tokens.json",
+    "../assets/manifest.json",
+    "../tokens.css and ../components.css",
+    "../SKILL.md and ../docs/ai-guide.md",
+    "../pages/* and ../examples/* as visual reference only"
+  ],
+  "rules": [
+    {
+      "id": "source-precedence",
+      "category": "governance",
+      "instruction": "If files disagree, prefer ai/*.json first, then canonical root JSON files, then runtime CSS, then showcase pages.",
+      "rationale": "Showcase HTML can drift and may include manual exceptions."
+    },
+    {
+      "id": "theme-default",
+      "category": "theme",
+      "instruction": "Default to dark theme unless the target context is proposal, report, print, or another readability-first editorial surface.",
+      "rationale": "The system is dark-first but has a defined light mode for document-heavy outputs."
+    },
+    {
+      "id": "typography-display",
+      "category": "typography",
+      "instruction": "Use VT323 for display, pixel, and headline moments only.",
+      "rationale": "It is part of the brand signature and should not become body text."
+    },
+    {
+      "id": "typography-body",
+      "category": "typography",
+      "instruction": "Use Inconsolata for body, UI, labels, captions, and most reading tasks.",
+      "rationale": "This preserves readability and consistency."
+    },
+    {
+      "id": "cta-limit",
+      "category": "interaction",
+      "instruction": "Use at most one primary neon CTA per viewport or major section.",
+      "rationale": "Too many primary neon actions weaken hierarchy and brand discipline."
+    },
+    {
+      "id": "token-discipline",
+      "category": "implementation",
+      "instruction": "In new implementation work, consume semantic tokens instead of primitive tokens.",
+      "rationale": "This preserves theme behavior and future maintainability."
+    },
+    {
+      "id": "recipe-preference",
+      "category": "composition",
+      "instruction": "Prefer recipes before building one-off sections from scratch.",
+      "rationale": "Recipes carry the clearest brand signature and reduce subjective assembly."
+    },
+    {
+      "id": "asset-current-only",
+      "category": "assets",
+      "instruction": "Prefer assets marked current. Do not start new work with legacy assets unless the task is explicitly legacy maintenance.",
+      "rationale": "Legacy assets exist for compatibility, not for new production."
+    },
+    {
+      "id": "icon-real-ids",
+      "category": "assets",
+      "instruction": "Only use icon ids that exist in ../assets/icons.svg.",
+      "rationale": "Legacy ids in historic docs do not guarantee runtime availability."
+    },
+    {
+      "id": "examples-are-not-api",
+      "category": "governance",
+      "instruction": "Treat pages and examples as reference examples, not as canonical API or source of truth.",
+      "rationale": "Examples may contain inline styles and context-specific exceptions."
+    }
+  ]
+}
