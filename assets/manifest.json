@@ -1,263 +1,285 @@
 {
   "$metadata": {
     "system": "Bit System",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "brand": "2P Growth Lab (Dois Palitos)",
     "updated": "2026-04-19",
-    "description": "Catálogo completo de assets visuais da 2P Growth Lab. Use este arquivo para selecionar o asset correto com base no contexto de aplicação.",
-    "base_path": "assets/"
+    "description": "Catalogo canônico de assets visuais da 2P Growth Lab. Este arquivo descreve logos, símbolos, ícones e regras operacionais de uso.",
+    "base_path": "assets/",
+    "source_of_truth": "assets/manifest.json",
+    "runtime_dependencies": [
+      "assets/icons.svg"
+    ],
+    "notes": [
+      "Os assets v2 são preferenciais para novos materiais.",
+      "PNG é o formato operacional padrão para peças de agência como social, deck, proposta e relatório.",
+      "SVG é reservado para favicon, interface e contextos que exigem escala vetorial."
+    ]
   },
-
   "logos": {
-
-    "logo_full": {
-      "$description": "Logo completo v2 — ícone-símbolo (seta estilizada) + lettering 'doispalitos growth lab'. Versão principal da marca. 3 variações de cor.",
-      "$note": "Usar sempre que houver espaço horizontal suficiente. Preferir sobre lettering ou símbolo isolados.",
-      "$clearspace": "Mínimo: altura do símbolo (ícone) em todos os 4 lados.",
-      "$formats": ["PNG com transparência"],
-      "$version": "v2 — identidade visual atual",
-
-      "neon": {
-        "file": "LOGO_Lettering_full_Verde.png",
-        "path": "assets/new-logos/LOGO_Lettering_full_Verde.png",
-        "color": "#00FFD1",
-        "background_recommended": "#100F0F",
-        "use_when": "Uso padrão. Fundo preto ou escuro. Social, site, apresentações, email dark.",
-        "use_cases": ["social media dark", "site institucional", "apresentações dark", "email signature dark", "vídeo watermark"],
-        "contrast_ratio": "9.6:1 sobre #100F0F",
-        "preferred": true
-      },
-      "black": {
-        "file": "LOGO_Lettering_full_Preto.png",
-        "path": "assets/new-logos/LOGO_Lettering_full_Preto.png",
-        "color": "#100F0F",
-        "background_recommended": "#FAFAFA",
-        "use_when": "Fundos claros. Propostas comerciais, relatórios impressos, documentos PDF light.",
-        "use_cases": ["propostas comerciais", "relatórios light", "impressão", "papelaria"],
-        "contrast_ratio": "≥ 15:1 sobre #FAFAFA"
-      },
-      "tolopea": {
-        "file": "LOGO_Lettering_full_Roxo.png",
-        "path": "assets/new-logos/LOGO_Lettering_full_Roxo.png",
-        "color": "#2409A9",
-        "background_recommended": "#FAFAFA",
-        "use_when": "Fundos claros quando preto não tem personalidade suficiente. Co-branding com parceiros de identidade clara.",
-        "use_cases": ["co-branding", "materiais light alternativos", "apresentações light"],
-        "contrast_ratio": "≥ 8:1 sobre #FAFAFA"
-      }
-    },
-
-    "symbol": {
-      "$description": "Símbolo isolado v2 — apenas o ícone-seta da 2P, sem lettering. Para usos compactos.",
-      "$note": "Usar quando o espaço não permite o logo completo, ou quando o lettering já aparece em outro elemento da peça.",
-      "$use_cases_preferred": ["favicon", "avatar de perfil", "watermark compacto", "ícone de app"],
-      "$formats": ["PNG"],
+    "$description": "Catálogo de logos e símbolos da marca 2P.",
+    "logo_full_v2": {
+      "$description": "Logo completo v2 com símbolo e lettering. É a assinatura principal da marca.",
       "$version": "v2",
-
-      "neon": {
-        "file": "LOGO_SEC_Verde.png",
-        "path": "assets/new-logos/LOGO_SEC_Verde.png",
-        "format": "PNG",
-        "color": "#00FFD1",
-        "background_recommended": "#100F0F",
-        "use_when": "Favicon, avatar, watermark dark. Preferir SVG para escala perfeita em qualquer tamanho.",
-        "preferred": true
-      },
-      "black": {
-        "file": "LOGO_SEC_Preto.png",
-        "path": "assets/new-logos/LOGO_SEC_Preto.png",
-        "format": "PNG",
-        "color": "#100F0F",
-        "background_recommended": "#FAFAFA",
-        "use_when": "Fundos claros. Impressão monocromática, carimbos, etiquetas."
-      },
-      "tolopea": {
-        "file": "LOGO_SEC_Roxo.png",
-        "path": "assets/new-logos/LOGO_SEC_Roxo.png",
-        "format": "PNG",
-        "color": "#2409A9",
-        "background_recommended": "#FAFAFA",
-        "use_when": "Fundos claros com personalidade de marca. Co-branding."
-      }
-    },
-
-    "lettering_v2": {
-      "$description": "Lettering isolado v2 — apenas o texto 'doispalitos growth lab', sem o ícone. Usar somente quando o símbolo já aparece em outro elemento da peça.",
-      "$version": "v2",
-      "$note": "Preferir o logo completo (logo_full). Usar lettering isolado apenas quando houver limitação de espaço ou duplicidade com o símbolo já presente.",
-
-      "neon": {
-        "file": "logo_lettering.png",
-        "path": "assets/new-logos/logo_lettering.png",
-        "color": "#00FFD1",
-        "background_recommended": "#100F0F",
-        "use_when": "Assinatura de rodapé, rodapé de e-mail, header de documento quando símbolo já aparece em outro ponto."
-      }
-    },
-
-    "lettering_v1_legacy": {
-      "$description": "Lettering v1 (legado) — versão anterior da marca, somente texto sem ícone-símbolo. Manter para compatibilidade. Não usar em novos materiais.",
-      "$version": "v1 — LEGADO",
-      "$note": "DEPRECATED. Use logo_full ou symbol para novos materiais.",
-      "$formats": ["PNG com transparência"],
-      "$note": "Nunca distorcer, rotacionar, aplicar efeito, trocar a cor ou adicionar outline.",
-      "$clearspace": "Mínimo: altura da letra 'd' do lettering em todos os 4 lados.",
-      "$formats": ["PNG com transparência"],
-
-      "neon": {
-        "file": "logo-lettering-neon.png",
-        "path": "assets/logo-lettering-neon.png",
-        "color": "#00FFD1",
-        "background_recommended": "#100F0F",
-        "background_hex": "#100F0F",
-        "use_when": "Fundo preto ou escuro. Combinação-assinatura da marca. Uso padrão digital.",
-        "use_cases": ["site institucional dark", "social media dark", "apresentações dark", "email signature dark"],
-        "avoid": "Fundos claros, fundos neon, fundos coloridos sem contraste suficiente"
-      },
-      "black": {
-        "file": "logo-lettering-black.png",
-        "path": "assets/logo-lettering-black.png",
-        "color": "#100F0F",
-        "background_recommended": "#FAFAFA",
-        "background_hex": "#FAFAFA",
-        "use_when": "Fundo branco ou claro. Documentos, print, propostas comerciais.",
-        "use_cases": ["propostas PDF light", "documentos Word", "assinatura de e-mail light", "materiais impressos"],
-        "avoid": "Fundos escuros"
-      },
-      "white": {
-        "file": "logo-lettering-white.png",
-        "path": "assets/logo-lettering-white.png",
-        "color": "#FFFFFF",
-        "background_recommended": "cores vivas (neon, fúchsia, tolopea, gradientes)",
-        "background_hex_examples": ["#00FFD1", "#FF00FF", "#2409A9"],
-        "use_when": "Sobre backgrounds muito coloridos onde nem neon nem preto têm contraste.",
-        "use_cases": ["banners sobre gradiente", "headers com background neon", "materiais de evento"],
-        "avoid": "Fundos claros ou brancos"
-      },
-      "tolopea": {
-        "file": "logo-lettering-tolopea.png",
-        "path": "assets/logo-lettering-tolopea.png",
-        "color": "#2409A9",
-        "background_recommended": "#00FFD1",
-        "background_hex": "#00FFD1",
-        "use_when": "Fundo neon (#00FFD1). Banners e headers de destaque.",
-        "use_cases": ["banners neon", "CTAs visuais", "materiais promocionais"],
-        "avoid": "Fundos escuros ou neutros"
-      },
-      "fuchsia": {
-        "file": "logo-lettering-fuchsia.png",
-        "path": "assets/logo-lettering-fuchsia.png",
-        "color": "#FF00FF",
-        "background_recommended": "#100F0F",
-        "background_hex": "#100F0F",
-        "use_when": "Variação de acento. Usar com parcimônia - não é o logo padrão.",
-        "use_cases": ["campanhas especiais", "peças de destaque pontual", "variação para eventos"],
-        "avoid": "Uso cotidiano (reservar para momentos especiais)"
-      }
-    },
-
-    "symbol": {
-      "$description": "Símbolo 2P em pixel art. Para usos compactos onde o lettering não cabe.",
-      "$format": "SVG inline (path pixel art)",
-      "$grid": "16x16 pixels",
-      "$rendering": "shape-rendering: crispEdges (nunca suavizar)",
-      "$note": "Usar fill='currentColor' e controlar cor via CSS.",
-
-      "file": "logo-symbol.svg",
-      "path": "assets/logo-symbol.svg",
-      "use_when": "Favicon, avatar, ícone de app, watermark em vídeo, uso compacto abaixo de 48px.",
-      "min_size": "16px (abaixo disso perde legibilidade)",
-      "recommended_sizes": ["16px", "32px", "48px", "64px", "128px"],
-      "avoid": "Tamanhos intermediários não-múltiplos de 16 (causa anti-alias indesejado)",
-
+      "$status": "current",
+      "$clearspace": "Mínimo: altura do símbolo em todos os lados.",
+      "$preferred_contexts": [
+        "site institucional",
+        "landing page",
+        "proposta comercial",
+        "relatório",
+        "pitch deck",
+        "social media"
+      ],
       "variants": {
-        "neon-on-black":    { "fill": "#00FFD1", "background": "#100F0F", "use": "Padrão dark" },
-        "black-on-neon":    { "fill": "#100F0F", "background": "#00FFD1", "use": "Inversão para fundo neon" },
-        "neon-on-tolopea":  { "fill": "#00FFD1", "background": "#2409A9", "use": "Variação estrutural" },
-        "black-on-white":   { "fill": "#100F0F", "background": "#FAFAFA", "use": "Versão light" }
-      },
-
-      "svg_path": "M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z",
-      "svg_usage": "<svg viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='currentColor' d='M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z'/></svg>"
+        "neon": {
+          "file": "LOGO_Lettering_full_Verde.png",
+          "path": "assets/new-logos/LOGO_Lettering_full_Verde.png",
+          "format": "PNG",
+          "color": "#00FFD1",
+          "background_recommended": "#100F0F",
+          "use_when": "Padrão dark. Site, social, apresentação e qualquer peça sobre fundo escuro.",
+          "contrast_ratio": "9.6:1 sobre #100F0F",
+          "preferred": true
+        },
+        "black": {
+          "file": "LOGO_Lettering_full_Preto.png",
+          "path": "assets/new-logos/LOGO_Lettering_full_Preto.png",
+          "format": "PNG",
+          "color": "#100F0F",
+          "background_recommended": "#FAFAFA",
+          "use_when": "Documentos light, propostas, relatórios e impressão.",
+          "contrast_ratio": ">= 15:1 sobre #FAFAFA"
+        },
+        "tolopea": {
+          "file": "LOGO_Lettering_full_Roxo.png",
+          "path": "assets/new-logos/LOGO_Lettering_full_Roxo.png",
+          "format": "PNG",
+          "color": "#2409A9",
+          "background_recommended": "#FAFAFA",
+          "use_when": "Fundos claros em materiais com mais carga de marca ou co-branding."
+        }
+      }
+    },
+    "symbol_v2_png": {
+      "$description": "Símbolo isolado v2 em PNG. Este é o formato operacional preferido para peças da agência.",
+      "$version": "v2",
+      "$status": "current",
+      "$preferred_contexts": [
+        "avatar de perfil",
+        "watermark",
+        "social media",
+        "deck",
+        "proposta"
+      ],
+      "variants": {
+        "neon": {
+          "file": "LOGO_SEC_Verde.png",
+          "path": "assets/new-logos/LOGO_SEC_Verde.png",
+          "format": "PNG",
+          "color": "#00FFD1",
+          "background_recommended": "#100F0F",
+          "use_when": "Avatar, watermark e uso compacto em peças dark.",
+          "preferred": true
+        },
+        "black": {
+          "file": "LOGO_SEC_Preto.png",
+          "path": "assets/new-logos/LOGO_SEC_Preto.png",
+          "format": "PNG",
+          "color": "#100F0F",
+          "background_recommended": "#FAFAFA",
+          "use_when": "Versão light para materiais claros, papelaria e impressão."
+        },
+        "tolopea": {
+          "file": "LOGO_SEC_Roxo.png",
+          "path": "assets/new-logos/LOGO_SEC_Roxo.png",
+          "format": "PNG",
+          "color": "#2409A9",
+          "background_recommended": "#FAFAFA",
+          "use_when": "Uso compacto em fundos claros com mais personalidade de marca."
+        }
+      }
+    },
+    "symbol_v2_svg": {
+      "$description": "Símbolo isolado v2 em SVG. Use somente em contextos técnicos ou de interface.",
+      "$version": "v2",
+      "$status": "current",
+      "$preferred_contexts": [
+        "favicon",
+        "ícone de app",
+        "interface",
+        "uso vetorial"
+      ],
+      "file": "LOGO_SEC_Verde.svg",
+      "path": "assets/new-logos/LOGO_SEC_Verde.svg",
+      "format": "SVG",
+      "background_recommended": "#100F0F",
+      "use_when": "Quando a peça exige escala vetorial, nitidez em tamanhos variáveis ou integração em interface.",
+      "min_size": "16px",
+      "recommended_sizes": [
+        "16px",
+        "32px",
+        "48px",
+        "64px",
+        "128px"
+      ]
+    },
+    "lettering_v2": {
+      "$description": "Lettering v2 sem símbolo. Usar apenas quando o símbolo já estiver presente em outro ponto da peça.",
+      "$version": "v2",
+      "$status": "current",
+      "variants": {
+        "neon": {
+          "file": "logo_lettering.png",
+          "path": "assets/new-logos/logo_lettering.png",
+          "format": "PNG",
+          "color": "#00FFD1",
+          "background_recommended": "#100F0F",
+          "use_when": "Assinatura de rodapé, cabeçalho compacto ou fechamento de peça quando o símbolo já aparece no layout."
+        }
+      }
+    },
+    "lettering_v1_legacy": {
+      "$description": "Letterings da versão anterior da marca. Manter apenas para compatibilidade com legado.",
+      "$version": "v1",
+      "$status": "legacy",
+      "$replacement": "logos.logo_full_v2",
+      "variants": {
+        "neon": {
+          "file": "logo-lettering-neon.png",
+          "path": "assets/logo-lettering-neon.png",
+          "format": "PNG",
+          "color": "#00FFD1"
+        },
+        "black": {
+          "file": "logo-lettering-black.png",
+          "path": "assets/logo-lettering-black.png",
+          "format": "PNG",
+          "color": "#100F0F"
+        },
+        "white": {
+          "file": "logo-lettering-white.png",
+          "path": "assets/logo-lettering-white.png",
+          "format": "PNG",
+          "color": "#FFFFFF"
+        },
+        "tolopea": {
+          "file": "logo-lettering-tolopea.png",
+          "path": "assets/logo-lettering-tolopea.png",
+          "format": "PNG",
+          "color": "#2409A9"
+        },
+        "fuchsia": {
+          "file": "logo-lettering-fuchsia.png",
+          "path": "assets/logo-lettering-fuchsia.png",
+          "format": "PNG",
+          "color": "#FF00FF"
+        }
+      }
     }
   },
-
   "icons": {
-    "$description": "Sistema de ícones de linha da 2P. Todos seguem o mesmo grid e estilo.",
-    "$style": "outline / linha",
-    "$grid": "24x24",
-    "$stroke_width": "2px",
-    "$stroke_linecap": "square",
-    "$stroke_linejoin": "miter",
-    "$color": "currentColor",
-    "$format": "SVG inline via sprite ou individual",
-    "$file": "assets/icons.svg",
-
-    "usage_html": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='square'><use href='assets/icons.svg#icon-name'/></svg>",
-
+    "$description": "Sprite canônico de ícones do Bit System.",
+    "sprite": {
+      "file": "icons.svg",
+      "path": "assets/icons.svg",
+      "format": "SVG sprite",
+      "id_prefix": "bs-",
+      "usage_html": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'><use href='assets/icons.svg#bs-arrow-right'/></svg>"
+    },
     "categories": {
       "general": {
-        "$description": "Ícones de uso geral para UI",
-        "arrow-right": { "id": "general-01", "use_when": "Links, CTAs, navegação para frente" },
-        "arrow-left":  { "id": "general-02", "use_when": "Voltar, navegação para trás" },
-        "check":       { "id": "general-03", "use_when": "Confirmação, seleção, sucesso" },
-        "close":       { "id": "general-04", "use_when": "Fechar, remover, cancelar" },
-        "plus":        { "id": "general-05", "use_when": "Adicionar, expandir, novo" },
-        "minus":       { "id": "general-06", "use_when": "Remover, colapsar" },
-        "menu":        { "id": "general-07", "use_when": "Menu hamburger, navegação mobile" },
-        "search":      { "id": "general-08", "use_when": "Busca, filtro" }
+        "$description": "Ícones de uso geral para interface e navegação.",
+        "arrow-right": { "id": "bs-arrow-right", "legacy_id": "general-01", "use_when": "Links, CTAs e navegação para frente" },
+        "arrow-left": { "id": "bs-arrow-left", "legacy_id": "general-02", "use_when": "Voltar e navegação para trás" },
+        "check": { "id": "bs-check", "legacy_id": "general-03", "use_when": "Confirmação, sucesso e seleção" },
+        "close": { "id": "bs-close", "legacy_id": "general-04", "use_when": "Fechar, cancelar e remover" },
+        "plus": { "id": "bs-plus", "legacy_id": "general-05", "use_when": "Adicionar e expandir" },
+        "minus": { "id": "bs-minus", "legacy_id": "general-06", "use_when": "Remover e colapsar" },
+        "menu": { "id": "bs-menu", "legacy_id": "general-07", "use_when": "Menu mobile e navegação compacta" },
+        "search": { "id": "bs-search", "legacy_id": "general-08", "use_when": "Busca e filtro" },
+        "arrow-up-right": { "id": "bs-arrow-up-right", "use_when": "Links externos e saída de contexto" },
+        "arrow-down": { "id": "bs-arrow-down", "use_when": "Indicadores de scroll ou movimento para baixo" },
+        "download": { "id": "bs-download", "use_when": "Download e exportação" },
+        "settings": { "id": "bs-settings", "use_when": "Configurações e ajustes" },
+        "alert": { "id": "bs-alert", "use_when": "Alerta e atenção" },
+        "info": { "id": "bs-info", "use_when": "Ajuda, tooltip e informação contextual" },
+        "clock": { "id": "bs-clock", "use_when": "Tempo, SLA e cronograma" },
+        "file": { "id": "bs-file", "use_when": "Documento, proposta e relatório" },
+        "folder": { "id": "bs-folder", "use_when": "Coleção, diretório e agrupamento" }
       },
       "performance": {
-        "$description": "Ícones para métricas e performance (contexto 2P)",
-        "chart-up":    { "id": "perf-01", "use_when": "Métricas subindo, ROAS positivo, growth" },
-        "chart-down":  { "id": "perf-02", "use_when": "Redução de custo (CPA/CAC caindo)" },
-        "target":      { "id": "perf-03", "use_when": "Objetivo, meta, resultado esperado" },
-        "lightning":   { "id": "perf-04", "use_when": "Performance, velocidade, power-up" },
-        "trophy":      { "id": "perf-05", "use_when": "High score, resultado excepcional, case" }
+        "$description": "Ícones ligados a growth, métrica e resultado.",
+        "trend-up": { "id": "bs-trending-up", "legacy_id": "perf-01", "use_when": "Alta de ROAS, leads e crescimento" },
+        "chart-bars": { "id": "bs-chart", "use_when": "Visualização de dados e métricas consolidadas" },
+        "target": { "id": "bs-target", "legacy_id": "perf-03", "use_when": "Meta, objetivo e performance" },
+        "bolt": { "id": "bs-bolt", "legacy_id": "perf-04", "use_when": "Velocidade, power-up e performance" },
+        "trophy": { "id": "bs-trophy", "legacy_id": "perf-05", "use_when": "High score, resultado excepcional e case" },
+        "star": { "id": "bs-star", "use_when": "Destaque, favorito e status premium" }
       },
-      "gamer_pixel": {
-        "$description": "Pixel icons para toques de marca. Usar com moderação.",
-        "$style": "fill / pixel art",
-        "$grid": "16x16",
-        "$rendering": "crispEdges",
-        "heart":  { "use_when": "Curtida, favorito, easter egg de marca" },
-        "coin":   { "use_when": "INSERT COIN, início de projeto, investimento" }
+      "communication": {
+        "$description": "Ícones de contato e relacionamento.",
+        "user": { "id": "bs-user", "use_when": "Perfil individual e dono da conta" },
+        "users": { "id": "bs-users", "use_when": "Equipe, parceria e grupo" },
+        "mail": { "id": "bs-mail", "use_when": "Email e captura de lead" },
+        "phone": { "id": "bs-phone", "use_when": "Contato direto e telefone" },
+        "whatsapp": { "id": "bs-whatsapp", "use_when": "Contato via WhatsApp" },
+        "instagram": { "id": "bs-instagram", "use_when": "Canal social e perfil Instagram" },
+        "linkedin": { "id": "bs-linkedin", "use_when": "Canal social e perfil LinkedIn" }
+      },
+      "brand_and_media": {
+        "$description": "Ícones de marca, mídia e linguagem gamer.",
+        "controller": { "id": "bs-controller", "use_when": "Tema gamer, co-op e marca" },
+        "play": { "id": "bs-play", "use_when": "Vídeo, reprodução e demo" },
+        "pause": { "id": "bs-pause", "use_when": "Pausa e estado suspenso" },
+        "stop": { "id": "bs-stop", "use_when": "Encerrar, parar ou estado final" },
+        "heart": { "id": "bs-heart", "use_when": "Favorito e afinidade" },
+        "heart-pixel": { "id": "bs-heart-pixel", "use_when": "Easter egg e detalhe pixel art" },
+        "coin": { "id": "bs-coin", "use_when": "Investimento inicial, insert coin e orçamento" }
       }
+    },
+    "deprecations": {
+      "legacy_icon_ids_without_direct_match": [
+        {
+          "legacy_id": "perf-02",
+          "status": "deprecated",
+          "note": "O ícone chart-down não existe no sprite atual. Se for necessário, ele deve ser desenhado e adicionado ao sprite antes do uso."
+        }
+      ]
     }
   },
-
   "selection_guide": {
-    "$description": "Guia rápido para seleção de asset dado um contexto.",
+    "$description": "Atalhos para seleção operacional do asset correto.",
     "rules": [
       {
-        "context": "Header/navbar dark",
-        "asset": "logo-lettering-neon.png",
-        "rationale": "Combinação-assinatura da marca"
+        "context": "Header ou navbar dark",
+        "asset": "logos.logo_full_v2.variants.neon",
+        "rationale": "É a assinatura principal da marca em fundo escuro."
       },
       {
-        "context": "Proposta comercial (PDF/print)",
-        "asset": "logo-lettering-black.png",
-        "rationale": "Contraste adequado em papel branco"
+        "context": "Proposta comercial, relatório ou PDF light",
+        "asset": "logos.logo_full_v2.variants.black",
+        "rationale": "Contraste máximo e leitura consistente em fundos claros."
       },
       {
-        "context": "Favicon / ícone de app",
-        "asset": "logo-symbol.svg com fill #00FFD1 em fundo #100F0F",
-        "rationale": "Símbolo compacto, legível em tamanho pequeno"
+        "context": "Avatar ou perfil social",
+        "asset": "logos.symbol_v2_png.variants.neon",
+        "rationale": "PNG é o padrão operacional para peças e perfis da agência."
       },
       {
-        "context": "Banner sobre gradiente neon→fúchsia",
-        "asset": "logo-lettering-white.png",
-        "rationale": "Branco garante contraste sobre qualquer gradiente vibrante"
+        "context": "Favicon ou interface",
+        "asset": "logos.symbol_v2_svg",
+        "rationale": "SVG garante escala vetorial e nitidez em múltiplos tamanhos."
       },
       {
-        "context": "Post Instagram dark",
-        "asset": "logo-lettering-neon.png",
-        "rationale": "Visual de marca forte e reconhecível"
+        "context": "Rodapé ou assinatura quando o símbolo já aparece na peça",
+        "asset": "logos.lettering_v2.variants.neon",
+        "rationale": "Evita duplicidade do símbolo no mesmo layout."
       },
       {
-        "context": "Avatar / perfil social",
-        "asset": "logo-symbol.svg variante neon-on-black 400x400px",
-        "rationale": "Legibilidade em círculo e quadrado"
+        "context": "Material legado em manutenção",
+        "asset": "logos.lettering_v1_legacy",
+        "rationale": "Usar apenas para compatibilidade. Não abrir novo material em v1."
       }
     ]
   }

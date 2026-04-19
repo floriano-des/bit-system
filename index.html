@@ -206,8 +206,8 @@
 
   <div class="top-bar">
     <div class="brand">
-      <img src="assets/logo-lettering-neon.png" alt="Dois Palitos Growth Lab — logotipo Bit System">
-      <span class="meta">bit system · v2.0</span>
+      <img src="assets/new-logos/logo_lettering.png" alt="Dois Palitos Growth Lab, logotipo Bit System">
+      <span class="meta">bit system · v2.1</span>
     </div>
     <div class="theme-toggle" role="group" aria-label="Tema">
       <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
@@ -228,11 +228,11 @@
     <div>
       <div class="recipe-console">
         <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> bit-system --status</div>
-        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> tokens      = <span class="recipe-console__value">142</span></div>
-        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> components  = <span class="recipe-console__value">24</span></div>
-        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> recipes     = <span class="recipe-console__value">7</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> tokens      = <span class="recipe-console__value">canonical json</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> runtime     = <span class="recipe-console__value">modular css</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> assets      = <span class="recipe-console__value">validated manifest</span></div>
         <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> themes      = <span class="recipe-console__value">dark · light</span></div>
-        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> last_update = <span class="recipe-console__value">2026-04-18</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> last_update = <span class="recipe-console__value">2026-04-19</span></div>
         <div class="recipe-console__line" style="margin-top: var(--space-4)"><span class="recipe-console__prompt">&gt;</span> ready_<span class="fx-cursor"></span></div>
       </div>
     </div>
@@ -260,7 +260,7 @@
         <div class="lbl">02 · Fundações</div>
         <h2>As bases.</h2>
       </div>
-      <p>Tokens e regras. São a fonte da verdade. Se não tá aqui, não inventa.</p>
+      <p>Os contratos canônicos ficam em <code>tokens.json</code> e <code>assets/manifest.json</code>. Os CSS são os entrypoints de runtime.</p>
     </div>
     <div class="pages">
       <a class="page-card" href="pages/colors.html">
@@ -290,13 +290,13 @@
         <div class="lbl">03 · Marca</div>
         <h2>Identidade.</h2>
       </div>
-      <p>Logo, símbolo 2P pixel, ícones. Tudo que a marca da 2P é feita de.</p>
+      <p>Logo v2, símbolos operacionais, sprite de ícones e regras de aplicação da marca.</p>
     </div>
     <div class="pages">
       <a class="page-card" href="pages/logos.html">
         <span class="tag">01</span>
         <h3>Logos</h3>
-        <p>Lettering (5 versões) + símbolo 2P pixel. Clearspace, regras.</p>
+        <p>Assets v2 atuais, legado isolado, clearspace e critério de uso por contexto.</p>
         <span class="arrow">Abrir →</span>
       </a>
       <a class="page-card" href="pages/icons.html">
@@ -340,7 +340,7 @@
         <div class="lbl">05 · Building blocks</div>
         <h2>Componentes<br>+ recipes.</h2>
       </div>
-      <p>Componentes primitivos (botões, inputs) e <em>recipes</em> - composições assinadas da 2P pra uso rápido em landing.</p>
+      <p>Componentes base e recipes assinadas da 2P para construir peças com menos exceção manual.</p>
     </div>
     <div class="pages">
       <a class="page-card" href="pages/components.html">
@@ -352,7 +352,7 @@
       <a class="page-card" href="pages/recipes.html">
         <span class="tag">02</span>
         <h3>Recipes</h3>
-        <p>Mission Card, Boss Stats, Save Point, Player Card, Ticker. Assinados.</p>
+        <p>Mission, Boss Stats, Save Point, Player, Console e Ticker. Nomes reais do CSS.</p>
         <span class="arrow">Abrir →</span>
       </a>
       <a class="page-card" href="pages/sections.html">
@@ -370,7 +370,7 @@
         <div class="lbl">06 · Como usar</div>
         <h2>Getting<br>started.</h2>
       </div>
-      <p>4 passos pra começar um projeto novo com o Bit System.</p>
+      <p>Fluxo mínimo para começar sem fugir da arquitetura e da gramática visual.</p>
     </div>
     <div class="principles">
       <div class="principle">
@@ -432,16 +432,16 @@
         <div class="lbl">08 · Machine-readable</div>
         <h2>Para<br>IAs.</h2>
       </div>
-      <p>Todos os arquivos estruturados pra alimentar agentes de IA, copilots e pipelines de geração automática de interfaces.</p>
+      <p>Arquivos organizados para agentes de IA, copilots e pipelines com menos ambiguidade entre contrato, runtime e assets.</p>
     </div>
 
     <!-- Bloco de contexto / instrução -->
     <div class="recipe-console" style="margin-bottom: var(--space-8);">
       <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> Como consumir este Design System via IA</div>
-      <div class="recipe-console__line" style="margin-top: var(--space-3)"><span class="recipe-console__prompt">1.</span> Leia o <span class="recipe-console__value">SKILL.md</span> — é o guia de instrução direto pro agente</div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">2.</span> Use o <span class="recipe-console__value">tokens.json</span> como fonte de verdade de tokens (W3C DTCG)</div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">3.</span> Referencie <span class="recipe-console__value">tokens.css</span> + <span class="recipe-console__value">components.css</span> pra gerar HTML/CSS correto</div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">4.</span> Consulte <span class="recipe-console__value">assets/manifest.json</span> pra saber quais logos/ícones existem e como baixar</div>
+      <div class="recipe-console__line" style="margin-top: var(--space-3)"><span class="recipe-console__prompt">1.</span> Leia o <span class="recipe-console__value">SKILL.md</span> e o <span class="recipe-console__value">docs/ai-guide.md</span></div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">2.</span> Use o <span class="recipe-console__value">tokens.json</span> como contrato estrutural dos tokens</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">3.</span> Use <span class="recipe-console__value">tokens.css</span> e <span class="recipe-console__value">components.css</span> como runtime público</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">4.</span> Consulte <span class="recipe-console__value">assets/manifest.json</span> e valide ids com <span class="recipe-console__value">assets/icons.svg</span></div>
       <div class="recipe-console__line" style="margin-top: var(--space-4)"><span class="recipe-console__prompt">&gt;</span> all_files_indexed = <span class="recipe-console__value">true</span> <span class="fx-cursor"></span></div>
     </div>
 
@@ -452,7 +452,17 @@
         <div class="ai-card__badge">LEIA PRIMEIRO</div>
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-file"/></svg></div>
         <h3 class="ai-card__name">SKILL.md</h3>
-        <p class="ai-card__desc">Guia de instrução completo para agentes de IA. Como usar o DS, quais arquivos ler, regras de geração, exemplos de prompts e relações entre componentes.</p>
+        <p class="ai-card__desc">Guia principal para agentes. Define ordem de leitura, guardrails, recipes reais, setup mínimo e o que não assumir.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">Markdown</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="docs/ai-guide.md" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-info"/></svg></div>
+        <h3 class="ai-card__name">docs/ai-guide.md</h3>
+        <p class="ai-card__desc">Resumo operacional para IA: ordem de leitura, regras de consumo, escolhas de asset e limites do sistema atual.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">Markdown</span>
           <span class="ai-card__link">Abrir →</span>
@@ -462,7 +472,7 @@
       <a class="ai-card" href="tokens.json" target="_blank">
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-settings"/></svg></div>
         <h3 class="ai-card__name">tokens.json</h3>
-        <p class="ai-card__desc">Todos os design tokens em formato W3C DTCG. 3 camadas (primitivos → semânticos → fundações), ratios de contraste WCAG, relações contextuais e metadados de acessibilidade.</p>
+        <p class="ai-card__desc">Contrato estrutural dos tokens. Reúne camadas primitivas, semânticas, fundacionais, acessibilidade e relações de uso.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">JSON · W3C DTCG</span>
           <span class="ai-card__link">Abrir →</span>
@@ -472,7 +482,7 @@
       <a class="ai-card" href="tokens.css" target="_blank">
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-bolt"/></svg></div>
         <h3 class="ai-card__name">tokens.css</h3>
-        <p class="ai-card__desc">CSS custom properties — fonte de verdade das variáveis. Contém primitivos, semânticos dark/light e aliases de compatibilidade. Importar antes de qualquer outro CSS.</p>
+        <p class="ai-card__desc">Entrypoint público do runtime de tokens. Importa a base modular em <code>styles/</code> e preserva compatibilidade com peças existentes.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">CSS · Custom Properties</span>
           <span class="ai-card__link">Abrir →</span>
@@ -482,7 +492,7 @@
       <a class="ai-card" href="components.css" target="_blank">
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-controller"/></svg></div>
         <h3 class="ai-card__name">components.css</h3>
-        <p class="ai-card__desc">Todos os componentes e recipes em CSS. Botões, inputs, badges, cards, accordions, alerts, navbar, e as 5 recipes assinadas da 2P. Só consome tokens semânticos.</p>
+        <p class="ai-card__desc">Entrypoint público do runtime de UI. Reúne layout, componentes, recipes e responsividade com nomes reais de classe.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">CSS · Components</span>
           <span class="ai-card__link">Abrir →</span>
@@ -492,9 +502,19 @@
       <a class="ai-card" href="assets/manifest.json" target="_blank">
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-folder"/></svg></div>
         <h3 class="ai-card__name">assets/manifest.json</h3>
-        <p class="ai-card__desc">Inventário completo de assets — logos (5 variações), símbolo pixel, ícones. Inclui paths, quando usar cada variação, clearspace e descrições para geração de alt text.</p>
+        <p class="ai-card__desc">Catálogo canônico de logos, símbolos e ícones. Inclui status atual ou legado, contexto de uso, paths e ids reais do sprite.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">JSON · Asset Manifest</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="docs/system-architecture.md" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-folder"/></svg></div>
+        <h3 class="ai-card__name">docs/system-architecture.md</h3>
+        <p class="ai-card__desc">Mapa da arquitetura atual. Define fronteiras entre contrato, runtime, legado, assets e documenta as limitações conhecidas.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">Markdown</span>
           <span class="ai-card__link">Abrir →</span>
         </div>
       </a>
@@ -502,7 +522,7 @@
       <a class="ai-card" href="README.md" target="_blank">
         <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-info"/></svg></div>
         <h3 class="ai-card__name">README.md</h3>
-        <p class="ai-card__desc">Visão geral do projeto, estrutura de pastas, instruções de setup e convenções. Ponto de entrada para novos contextos ou agentes sem memória prévia do DS.</p>
+        <p class="ai-card__desc">Onboarding humano. Resume estrutura, fontes de verdade, setup e comandos de validação.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">Markdown</span>
           <span class="ai-card__link">Abrir →</span>
@@ -514,14 +534,14 @@
     <!-- Nota de uso por IA -->
     <div class="ai-note">
       <strong>Ordem de leitura recomendada para agentes:</strong>
-      SKILL.md → tokens.json → tokens.css → components.css → assets/manifest.json
+      SKILL.md → docs/ai-guide.md → tokens.json → tokens.css → components.css → assets/manifest.json
       <span style="margin-left: var(--space-4); color: var(--color-text-subtle);">·</span>
-      <span style="margin-left: var(--space-4);">Formato preferido para system prompt: cole o SKILL.md completo + tokens.json na seção de contexto</span>
+      <span style="margin-left: var(--space-4);">Pacote mínimo recomendado para contexto: SKILL.md + docs/ai-guide.md + tokens.json + assets/manifest.json</span>
     </div>
   </section>
 
   <footer>
-    <span>© 2026 · doispalitos growth lab · bit system v2.0</span>
+    <span>© 2026 · doispalitos growth lab · bit system v2.1</span>
     <span>owned by · design ops</span>
   </footer>
 
