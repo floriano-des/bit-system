@@ -51,7 +51,7 @@
       "$description": "Símbolo isolado v2 — apenas o ícone-seta da 2P, sem lettering. Para usos compactos.",
       "$note": "Usar quando o espaço não permite o logo completo, ou quando o lettering já aparece em outro elemento da peça.",
       "$use_cases_preferred": ["favicon", "avatar de perfil", "watermark compacto", "ícone de app"],
-      "$formats": ["SVG (neon)", "PNG (preto e tolopea)"],
+      "$formats": ["PNG"],
       "$version": "v2",
 
       "neon": {
