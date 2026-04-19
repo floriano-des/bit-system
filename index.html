@@ -108,6 +108,54 @@
 
   footer { margin-top: var(--space-24); padding-top: var(--space-6); border-top: var(--border-1) solid var(--color-border); font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); display: flex; justify-content: space-between; letter-spacing: var(--ls-wide); text-transform: uppercase; }
 
+  /* ── AI / Machine-readable section ───────────────────── */
+  .ai-files {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+  .ai-card {
+    text-decoration: none;
+    background: var(--color-surface);
+    border: var(--border-2) solid var(--color-border);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    min-height: 220px;
+    transition: transform var(--motion-base) var(--ease-smooth),
+                box-shadow var(--motion-base) var(--ease-smooth),
+                border-color var(--motion-base);
+  }
+  .ai-card:hover { transform: translate(-4px,-4px); box-shadow: var(--shadow-brand); border-color: var(--brand-primary); }
+  .ai-card:focus-visible { outline: 3px solid var(--brand-primary); outline-offset: -3px; box-shadow: var(--shadow-brand); border-color: var(--brand-primary); }
+  .ai-card--primary {
+    border-color: var(--brand-primary);
+    background: color-mix(in srgb, var(--brand-primary) 6%, var(--color-surface));
+  }
+  .ai-card__badge {
+    display: inline-flex; align-self: flex-start;
+    font-family: var(--font-mono); font-size: var(--fs-caption); font-weight: 700;
+    letter-spacing: var(--ls-wide); text-transform: uppercase;
+    color: var(--brand-primary-ink); background: var(--brand-primary);
+    padding: 2px 8px; margin-bottom: var(--space-1);
+  }
+  .ai-card__icon { color: var(--brand-primary); display: flex; }
+  .ai-card__name { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-body-lg); color: var(--color-text); margin: 0; }
+  .ai-card__desc { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relax); flex: 1; }
+  .ai-card__meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: var(--space-3); border-top: var(--border-1) solid var(--color-border); }
+  .ai-card__format { font-family: var(--font-mono); font-size: var(--fs-caption); font-weight: 700; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); }
+  .ai-card__link { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--brand-primary); display: flex; align-items: center; gap: var(--space-1); }
+  .ai-note {
+    margin-top: var(--space-6);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    border-left: var(--border-4) solid var(--brand-primary);
+    font-family: var(--font-mono); font-size: var(--fs-body-sm);
+    color: var(--color-text-muted); line-height: var(--lh-relax);
+  }
+  .ai-note strong { color: var(--color-text); text-transform: uppercase; letter-spacing: var(--ls-wide); font-size: var(--fs-caption); }
+
   /* a11y: skip link — visível somente no focus de teclado */
   .skip-link {
     position: absolute;
@@ -133,6 +181,26 @@
 
 <!-- a11y: skip link para leitores de tela e navegação por teclado -->
 <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+<!-- Sprite de ícones do Bit System — inline pra garantir uso com <use> -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="bs-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M4 12 H20 M14 6 L20 12 L14 18"></path></symbol>
+    <symbol id="bs-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M6 18 L18 6 M8 6 H18 V16"></path></symbol>
+    <symbol id="bs-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 12 L10 18 L20 6"></path></symbol>
+    <symbol id="bs-bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 H11 L9 22 L20 10 H13 Z"></path></symbol>
+    <symbol id="bs-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.5" fill="currentColor"></circle></symbol>
+    <symbol id="bs-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 4 V20 H20 M8 16 V12 M12 16 V8 M16 16 V6"></path></symbol>
+    <symbol id="bs-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M4 16 L10 10 L14 14 L20 6 M14 6 H20 V12"></path></symbol>
+    <symbol id="bs-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3 H15 L20 8 V21 H6 Z M15 3 V8 H20"></path></symbol>
+    <symbol id="bs-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6 V19 H21 V9 H12 L10 6 Z"></path></symbol>
+    <symbol id="bs-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2 V5 M12 19 V22 M2 12 H5 M19 12 H22 M4.9 4.9 L7 7 M17 17 L19.1 19.1 M4.9 19.1 L7 17 M17 7 L19.1 4.9"></path></symbol>
+    <symbol id="bs-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 8 V8.5 M12 11 V17"></path></symbol>
+    <symbol id="bs-controller" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="2" y="7" width="20" height="12" rx="3"></rect><path d="M7 11 V15 M5 13 H9 M15 12 V12.5 M18 14 V14.5"></path></symbol>
+    <symbol id="bs-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.5 9 L22 9 L16 13.5 L18 21 L12 16.5 L6 21 L8 13.5 L2 9 L9.5 9 Z"></path></symbol>
+    <symbol id="bs-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 3 V15 M6 9 L12 15 L18 9 M4 20 H20"></path></symbol>
+  </defs>
+</svg>
 
 <div class="shell">
 
@@ -179,10 +247,10 @@
       <p>Todas as peças que saem com a cara da 2P usam o Bit System. É o que mantém a marca coerente entre quem faz deck, quem faz post e quem faz landing.</p>
     </div>
     <div class="uses">
-      <div class="use"><h4>🎯 Site institucional &amp; landings de captação</h4><p>Home, páginas de serviço, landings de iscas digitais, cases publicados.</p></div>
-      <div class="use use--accent"><h4>📑 Propostas comerciais &amp; pitch decks</h4><p>PDFs e slides pra prospects. Usa tema light pra facilitar impressão/leitura.</p></div>
-      <div class="use"><h4>📊 Relatórios internos &amp; reports pra clientes</h4><p>Dashboards exportados, relatórios mensais, retros trimestrais.</p></div>
-      <div class="use use--accent"><h4>📱 Social da 2P &amp; branding de eventos</h4><p>Posts do Insta/LinkedIn da agência, convites, roll-ups, kit-mídia.</p></div>
+      <div class="use"><h4><svg width="18" height="18" style="vertical-align:-3px;margin-right:6px;color:var(--brand-primary)" aria-hidden="true"><use href="#bs-target"/></svg>Site institucional &amp; landings de captação</h4><p>Home, páginas de serviço, landings de iscas digitais, cases publicados.</p></div>
+      <div class="use use--accent"><h4><svg width="18" height="18" style="vertical-align:-3px;margin-right:6px;color:var(--brand-accent)" aria-hidden="true"><use href="#bs-file"/></svg>Propostas comerciais &amp; pitch decks</h4><p>PDFs e slides pra prospects. Usa tema light pra facilitar impressão/leitura.</p></div>
+      <div class="use"><h4><svg width="18" height="18" style="vertical-align:-3px;margin-right:6px;color:var(--brand-primary)" aria-hidden="true"><use href="#bs-chart"/></svg>Relatórios internos &amp; reports pra clientes</h4><p>Dashboards exportados, relatórios mensais, retros trimestrais.</p></div>
+      <div class="use use--accent"><h4><svg width="18" height="18" style="vertical-align:-3px;margin-right:6px;color:var(--brand-accent)" aria-hidden="true"><use href="#bs-trending-up"/></svg>Social da 2P &amp; branding de eventos</h4><p>Posts do Insta/LinkedIn da agência, convites, roll-ups, kit-mídia.</p></div>
     </div>
   </section>
 
@@ -335,6 +403,100 @@
         <p>Report de performance - KPIs, gráficos, insights.</p>
         <span class="arrow">Ver →</span>
       </a>
+    </div>
+  </section>
+
+  <section class="section" id="para-ias">
+    <div class="section-head">
+      <div>
+        <div class="lbl">07 · Machine-readable</div>
+        <h2>Para<br>IAs.</h2>
+      </div>
+      <p>Todos os arquivos estruturados pra alimentar agentes de IA, copilots e pipelines de geração automática de interfaces.</p>
+    </div>
+
+    <!-- Bloco de contexto / instrução -->
+    <div class="recipe-console" style="margin-bottom: var(--space-8);">
+      <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> Como consumir este Design System via IA</div>
+      <div class="recipe-console__line" style="margin-top: var(--space-3)"><span class="recipe-console__prompt">1.</span> Leia o <span class="recipe-console__value">SKILL.md</span> — é o guia de instrução direto pro agente</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">2.</span> Use o <span class="recipe-console__value">tokens.json</span> como fonte de verdade de tokens (W3C DTCG)</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">3.</span> Referencie <span class="recipe-console__value">tokens.css</span> + <span class="recipe-console__value">components.css</span> pra gerar HTML/CSS correto</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">4.</span> Consulte <span class="recipe-console__value">assets/manifest.json</span> pra saber quais logos/ícones existem e como baixar</div>
+      <div class="recipe-console__line" style="margin-top: var(--space-4)"><span class="recipe-console__prompt">&gt;</span> all_files_indexed = <span class="recipe-console__value">true</span> <span class="fx-cursor"></span></div>
+    </div>
+
+    <!-- Cards de arquivos -->
+    <div class="ai-files">
+
+      <a class="ai-card ai-card--primary" href="SKILL.md" target="_blank">
+        <div class="ai-card__badge">LEIA PRIMEIRO</div>
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-file"/></svg></div>
+        <h3 class="ai-card__name">SKILL.md</h3>
+        <p class="ai-card__desc">Guia de instrução completo para agentes de IA. Como usar o DS, quais arquivos ler, regras de geração, exemplos de prompts e relações entre componentes.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">Markdown</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="tokens.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-settings"/></svg></div>
+        <h3 class="ai-card__name">tokens.json</h3>
+        <p class="ai-card__desc">Todos os design tokens em formato W3C DTCG. 3 camadas (primitivos → semânticos → fundações), ratios de contraste WCAG, relações contextuais e metadados de acessibilidade.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON · W3C DTCG</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="tokens.css" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-bolt"/></svg></div>
+        <h3 class="ai-card__name">tokens.css</h3>
+        <p class="ai-card__desc">CSS custom properties — fonte de verdade das variáveis. Contém primitivos, semânticos dark/light e aliases de compatibilidade. Importar antes de qualquer outro CSS.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">CSS · Custom Properties</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="components.css" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-controller"/></svg></div>
+        <h3 class="ai-card__name">components.css</h3>
+        <p class="ai-card__desc">Todos os componentes e recipes em CSS. Botões, inputs, badges, cards, accordions, alerts, navbar, e as 5 recipes assinadas da 2P. Só consome tokens semânticos.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">CSS · Components</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="assets/manifest.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-folder"/></svg></div>
+        <h3 class="ai-card__name">assets/manifest.json</h3>
+        <p class="ai-card__desc">Inventário completo de assets — logos (5 variações), símbolo pixel, ícones. Inclui paths, quando usar cada variação, clearspace e descrições para geração de alt text.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON · Asset Manifest</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="README.md" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-info"/></svg></div>
+        <h3 class="ai-card__name">README.md</h3>
+        <p class="ai-card__desc">Visão geral do projeto, estrutura de pastas, instruções de setup e convenções. Ponto de entrada para novos contextos ou agentes sem memória prévia do DS.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">Markdown</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Nota de uso por IA -->
+    <div class="ai-note">
+      <strong>Ordem de leitura recomendada para agentes:</strong>
+      SKILL.md → tokens.json → tokens.css → components.css → assets/manifest.json
+      <span style="margin-left: var(--space-4); color: var(--color-text-subtle);">·</span>
+      <span style="margin-left: var(--space-4);">Formato preferido para system prompt: cole o SKILL.md completo + tokens.json na seção de contexto</span>
     </div>
   </section>
 
