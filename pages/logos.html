@@ -8,126 +8,157 @@
 <link rel="stylesheet" href="../components.css" />
 <style>
   body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
-  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--neutral-800); }
-  .back { font-family: var(--font-mono); font-size: 14px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
-  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--neon); text-transform: uppercase; }
-  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--fg-muted); max-width: 720px; line-height: 1.6; }
-  section { margin-top: 56px; }
-  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; }
-  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 32px; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 560px; line-height: 1.6; }
 
-  .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  section { margin-top: 64px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+
+  /* ── Logo grid principal ── */
+  .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .logo-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
   .logo-card {
-    border: 1px solid var(--neutral-800);
+    border: var(--border-1) solid var(--color-border);
     overflow: hidden;
     display: flex; flex-direction: column;
   }
   .logo-card .stage {
     flex: 1;
-    min-height: 280px;
+    min-height: 240px;
     display: grid; place-items: center;
-    padding: 64px;
+    padding: 48px;
   }
-  .logo-card .stage img { max-width: 80%; height: auto; }
-  .logo-card .label {
-    background: var(--neutral-50);
-    color: var(--neutral-black);
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 24px;
-    padding: 20px 24px;
-    display: flex; justify-content: space-between; align-items: center;
+  .logo-card .stage img { max-width: 80%; height: auto; display: block; }
+  .logo-card .stage svg { max-width: 40%; height: auto; display: block; }
+  .logo-card .info {
+    padding: 16px 20px;
+    border-top: var(--border-1) solid var(--color-border);
+    background: var(--color-surface);
   }
-  .logo-card .label code {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--fg-subtle);
-    letter-spacing: var(--ls-wide);
-    text-transform: uppercase;
+  .logo-card .info-name { font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--color-text); margin-bottom: 4px; }
+  .logo-card .info-file { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); margin-bottom: 8px; }
+  .logo-card .info-use  { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); line-height: 1.5; }
+  .logo-card .info-badge {
+    display: inline-flex; margin-top: 8px;
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: var(--ls-wide); text-transform: uppercase;
+    padding: 2px 8px; border-radius: 2px;
   }
+  .badge-svg  { background: color-mix(in srgb, var(--brand-primary) 15%, var(--color-surface)); color: var(--brand-primary); border: 1px solid var(--brand-primary); }
+  .badge-png  { background: color-mix(in srgb, var(--tolopea-400) 15%, var(--color-surface)); color: var(--tolopea-400); border: 1px solid var(--tolopea-400); }
+  .badge-pref { background: color-mix(in srgb, var(--color-success) 15%, var(--color-surface)); color: var(--color-success); border: 1px solid var(--color-success); }
 
-  .stage-neon    { background: var(--neutral-black); }
-  .stage-black   { background: var(--neutral-50); }
-  .stage-tolopea { background: var(--neon); }
-  .stage-fuchsia { background: var(--neutral-black); }
-  .stage-white   { background: var(--tolopea-700); }
+  /* Stages de fundo */
+  .bg-dark    { background: #100F0F; }
+  .bg-light   { background: #FAFAFA; }
+  .bg-neon    { background: #00FFD1; }
+  .bg-tolopea { background: #2409A9; }
+  .bg-fuchsia { background: #FF00FF; }
 
-  .symbol-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  /* ── Símbolo ── */
+  .symbol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .symbol-card {
-    background: var(--neutral-900);
-    border: 1px solid var(--neutral-800);
+    border: var(--border-1) solid var(--color-border);
+    overflow: hidden;
     display: flex; flex-direction: column;
   }
-  .symbol-card .stage { aspect-ratio: 1; display: grid; place-items: center; }
-  .symbol-card svg { width: 60%; height: 60%; }
-  .symbol-card .label {
-    background: var(--neutral-50);
-    color: var(--neutral-black);
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 12px;
-    padding: 12px 16px;
-    letter-spacing: var(--ls-wide);
-    text-transform: uppercase;
-  }
-
-  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .rule {
-    padding: 24px;
-    border: 1px solid var(--neutral-800);
-  }
-  .rule.do   { border-left: 4px solid var(--success); }
-  .rule.dont { border-left: 4px solid var(--error); }
-  .rule h4 { font-family: var(--font-pixel); font-size: 24px; margin: 0 0 16px; text-transform: uppercase; }
-  .rule.do h4   { color: var(--success); }
-  .rule.dont h4 { color: var(--error); }
-  .rule-example {
-    aspect-ratio: 2.5;
+  .symbol-card .stage {
+    aspect-ratio: 1;
     display: grid; place-items: center;
-    background: var(--neutral-800);
-    margin-bottom: 16px;
-    padding: 24px;
+    padding: 32px;
   }
-  .rule p { font-family: var(--font-mono); font-size: 14px; line-height: 1.5; color: var(--fg-muted); margin: 0; }
+  .symbol-card .stage img { max-width: 60%; height: auto; }
+  .symbol-card .info {
+    padding: 14px 16px;
+    background: var(--color-surface);
+    border-top: var(--border-1) solid var(--color-border);
+  }
+  .symbol-card .info-name { font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: var(--color-text); margin-bottom: 2px; }
+  .symbol-card .info-file { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); margin-bottom: 6px; }
+  .symbol-card .info-use  { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); line-height: 1.5; }
 
+  /* ── Decisão de versão ── */
+  .decision-table { width: 100%; border-collapse: collapse; }
+  .decision-table th { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); text-align: left; padding: 12px 16px; border-bottom: var(--border-2) solid var(--color-border-strong); background: var(--color-surface); }
+  .decision-table td { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); padding: 12px 16px; border-bottom: var(--border-1) solid var(--color-border); vertical-align: top; }
+  .decision-table td:first-child { color: var(--color-text); font-weight: 700; }
+  .decision-table tr:last-child td { border-bottom: none; }
+  .decision-table code { font-family: var(--font-mono); font-size: 11px; background: var(--color-surface-raised); padding: 1px 6px; color: var(--brand-primary); }
+
+  /* ── Clearspace ── */
   .clearspace-viz {
-    background: var(--neutral-900);
-    border: 1px solid var(--neutral-800);
-    padding: 64px;
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    padding: 80px;
     display: grid; place-items: center;
     position: relative;
-    min-height: 400px;
+    min-height: 360px;
   }
   .clearspace-viz .wrap {
     position: relative;
-    padding: 60px;
-    border: 2px dashed var(--neon);
+    padding: 48px;
+    border: 2px dashed var(--brand-primary);
   }
   .clearspace-viz .wrap::before, .clearspace-viz .wrap::after {
     content: "X";
     position: absolute;
-    font-family: var(--font-pixel);
-    font-size: 32px;
-    color: var(--fuchsia);
+    font-family: var(--font-pixel); font-size: 28px;
+    color: var(--brand-accent);
   }
-  .clearspace-viz .wrap::before { top: -20px; left: -20px; }
-  .clearspace-viz .wrap::after  { bottom: -20px; right: -20px; }
+  .clearspace-viz .wrap::before { top: -18px; left: -18px; }
+  .clearspace-viz .wrap::after  { bottom: -18px; right: -18px; }
   .clearspace-viz img { display: block; max-width: 480px; width: 100%; height: auto; }
+  .clearspace-label { position: absolute; bottom: 24px; right: 24px; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
 
-  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  /* ── Regras ── */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rule { padding: 24px; border: var(--border-1) solid var(--color-border); }
+  .rule.do   { border-left: 4px solid var(--color-success); }
+  .rule.dont { border-left: 4px solid var(--color-danger); }
+  .rule h4 { font-family: var(--font-pixel); font-size: 24px; margin: 0 0 16px; text-transform: uppercase; }
+  .rule.do h4   { color: var(--color-success); }
+  .rule.dont h4 { color: var(--color-danger); }
+  .rule p { font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--color-text-muted); margin: 0; }
+  .rule-example {
+    aspect-ratio: 2.5; display: grid; place-items: center;
+    background: var(--color-surface-raised);
+    margin-bottom: 16px; padding: 24px;
+  }
+
+  /* ── Legado ── */
+  .legacy-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .legacy-card { border: var(--border-1) solid var(--color-border); overflow: hidden; }
+  .legacy-card .stage { height: 120px; display: grid; place-items: center; padding: 24px; }
+  .legacy-card .stage img { max-width: 90%; height: auto; }
+  .legacy-card .info { padding: 10px 12px; background: var(--color-surface); border-top: var(--border-1) solid var(--color-border); }
+  .legacy-card .info-name { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--color-text); }
+  .legacy-card .info-file { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-subtle); margin-top: 2px; }
+
+  /* ── Theme toggle ── */
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; flex-shrink: 0; }
   .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
   .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  @media (max-width: 768px) {
+    body { padding: 24px 20px 80px; }
+    .logo-grid, .logo-grid-2, .symbol-grid { grid-template-columns: 1fr; }
+    .legacy-grid { grid-template-columns: 1fr 1fr; }
+    .rules { grid-template-columns: 1fr; }
+    h1 { font-size: 64px; }
+  }
 </style>
 </head>
 <body>
 
 <div class="page-header">
   <div>
-    <a class="back" href="../index.html">← bit-system / marca</a>
-    <h1>Marca</h1>
-  </div>
-  <div class="intro">
-    A marca <strong>doispalitos growth lab</strong> nasce digital. Logo lettering em lowercase + símbolo pixelado "2P" pra usos compactos. A cor-assinatura é o <strong style="color:var(--neon)">Neon (#00FFD1)</strong>.
+    <a class="back" href="../index.html">← Bit System / Marca</a>
+    <h1>Logos</h1>
+    <p class="intro" style="margin-top:16px">A marca <strong>doispalitos growth lab</strong> tem dois elementos: o <strong>ícone-símbolo</strong> (a seta estilizada) e o <strong>lettering</strong>. Juntos formam o logo completo. Separados, têm usos específicos. A cor-assinatura é o <strong style="color:var(--brand-primary)">Neon (#00FFD1)</strong>.</p>
   </div>
   <div class="theme-toggle" role="group" aria-label="Tema">
     <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
@@ -135,102 +166,305 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════
+     1. LOGO COMPLETO (ícone + lettering)
+     ══════════════════════════════════ -->
+<section>
+  <h2 class="section-title">Logo Completo</h2>
+  <div class="section-sub">ícone + lettering · uso principal em qualquer peça onde há espaço horizontal</div>
+  <div class="logo-grid">
+
+    <div class="logo-card">
+      <div class="stage bg-dark">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="Logo doispalitos growth lab — versão neon em fundo preto">
+      </div>
+      <div class="info">
+        <div class="info-name">Logo Full — Neon</div>
+        <div class="info-file">new-logos/LOGO_Lettering_full_Verde.png</div>
+        <div class="info-use">Uso padrão. Social, site, apresentações dark, qualquer peça sobre fundo preto ou escuro.</div>
+        <span class="info-badge badge-pref">✓ Preferido</span>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="stage bg-light">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Preto.png" alt="Logo doispalitos growth lab — versão preta em fundo claro">
+      </div>
+      <div class="info">
+        <div class="info-name">Logo Full — Preto</div>
+        <div class="info-file">new-logos/LOGO_Lettering_full_Preto.png</div>
+        <div class="info-use">Propostas e relatórios em tema light. Impressão em papel. Fundos brancos ou cinza claro.</div>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="stage bg-light">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Roxo.png" alt="Logo doispalitos growth lab — versão tolopea em fundo claro">
+      </div>
+      <div class="info">
+        <div class="info-name">Logo Full — Tolopea</div>
+        <div class="info-file">new-logos/LOGO_Lettering_full_Roxo.png</div>
+        <div class="info-use">Sobre fundos claros quando o preto não tem contraste suficiente. Co-brandingcom parceiros que têm identidade clara.</div>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     2. SÍMBOLO (ícone isolado)
+     ══════════════════════════════════ -->
+<section>
+  <h2 class="section-title">Símbolo</h2>
+  <div class="section-sub">ícone isolado · favicon, avatar, uso compacto, watermark</div>
+  <div class="symbol-grid">
+
+    <div class="symbol-card">
+      <div class="stage bg-dark">
+        <img src="../assets/new-logos/LOGO_SEC_Verde.png" alt="Símbolo doispalitos — versão neon">
+      </div>
+      <div class="info">
+        <div class="info-name">Símbolo — Neon</div>
+        <div class="info-file">new-logos/LOGO_SEC_Verde.png</div>
+        <div class="info-use">Favicon, avatar de perfil, watermark em dark, ícone de app. Preferir SVG pra escala perfeita.</div>
+        <span class="info-badge badge-pref">✓ Preferido</span>
+        <span class="info-badge badge-svg">SVG</span>
+      </div>
+    </div>
+
+    <div class="symbol-card">
+      <div class="stage bg-light">
+        <img src="../assets/new-logos/LOGO_SEC_Preto.png" alt="Símbolo doispalitos — versão preta">
+      </div>
+      <div class="info">
+        <div class="info-name">Símbolo — Preto</div>
+        <div class="info-file">new-logos/LOGO_SEC_Preto.png</div>
+        <div class="info-use">Uso em fundos claros. Carimbos, etiquetas, papelaria em preto e branco, impressão monocromática.</div>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
+    </div>
+
+    <div class="symbol-card">
+      <div class="stage bg-light">
+        <img src="../assets/new-logos/LOGO_SEC_Roxo.png" alt="Símbolo doispalitos — versão tolopea">
+      </div>
+      <div class="info">
+        <div class="info-name">Símbolo — Tolopea</div>
+        <div class="info-file">new-logos/LOGO_SEC_Roxo.png</div>
+        <div class="info-use">Fundos claros quando o contexto pede a cor de marca sem usar preto. Materiais de co-branding.</div>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     3. LETTERING (texto isolado)
+     ══════════════════════════════════ -->
 <section>
   <h2 class="section-title">Lettering</h2>
-  <div class="section-sub">5 versões oficiais · escolha pelo fundo</div>
-  <div class="logo-grid">
+  <div class="section-sub">texto isolado sem ícone · use quando o símbolo já aparece em outro lugar</div>
+  <div class="logo-grid-2">
+
     <div class="logo-card">
-      <div class="stage stage-neon"><img src="../assets/logo-lettering-neon.png" alt="logo neon"></div>
-      <div class="label">Neon <code>logo-lettering-neon.png</code></div>
+      <div class="stage bg-dark">
+        <img src="../assets/new-logos/logo_lettering.png" alt="Lettering doispalitos growth lab — versão neon">
+      </div>
+      <div class="info">
+        <div class="info-name">Lettering — Neon</div>
+        <div class="info-file">new-logos/logo_lettering.png</div>
+        <div class="info-use">Assinatura em rodapé, watermark de texto, cabeçalho de documentos internos quando o símbolo já aparece em outro ponto da peça.</div>
+        <span class="info-badge badge-png">PNG</span>
+      </div>
     </div>
-    <div class="logo-card">
-      <div class="stage stage-black"><img src="../assets/logo-lettering-black.png" alt="logo black"></div>
-      <div class="label">Black <code>logo-lettering-black.png</code></div>
+
+    <div style="background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 28px; display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+      <div style="font-family: var(--font-pixel); font-size: 24px; color: var(--brand-primary); text-transform: uppercase; margin-bottom: 4px;">Quando usar lettering?</div>
+      <div style="font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.65;">
+        Use o <strong style="color:var(--color-text)">lettering isolado</strong> apenas quando o símbolo (ícone) já estiver visível em outro elemento da mesma peça — ex: o ícone está no header e o lettering assina o rodapé.<br><br>
+        Se tiver espaço suficiente, sempre prefira o <strong style="color:var(--color-text)">logo completo</strong> (símbolo + lettering juntos).
+      </div>
     </div>
-    <div class="logo-card">
-      <div class="stage stage-tolopea"><img src="../assets/logo-lettering-tolopea.png" alt="logo tolopea"></div>
-      <div class="label" style="background: var(--tolopea); color: var(--neon);">Tolopea <code style="color: var(--neutral-300)">logo-lettering-tolopea.png</code></div>
-    </div>
-    <div class="logo-card">
-      <div class="stage stage-fuchsia"><img src="../assets/logo-lettering-fuchsia.png" alt="logo fuchsia"></div>
-      <div class="label" style="background: var(--fuchsia); color: var(--neutral-black);">Fuchsia <code>logo-lettering-fuchsia.png</code></div>
-    </div>
-    <div class="logo-card" style="grid-column: 1 / -1">
-      <div class="stage stage-white" style="min-height: 200px"><img src="../assets/logo-lettering-white.png" alt="logo white"></div>
-      <div class="label">White <code>logo-lettering-white.png</code> — para usos sobre cores vivas</div>
-    </div>
+
   </div>
 </section>
 
+<!-- ══════════════════════════════════
+     4. GUIA DE DECISÃO
+     ══════════════════════════════════ -->
 <section>
-  <h2 class="section-title">Símbolo 2P</h2>
-  <div class="section-sub">pixel art · usos compactos, ícones, favicon</div>
-  <div class="symbol-row">
-    <div class="symbol-card">
-      <div class="stage" style="background: var(--neutral-black); color: var(--neon);">
-        <svg viewBox="0 0 16 16" shape-rendering="crispEdges"><use href="../assets/logo-symbol.svg#svg-0" />
-          <path fill="currentColor" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"/>
-        </svg>
-      </div>
-      <div class="label">2P · neon</div>
-    </div>
-    <div class="symbol-card">
-      <div class="stage" style="background: var(--neon); color: var(--neutral-black);">
-        <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-          <path fill="currentColor" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"/>
-        </svg>
-      </div>
-      <div class="label">2P · black</div>
-    </div>
-    <div class="symbol-card">
-      <div class="stage" style="background: var(--tolopea); color: var(--neon);">
-        <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-          <path fill="currentColor" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"/>
-        </svg>
-      </div>
-      <div class="label" style="background: var(--tolopea); color: var(--neon);">2P · tolopea</div>
-    </div>
-    <div class="symbol-card">
-      <div class="stage" style="background: var(--neutral-50); color: var(--neutral-black);">
-        <svg viewBox="0 0 16 16" shape-rendering="crispEdges">
-          <path fill="currentColor" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"/>
-        </svg>
-      </div>
-      <div class="label">2P · light</div>
-    </div>
-  </div>
+  <h2 class="section-title">Qual versão usar?</h2>
+  <div class="section-sub">decisão rápida por contexto</div>
+  <table class="decision-table">
+    <thead>
+      <tr>
+        <th>Contexto</th>
+        <th>Versão</th>
+        <th>Cor</th>
+        <th>Arquivo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Post de Instagram / LinkedIn (dark)</td>
+        <td>Logo completo</td>
+        <td>Neon</td>
+        <td><code>LOGO_Lettering_full_Verde.png</code></td>
+      </tr>
+      <tr>
+        <td>Proposta comercial (light)</td>
+        <td>Logo completo</td>
+        <td>Preto</td>
+        <td><code>LOGO_Lettering_full_Preto.png</code></td>
+      </tr>
+      <tr>
+        <td>Relatório mensal (light)</td>
+        <td>Logo completo</td>
+        <td>Tolopea ou Preto</td>
+        <td><code>LOGO_Lettering_full_Roxo.png</code></td>
+      </tr>
+      <tr>
+        <td>Favicon / ícone de browser</td>
+        <td>Símbolo</td>
+        <td>Neon</td>
+        <td><code>LOGO_SEC_Verde.png</code></td>
+      </tr>
+      <tr>
+        <td>Avatar de Instagram / LinkedIn</td>
+        <td>Símbolo</td>
+        <td>Neon</td>
+        <td><code>LOGO_SEC_Verde.png</code></td>
+      </tr>
+      <tr>
+        <td>Watermark sobre vídeo (dark)</td>
+        <td>Logo completo ou Símbolo</td>
+        <td>Neon 40% opacidade</td>
+        <td><code>LOGO_Lettering_full_Verde.png</code></td>
+      </tr>
+      <tr>
+        <td>Roll-up / Banner físico</td>
+        <td>Logo completo</td>
+        <td>Neon (fundo preto) ou Preto (fundo claro)</td>
+        <td>Solicitar arquivo vetorial ao Design Lead</td>
+      </tr>
+      <tr>
+        <td>Carimbo / papelaria monocromática</td>
+        <td>Símbolo ou Lettering</td>
+        <td>Preto</td>
+        <td><code>LOGO_SEC_Preto.png</code></td>
+      </tr>
+      <tr>
+        <td>Rodapé de e-mail corporativo</td>
+        <td>Logo completo</td>
+        <td>Neon ou Preto</td>
+        <td>Depende do tema do template de e-mail</td>
+      </tr>
+      <tr>
+        <td>Apresentação / Pitch deck (dark)</td>
+        <td>Logo completo</td>
+        <td>Neon</td>
+        <td><code>LOGO_Lettering_full_Verde.png</code></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
+<!-- ══════════════════════════════════
+     5. CLEARSPACE
+     ══════════════════════════════════ -->
 <section>
   <h2 class="section-title">Clearspace</h2>
-  <div class="section-sub">respiro mínimo = altura do "d"</div>
+  <div class="section-sub">área de respiro mínima — nenhum elemento invade essa zona</div>
   <div class="clearspace-viz">
     <div class="wrap">
-      <img src="../assets/logo-lettering-neon.png" alt="logo">
+      <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="Logo completo com clearspace visualizado">
     </div>
+    <div class="clearspace-label">X = altura do ícone-símbolo</div>
   </div>
+  <p style="font-family:var(--font-mono);font-size:14px;color:var(--color-text-muted);line-height:1.65;margin-top:16px;max-width:720px">
+    O clearspace mínimo em todos os lados do logo é equivalente à <strong style="color:var(--color-text)">altura do símbolo (ícone)</strong>. Nenhum texto, imagem ou elemento gráfico pode entrar nessa zona. Em contextos muito compactos (favicon, 16×16), use apenas o símbolo sem o lettering.
+  </p>
 </section>
 
+<!-- ══════════════════════════════════
+     6. REGRAS DE USO
+     ══════════════════════════════════ -->
 <section>
   <h2 class="section-title">Regras de uso</h2>
   <div class="section-sub">sem invenção</div>
   <div class="rules">
     <div class="rule do">
       <h4>✓ Faça</h4>
-      <div class="rule-example" style="background: var(--neutral-black)">
-        <img src="../assets/logo-lettering-neon.png" alt="" style="max-width: 80%; max-height: 60px;">
+      <div class="rule-example" style="background:#100F0F">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="" style="max-width:80%;max-height:60px">
       </div>
-      <p>Use neon sobre preto — é a combinação-assinatura. Mantenha o clearspace. Exporte em PNG transparente.</p>
+      <p>Use neon sobre preto — é a combinação-assinatura da 2P. Mantenha o clearspace. Use SVG para o símbolo sempre que possível. Exporte PNG com fundo transparente. Respeite as 3 variações de cor aprovadas: Neon, Preto, Tolopea.</p>
     </div>
     <div class="rule dont">
       <h4>✗ Evite</h4>
-      <div class="rule-example" style="background: var(--warning)">
-        <img src="../assets/logo-lettering-neon.png" alt="" style="max-width: 80%; max-height: 60px; transform: skewX(-10deg); filter: drop-shadow(2px 2px 0 #f0f);">
+      <div class="rule-example" style="background: var(--color-warning-bg)">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="" style="max-width:80%;max-height:60px;transform:skewX(-8deg);filter:drop-shadow(3px 3px 0 #ff00ff) hue-rotate(90deg)">
       </div>
-      <p>Nunca distorça, rotacione, aplique drop-shadow, efeitos ou cores fora da paleta. Sem outline.</p>
+      <p>Nunca distorça, rotacione ou aplique filtros ao logo. Sem outline, stroke, gradiente sobre o logo, drop-shadow colorido, reflexo ou efeito de transparência. Não recrie a logo em outra fonte. Não use sobre fundos que conflitem com a cor do logo (ex: neon sobre neon).</p>
+    </div>
+    <div class="rule do">
+      <h4>✓ Combinações OK</h4>
+      <div class="rule-example" style="background:#2409A9">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="" style="max-width:80%;max-height:60px">
+      </div>
+      <p>Logo Neon funciona sobre Tolopea (azul-roxo) — 9.6:1 de contraste. Logo Preto funciona sobre Branco e qualquer cinza claro (contraste ≥ 7:1). Logo Tolopea funciona sobre Branco e Cinza claro.</p>
+    </div>
+    <div class="rule dont">
+      <h4>✗ Combinações proibidas</h4>
+      <div class="rule-example" style="background:#00FFD1">
+        <img src="../assets/new-logos/LOGO_Lettering_full_Verde.png" alt="" style="max-width:80%;max-height:60px">
+      </div>
+      <p>Logo Neon sobre fundo Neon (#00FFD1) — invisível. Logo Neon sobre Fúchsia — contraste insuficiente (2.4:1). Logo Preto sobre Preto ou Tolopea — invisível. Nunca use a versão Tolopea sobre fundo escuro — usar Neon nesse caso.</p>
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════════
+     7. LETTERING LEGADO (v1)
+     ══════════════════════════════════ -->
+<section>
+  <h2 class="section-title">Lettering v1 <span style="font-family:var(--font-mono);font-size:16px;color:var(--color-text-subtle);vertical-align:middle;margin-left:8px;text-transform:none">legado · somente texto</span></h2>
+  <div class="section-sub">versões anteriores · somente texto sem ícone · uso restrito a materiais legados</div>
+  <div style="background:var(--color-surface);border:var(--border-1) solid var(--color-border);border-left:4px solid var(--color-warning);padding:16px 20px;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);line-height:1.6;margin-bottom:24px">
+    ⚠ Estes arquivos são da versão anterior da marca (somente lettering, sem o ícone-símbolo). Mantidos para compatibilidade com materiais em produção. <strong style="color:var(--color-text)">Novos materiais devem usar os logos da seção acima.</strong>
+  </div>
+  <div class="legacy-grid">
+    <div class="legacy-card">
+      <div class="stage bg-dark"><img src="../assets/logo-lettering-neon.png" alt="Lettering neon v1"></div>
+      <div class="info"><div class="info-name">Lettering Neon v1</div><div class="info-file">assets/logo-lettering-neon.png</div></div>
+    </div>
+    <div class="legacy-card">
+      <div class="stage bg-light"><img src="../assets/logo-lettering-black.png" alt="Lettering black v1"></div>
+      <div class="info"><div class="info-name">Lettering Black v1</div><div class="info-file">assets/logo-lettering-black.png</div></div>
+    </div>
+    <div class="legacy-card">
+      <div class="stage bg-neon"><img src="../assets/logo-lettering-tolopea.png" alt="Lettering tolopea v1"></div>
+      <div class="info"><div class="info-name">Lettering Tolopea v1</div><div class="info-file">assets/logo-lettering-tolopea.png</div></div>
+    </div>
+    <div class="legacy-card">
+      <div class="stage bg-fuchsia"><img src="../assets/logo-lettering-fuchsia.png" alt="Lettering fuchsia v1"></div>
+      <div class="info"><div class="info-name">Lettering Fuchsia v1</div><div class="info-file">assets/logo-lettering-fuchsia.png</div></div>
+    </div>
+    <div class="legacy-card">
+      <div class="stage bg-tolopea"><img src="../assets/logo-lettering-white.png" alt="Lettering white v1"></div>
+      <div class="info"><div class="info-name">Lettering White v1</div><div class="info-file">assets/logo-lettering-white.png</div></div>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top:80px;padding-top:24px;border-top:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);display:flex;justify-content:space-between;letter-spacing:var(--ls-wide);text-transform:uppercase;">
+  <span>Logos · Bit System v2.0</span>
+  <a href="../index.html" style="color:var(--color-text-subtle)">← Voltar ao índice</a>
+</footer>
 
 <script>
 function setTheme(mode) {

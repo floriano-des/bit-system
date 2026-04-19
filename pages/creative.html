@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Design Gráfico & Motion · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 720px; line-height: 1.6; }
+
+  section { margin-top: 64px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+
+  /* ── Audiência ── */
+  .audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .audience-card {
+    background: var(--color-surface);
+    border: var(--border-2) solid var(--color-border);
+    padding: 24px;
+  }
+  .audience-card.highlight { border-color: var(--brand-primary); }
+  .audience-card.accent    { border-color: var(--brand-accent); }
+  .audience-tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 8px; }
+  .audience-title { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; color: var(--color-text); margin: 0 0 8px; }
+  .audience-tool { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--brand-primary); margin-bottom: 12px; }
+  .audience-tool.fuchsia { color: var(--brand-accent); }
+  .audience-desc { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
+
+  /* ── Princípios visuais ── */
+  .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .principle-card {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    border-top: var(--border-4) solid var(--brand-primary);
+    padding: 28px;
+  }
+  .principle-card.accent { border-top-color: var(--brand-accent); }
+  .principle-card.deep   { border-top-color: var(--brand-deep); }
+  .principle-n { font-family: var(--font-pixel); font-size: 48px; line-height: 1; color: var(--brand-primary); margin-bottom: 8px; }
+  .principle-card.accent .principle-n { color: var(--brand-accent); }
+  .principle-card.deep   .principle-n { color: var(--tolopea-400); }
+  .principle-card h3 { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; margin: 0 0 10px; color: var(--color-text); }
+  .principle-card p  { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.65; margin: 0; }
+
+  /* ── Fundamentos visuais: do/don't ── */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rule-block { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 28px; }
+  .rule-block.do   { border-left: 4px solid var(--color-success); }
+  .rule-block.dont { border-left: 4px solid var(--color-danger); }
+  .rule-label { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; margin-bottom: 16px; }
+  .rule-block.do   .rule-label { color: var(--color-success); }
+  .rule-block.dont .rule-label { color: var(--color-danger); }
+  .rule-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .rule-list li { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.55; padding-left: 20px; position: relative; }
+  .rule-list li::before { position: absolute; left: 0; }
+  .rule-block.do   .rule-list li::before { content: "✓"; color: var(--color-success); font-weight: 700; }
+  .rule-block.dont .rule-list li::before { content: "✗"; color: var(--color-danger); font-weight: 700; }
+
+  /* ── Paleta aplicada ── */
+  .palette-applied { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .color-swatch-big {
+    border: var(--border-1) solid var(--color-border);
+    overflow: hidden;
+  }
+  .color-chip-big { height: 120px; }
+  .color-info { padding: 16px; background: var(--color-surface); }
+  .color-name-big { font-family: var(--font-pixel); font-size: 24px; text-transform: uppercase; color: var(--color-text); margin: 0 0 4px; }
+  .color-hex  { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--brand-primary); margin: 0 0 4px; }
+  .color-cmyk { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); margin: 0 0 2px; }
+  .color-rgb  { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); margin: 0; }
+  .color-use  { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); margin-top: 8px; padding-top: 8px; border-top: var(--border-1) solid var(--color-border); line-height: 1.5; }
+
+  /* Combinações aprovadas */
+  .combos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .combo {
+    height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-pixel); font-size: 22px; text-transform: uppercase;
+    border: var(--border-1) solid var(--color-border);
+    letter-spacing: 2px;
+  }
+  .combo-label { margin-top: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; text-align: center; }
+  .combo-wrap { display: flex; flex-direction: column; }
+
+  /* ── Tipografia fora do browser ── */
+  .font-guide { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .font-card { background: var(--color-surface); border: var(--border-2) solid var(--color-border); padding: 32px; }
+  .font-card.pixel { border-color: var(--brand-primary); }
+  .font-card.mono  { border-color: var(--brand-deep); }
+  .font-sample-pixel { font-family: var(--font-pixel); font-size: 80px; line-height: 1; color: var(--brand-primary); text-transform: uppercase; margin-bottom: 16px; }
+  .font-sample-mono  { font-family: var(--font-mono);  font-size: 32px; line-height: 1.2; color: var(--color-text); margin-bottom: 16px; font-weight: 700; }
+  .font-name { font-family: var(--font-mono); font-weight: 700; font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text); margin-bottom: 4px; }
+  .font-use  { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.5; }
+  .font-platforms { display: flex; flex-direction: column; gap: 10px; }
+  .font-platform { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: var(--color-surface-raised); border: var(--border-1) solid var(--color-border); }
+  .fp-label { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--brand-primary); min-width: 80px; margin-top: 2px; }
+  .fp-label.acc { color: var(--brand-accent); }
+  .fp-text  { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.5; }
+  .fp-text strong { color: var(--color-text); }
+
+  /* Tamanhos mínimos */
+  .sizes-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+  .sizes-table th { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); text-align: left; padding: 12px 16px; border-bottom: var(--border-2) solid var(--color-border); }
+  .sizes-table td { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); padding: 12px 16px; border-bottom: var(--border-1) solid var(--color-border); vertical-align: top; }
+  .sizes-table td:first-child { font-weight: 700; color: var(--color-text); }
+  .sizes-table tr:last-child td { border-bottom: none; }
+
+  /* ── Formatos & dimensões ── */
+  .formats-table { width: 100%; border-collapse: collapse; }
+  .formats-table th { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); text-align: left; padding: 12px 16px; border-bottom: var(--border-2) solid var(--color-border-strong); background: var(--color-surface); }
+  .formats-table td { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); padding: 12px 16px; border-bottom: var(--border-1) solid var(--color-border); vertical-align: top; }
+  .formats-table td:first-child { color: var(--color-text); font-weight: 700; }
+  .formats-table td code { font-family: var(--font-mono); font-size: 12px; background: var(--color-surface-raised); padding: 2px 6px; color: var(--brand-primary); }
+  .formats-table .cat-row td { background: var(--color-surface); font-family: var(--font-pixel); font-size: 18px; text-transform: uppercase; color: var(--color-text-subtle); letter-spacing: 2px; padding: 8px 16px; }
+  .formats-table tr:last-child td { border-bottom: none; }
+  .tag-theme { display: inline-flex; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: var(--ls-wide); text-transform: uppercase; padding: 2px 6px; border-radius: 2px; }
+  .tag-dark  { background: var(--neutral-900); color: var(--brand-primary); border: 1px solid var(--neutral-700); }
+  .tag-light { background: var(--neutral-100); color: var(--neutral-950); border: 1px solid var(--neutral-300); }
+
+  /* ── Motion & Vídeo ── */
+  .motion-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .motion-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 24px; }
+  .motion-label { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 8px; }
+  .motion-value { font-family: var(--font-pixel); font-size: 40px; line-height: 1; color: var(--brand-primary); margin-bottom: 8px; }
+  .motion-desc  { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
+
+  .transition-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
+  .transition-card { padding: 24px; background: var(--color-surface); border: var(--border-1) solid var(--color-border); }
+  .transition-type { font-family: var(--font-pixel); font-size: 28px; color: var(--color-text); text-transform: uppercase; margin-bottom: 6px; }
+  .transition-status { display: inline-flex; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-wide); text-transform: uppercase; padding: 2px 8px; margin-bottom: 10px; }
+  .status-ok  { background: color-mix(in srgb, var(--color-success) 15%, var(--color-surface)); color: var(--color-success); border: 1px solid var(--color-success); }
+  .status-no  { background: color-mix(in srgb, var(--color-danger)  15%, var(--color-surface)); color: var(--color-danger);  border: 1px solid var(--color-danger); }
+  .transition-desc { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.55; margin: 0; }
+
+  /* Grading */
+  .grading-strip { display: grid; grid-template-columns: repeat(5, 1fr); height: 80px; border: var(--border-1) solid var(--color-border); overflow: hidden; margin-bottom: 12px; }
+  .grading-step { position: relative; display: flex; align-items: flex-end; padding: 8px; }
+  .grading-step span { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* Duração de vídeo */
+  .duration-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+  .duration-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 24px; }
+  .duration-format { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 6px; }
+  .duration-time   { font-family: var(--font-pixel); font-size: 48px; line-height: 1; color: var(--brand-primary); margin-bottom: 6px; }
+  .duration-desc   { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.5; }
+
+  /* ── Fotografia ── */
+  .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .photo-rule { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 28px; }
+  .photo-rule h4 { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; color: var(--color-text); margin: 0 0 10px; }
+  .photo-rule p  { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.65; margin: 0; }
+
+  /* ── Guias de ferramenta ── */
+  .tool-tabs { display: flex; gap: 0; border-bottom: var(--border-2) solid var(--color-border); margin-bottom: 32px; }
+  .tool-tab { font-family: var(--font-mono); font-size: 13px; font-weight: 700; letter-spacing: var(--ls-wide); text-transform: uppercase; padding: 12px 24px; cursor: pointer; color: var(--color-text-muted); border-bottom: 3px solid transparent; margin-bottom: -2px; background: none; border-top: none; border-left: none; border-right: none; }
+  .tool-tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+
+  .tool-panel { display: none; }
+  .tool-panel.active { display: block; }
+
+  .tool-steps { display: flex; flex-direction: column; gap: 16px; }
+  .tool-step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; padding: 20px; background: var(--color-surface); border: var(--border-1) solid var(--color-border); }
+  .step-n { font-family: var(--font-pixel); font-size: 36px; line-height: 1; color: var(--brand-primary); }
+  .step-title { font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: var(--color-text); margin: 0 0 4px; }
+  .step-body  { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
+  .step-body code { font-family: var(--font-mono); background: var(--color-surface-raised); padding: 1px 5px; color: var(--brand-primary); font-size: 12px; }
+
+  .canva-hex { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 24px; }
+  .hex-chip { border: var(--border-1) solid var(--color-border); overflow: hidden; }
+  .hex-color { height: 56px; }
+  .hex-label { padding: 10px 12px; background: var(--color-surface); }
+  .hex-name  { font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: var(--ls-wide); color: var(--color-text-subtle); margin-bottom: 2px; }
+  .hex-value { font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--brand-primary); }
+
+  .adobe-ref { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .adobe-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); border-left: var(--border-4) solid var(--brand-primary); padding: 20px; }
+  .adobe-card.acc { border-left-color: var(--brand-accent); }
+  .adobe-app  { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 4px; }
+  .adobe-tip  { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.6; }
+  .adobe-tip strong { color: var(--color-text); }
+
+  /* Theme toggle */
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  @media (max-width: 768px) {
+    body { padding: 24px 20px 80px; }
+    .audience-grid, .motion-principles, .duration-grid { grid-template-columns: 1fr 1fr; }
+    .principles-grid, .combos, .font-guide, .rules-grid, .photo-grid, .transition-grid, .adobe-ref { grid-template-columns: 1fr; }
+    .palette-applied { grid-template-columns: 1fr 1fr; }
+    h1 { font-size: 64px; }
+    .canva-hex { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← Bit System</a>
+    <h1>Design<br>Gráfico<br>& Motion</h1>
+    <p class="intro" style="margin-top:24px">Direcionamento criativo para quem produz as peças da 2P fora do browser — posts, reels, banners, vídeos, decks e tudo que envolve Adobe, Canva, After Effects ou CapCut. Mesma marca. Mesma linguagem.</p>
+  </div>
+  <div style="display:flex; flex-direction:column; align-items:flex-end; gap:16px; flex-shrink:0">
+    <div class="theme-toggle" role="group" aria-label="Tema">
+      <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+      <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+    </div>
+    <div style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);text-align:right;text-transform:uppercase;letter-spacing:var(--ls-wide);">
+      Para quem usa →<br>
+      <strong style="color:var(--brand-primary)">Adobe · Canva</strong><br>
+      <strong style="color:var(--brand-accent)">Premiere · AE · CapCut</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     1. AUDIÊNCIA — quem usa esta página
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Quem usa isso</div>
+  <div class="section-sub">01 · audiência · internos e PJ</div>
+  <div class="audience-grid">
+
+    <div class="audience-card highlight">
+      <div class="audience-tag">Design Gráfico · Sênior</div>
+      <div class="audience-title">Designer<br>Adobe</div>
+      <div class="audience-tool">● Adobe CC</div>
+      <p class="audience-desc">Illustrator, Photoshop, InDesign. Acesso a Adobe Fonts. Produz peças estáticas, materiais impressos, kits de mídia e templates.</p>
+    </div>
+
+    <div class="audience-card">
+      <div class="audience-tag">Design Gráfico · Junior</div>
+      <div class="audience-title">Designer<br>Canva</div>
+      <div class="audience-tool">● Canva Pro</div>
+      <p class="audience-desc">Posts de social, stories, carrosséis, apresentações rápidas. Usa templates aprovados e referencia esta página pra manter consistência.</p>
+    </div>
+
+    <div class="audience-card highlight">
+      <div class="audience-tag">Vídeo · Sênior</div>
+      <div class="audience-title">Editor<br>Adobe</div>
+      <div class="audience-tool">● Premiere · After Effects</div>
+      <p class="audience-desc">Reels, vídeos institucionais, motion graphics, lower thirds, vinhetas. Referencia os princípios de motion desta página.</p>
+    </div>
+
+    <div class="audience-card">
+      <div class="audience-tag">Vídeo · Junior / Social</div>
+      <div class="audience-title">Editor<br>CapCut</div>
+      <div class="audience-tool fuchsia">● CapCut · Reels</div>
+      <p class="audience-desc">Reels rápidos, stories com vídeo, cortes de conteúdo. Segue as regras de paleta e transição mesmo nas ferramentas simplificadas.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     2. PRINCÍPIOS VISUAIS
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Princípios visuais</div>
+  <div class="section-sub">02 · fundamentos · valem pra qualquer mídia e ferramenta</div>
+  <div class="principles-grid">
+
+    <div class="principle-card">
+      <div class="principle-n">01</div>
+      <h3>Dark first</h3>
+      <p>Fundo preto (#100F0F) é o padrão da 2P em qualquer mídia. Use fundo claro (#FAFAFA) apenas em propostas comerciais impressas, relatórios para clientes e materiais formais. Na dúvida, vai de preto.</p>
+    </div>
+
+    <div class="principle-card accent">
+      <div class="principle-n">02</div>
+      <h3>Um neon por peça</h3>
+      <p>O verde neon (#00FFD1) é a cor-assinatura. Só um elemento por peça recebe neon como destaque máximo — o CTA principal, o número mais importante, o título hero. Neon em tudo é neon em nada.</p>
+    </div>
+
+    <div class="principle-card deep">
+      <div class="principle-n">03</div>
+      <h3>Retrô sem nostalgia</h3>
+      <p>A estética 8/16-bit é referência de linguagem, não de período. Sem gradientes pastel, sem fontes cursivas, sem fotografias com filtro vintage. O pixel é técnico e preciso, não decorativo.</p>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-n">04</div>
+      <h3>Hierarquia brutal</h3>
+      <p>A diferença entre título e corpo precisa ser óbvia. Use VT323 em 80–96px pra headline e Inconsolata 16–18px pra corpo. Nunca tamanhos próximos competindo pelo mesmo nível visual.</p>
+    </div>
+
+    <div class="principle-card accent">
+      <div class="principle-n">05</div>
+      <h3>Respiro real</h3>
+      <p>Espaço em branco (ou preto) não é desperdício, é parte do design. Peças com muito elemento parecem agências genéricas. A 2P tem confiança pra deixar espaço.</p>
+    </div>
+
+    <div class="principle-card deep">
+      <div class="principle-n">06</div>
+      <h3>Dados como design</h3>
+      <p>Métricas e resultados são elementos visuais de primeira classe. Número grande em VT323 + neon é a assinatura da 2P. Não esconda dados em tabelas pequenas — faça deles o herói.</p>
+    </div>
+
+  </div>
+
+  <!-- Do / Don't -->
+  <div class="rules-grid" style="margin-top:24px">
+    <div class="rule-block do">
+      <div class="rule-label">✓ Faça sempre</div>
+      <ul class="rule-list">
+        <li>Fundo preto como base de qualquer peça de social e institucional</li>
+        <li>VT323 uppercase em títulos — nunca lowercase na pixel font</li>
+        <li>Neon como acento em exatamente 1 elemento por layout</li>
+        <li>Fúchsia em hover, sombra ou elemento secundário de destaque</li>
+        <li>Tolopea (azul-roxo) em backgrounds de seção ou blocos estruturais</li>
+        <li>Texto de corpo sempre em Inconsolata ou monospace equivalente</li>
+        <li>Alinhamento em grid — evite elementos flutuando fora do eixo</li>
+        <li>Números de resultado em destaque máximo — VT323 + neon</li>
+      </ul>
+    </div>
+    <div class="rule-block dont">
+      <div class="rule-label">✗ Nunca faça</div>
+      <ul class="rule-list">
+        <li>Fundo branco em post de Instagram da 2P sem aprovação expressa</li>
+        <li>Misturar mais de 2 fontes numa peça (VT323 + Inconsolata são as duas)</li>
+        <li>Neon como cor de fundo de bloco grande — é cor de texto e acento</li>
+        <li>Gradientes diferentes dos 3 aprovados (primary, deep, tertiary)</li>
+        <li>Sombra colorida que não seja neon ou fúchsia</li>
+        <li>Fontes cursivas, serifadas ou sem-serifa genérica como Roboto/Arial</li>
+        <li>Efeito glitch, vhs, grunge — não é nossa estética</li>
+        <li>Ícone com stroke redondo (stroke-linecap: round) — o DS usa square</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     3. PALETA APLICADA (valores absolutos, sem CSS vars)
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Paleta aplicada</div>
+  <div class="section-sub">03 · cores · valores absolutos pra usar em qualquer ferramenta</div>
+
+  <div class="palette-applied">
+    <div class="color-swatch-big">
+      <div class="color-chip-big" style="background:#00FFD1"></div>
+      <div class="color-info">
+        <div class="color-name-big">Neon</div>
+        <div class="color-hex">#00FFD1</div>
+        <div class="color-rgb">RGB 0 · 255 · 209</div>
+        <div class="color-cmyk">CMYK 100 · 0 · 18 · 0 <span style="color:var(--color-text-subtle);font-size:10px">(aprox. offset)</span></div>
+        <div class="color-use">CTA principal, destaque máximo, números hero, ícones de acento. 1 elemento por peça.</div>
+      </div>
+    </div>
+    <div class="color-swatch-big">
+      <div class="color-chip-big" style="background:#FF00FF"></div>
+      <div class="color-info">
+        <div class="color-name-big">Fúchsia</div>
+        <div class="color-hex">#FF00FF</div>
+        <div class="color-rgb">RGB 255 · 0 · 255</div>
+        <div class="color-cmyk">CMYK 0 · 100 · 0 · 0</div>
+        <div class="color-use">Hover, sombra neon secundária, badges de acento, selos. Nunca como fundo de bloco grande.</div>
+      </div>
+    </div>
+    <div class="color-swatch-big">
+      <div class="color-chip-big" style="background:#2409A9"></div>
+      <div class="color-info">
+        <div class="color-name-big">Tolopea</div>
+        <div class="color-hex">#2409A9</div>
+        <div class="color-rgb">RGB 36 · 9 · 169</div>
+        <div class="color-cmyk">CMYK 79 · 95 · 0 · 34</div>
+        <div class="color-use">Backgrounds de seção, blocos estruturais, navbar top. Fundo intermediário entre o preto e o neon.</div>
+      </div>
+    </div>
+    <div class="color-swatch-big">
+      <div class="color-chip-big" style="background:#100F0F"></div>
+      <div class="color-info">
+        <div class="color-name-big">Preto 2P</div>
+        <div class="color-hex">#100F0F</div>
+        <div class="color-rgb">RGB 16 · 15 · 15</div>
+        <div class="color-cmyk">CMYK 0 · 6 · 6 · 94</div>
+        <div class="color-use">Fundo padrão de toda peça dark. Não use #000000 puro — o preto 2P tem um leve tom quente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Neutros rápidos -->
+  <div style="display:grid; grid-template-columns: repeat(6, 1fr); gap:8px; margin-top:16px;">
+    <div>
+      <div style="height:40px;background:#FFFFFF;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#FFFFFF<br><span style="color:var(--color-text-muted)">Branco</span></div>
+    </div>
+    <div>
+      <div style="height:40px;background:#FAFAFA;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#FAFAFA<br><span style="color:var(--color-text-muted)">Fundo light</span></div>
+    </div>
+    <div>
+      <div style="height:40px;background:#AFAEAF;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#AFAEAF<br><span style="color:var(--color-text-muted)">Cinza médio</span></div>
+    </div>
+    <div>
+      <div style="height:40px;background:#4C4A4A;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#4C4A4A<br><span style="color:var(--color-text-muted)">Cinza escuro</span></div>
+    </div>
+    <div>
+      <div style="height:40px;background:#221F20;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#221F20<br><span style="color:var(--color-text-muted)">Superfície</span></div>
+    </div>
+    <div>
+      <div style="height:40px;background:#393838;border:1px solid var(--color-border)"></div>
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);margin-top:4px">#393838<br><span style="color:var(--color-text-muted)">Superfície+</span></div>
+    </div>
+  </div>
+
+  <!-- Combinações aprovadas -->
+  <div style="margin-top:32px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Combinações aprovadas</div>
+    <div class="combos">
+      <div class="combo-wrap">
+        <div class="combo" style="background:#100F0F;color:#00FFD1">2P Growth Lab</div>
+        <div class="combo-label">Neon em preto · padrão máximo</div>
+      </div>
+      <div class="combo-wrap">
+        <div class="combo" style="background:#2409A9;color:#FFFFFF">2P Growth Lab</div>
+        <div class="combo-label">Branco em tolopea · blocos estruturais</div>
+      </div>
+      <div class="combo-wrap">
+        <div class="combo" style="background:#00FFD1;color:#100F0F">2P Growth Lab</div>
+        <div class="combo-label">Preto em neon · CTA invertido</div>
+      </div>
+      <div class="combo-wrap">
+        <div class="combo" style="background:#100F0F;color:#FFFFFF">2P Growth Lab</div>
+        <div class="combo-label">Branco em preto · corpo de texto</div>
+      </div>
+      <div class="combo-wrap">
+        <div class="combo" style="background:#100F0F;color:#FF00FF">2P Growth Lab</div>
+        <div class="combo-label">Fúchsia em preto · acento secundário</div>
+      </div>
+      <div class="combo-wrap">
+        <div class="combo" style="background:#FAFAFA;color:#100F0F">2P Growth Lab</div>
+        <div class="combo-label">Preto em branco · tema light / print</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     4. TIPOGRAFIA FORA DO BROWSER
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Tipografia</div>
+  <div class="section-sub">04 · fontes · onde encontrar em cada ferramenta</div>
+  <div class="font-guide">
+
+    <div class="font-card pixel">
+      <div class="font-sample-pixel">VT323</div>
+      <div class="font-name">VT323 — Display / Pixel</div>
+      <div class="font-use">Headlines, CTAs, números hero, títulos de seção. Sempre uppercase. Nunca em tamanho menor que 32px. É a fonte-assinatura da 2P — use com parcimônia e impacto.</div>
+      <div class="font-platforms">
+        <div class="font-platform">
+          <div class="fp-label">Canva</div>
+          <div class="fp-text"><strong>Disponível via Google Fonts</strong> — em qualquer projeto Canva, clique em "Fontes" → "Adicionar fonte" → busque "VT323". Importa direto, sem custo adicional.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label">Adobe</div>
+          <div class="fp-text"><strong>Google Fonts via CC Library</strong> — VT323 não está no Adobe Fonts, mas pode ser instalada localmente em <a href="https://fonts.google.com/specimen/VT323" target="_blank" style="color:var(--brand-primary)">fonts.google.com</a> e ativada em qualquer app Adobe.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label">After Fx</div>
+          <div class="fp-text"><strong>Instale no sistema</strong> — VT323 instalada no macOS/Windows fica disponível automaticamente no After Effects. Para texto em motion, use "Character → All Caps" e desative antialiasing suave.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label acc">CapCut</div>
+          <div class="fp-text"><strong>Sem suporte nativo</strong> — CapCut não suporta fontes customizadas. Use o texto pré-renderizado como PNG transparente feito no Canva, ou escolha "Space Mono" como alternativa mais próxima disponível.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="font-card mono">
+      <div class="font-sample-mono">Inconsolata<br>400 · 700 · 900</div>
+      <div class="font-name">Inconsolata — Body / UI</div>
+      <div class="font-use">Corpo de texto, labels, captions, legendas, CTAs secundários. Pesos 400 (leitura), 700 (ênfase), 900 (dados). É a fonte de leitura da 2P em qualquer contexto.</div>
+      <div class="font-platforms">
+        <div class="font-platform">
+          <div class="fp-label">Canva</div>
+          <div class="fp-text"><strong>Disponível via Google Fonts</strong> — mesma rota do VT323. "Fontes" → "Adicionar fonte" → "Inconsolata". Ative os pesos 400, 700 e 900.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label">Adobe</div>
+          <div class="fp-text"><strong>Adobe Fonts</strong> — Inconsolata está disponível no Adobe Fonts (CC). Ative diretamente pelo Adobe Fonts na sua conta Creative Cloud.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label">After Fx</div>
+          <div class="fp-text"><strong>Via Adobe Fonts ou instalação local</strong> — disponível nos dois caminhos. Pesos regulares e bold funcionam bem em motion; evite peso 900 em tamanhos pequenos animados.</div>
+        </div>
+        <div class="font-platform">
+          <div class="fp-label acc">CapCut</div>
+          <div class="fp-text"><strong>"Space Mono"</strong> como substituta — é a fonte monospace mais próxima disponível nativamente no CapCut. Mesma pegada técnica, proporções similares.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tamanhos mínimos -->
+  <div style="margin-top:32px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Tamanhos mínimos por mídia</div>
+    <table class="sizes-table">
+      <thead>
+        <tr>
+          <th>Elemento</th>
+          <th>Social (72 dpi)</th>
+          <th>Vídeo (1080p)</th>
+          <th>Print / PDF (300 dpi)</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Headline VT323</td><td>80–200px</td><td>72–96px</td><td>48–96pt</td><td>Nunca abaixo de 48px digital, 36pt print</td></tr>
+        <tr><td>Subtítulo Inconsolata</td><td>28–40px</td><td>28–36px</td><td>18–28pt</td><td>Bold (700) mínimo em subtítulos</td></tr>
+        <tr><td>Corpo Inconsolata</td><td>18–24px</td><td>20–24px</td><td>10–12pt</td><td>Abaixo de 18px em social = ilegível no mobile</td></tr>
+        <tr><td>Caption / Label</td><td>14–16px</td><td>16–18px</td><td>8–9pt</td><td>Uppercase + letter-spacing 0.08em</td></tr>
+        <tr><td>Número hero VT323</td><td>120–300px</td><td>96–160px</td><td>64–120pt</td><td>Quanto maior, melhor — é o herói da peça</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     5. FORMATOS & DIMENSÕES
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Formatos</div>
+  <div class="section-sub">05 · dimensões · tabela de referência por canal</div>
+  <table class="formats-table">
+    <thead>
+      <tr>
+        <th>Formato</th>
+        <th>Dimensões</th>
+        <th>Resolução</th>
+        <th>Tema</th>
+        <th>Notas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row"><td colspan="5">Instagram & Social</td></tr>
+      <tr><td>Feed quadrado</td><td><code>1080 × 1080</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Formato padrão de posts da 2P</td></tr>
+      <tr><td>Feed retrato</td><td><code>1080 × 1350</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Maior ocupação no feed — preferido</td></tr>
+      <tr><td>Stories / Reels cover</td><td><code>1080 × 1920</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Área segura: 250px top + 400px bottom</td></tr>
+      <tr><td>Carrossel (slide)</td><td><code>1080 × 1080</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Primeiro slide com gancho + neon em número</td></tr>
+      <tr><td>LinkedIn post</td><td><code>1200 × 628</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Landscape obrigatório. Ratio 1.91:1</td></tr>
+      <tr><td>LinkedIn carrossel</td><td><code>1080 × 1080</code> ou <code>1080 × 1350</code></td><td>72 dpi / RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>PDFs carrossel: use ratio quadrado</td></tr>
+
+      <tr class="cat-row"><td colspan="5">Vídeo</td></tr>
+      <tr><td>Reels / TikTok</td><td><code>1080 × 1920</code></td><td>30fps mín · 60fps ideal</td><td><span class="tag-theme tag-dark">dark</span></td><td>Legenda sempre — 85% dos reels são assistidos sem som</td></tr>
+      <tr><td>YouTube</td><td><code>1920 × 1080</code></td><td>24/30/60fps · H.264</td><td><span class="tag-theme tag-dark">dark</span></td><td>Thumbnail: 1280×720, JPG, máx 2MB</td></tr>
+      <tr><td>LinkedIn vídeo</td><td><code>1920 × 1080</code> ou <code>1080 × 1080</code></td><td>30fps · MP4</td><td><span class="tag-theme tag-dark">dark</span></td><td>Duração: 30s–5min pra awareness</td></tr>
+      <tr><td>Story vídeo</td><td><code>1080 × 1920</code></td><td>30fps</td><td><span class="tag-theme tag-dark">dark</span></td><td>Máx 15s por story. CTA nos últimos 3s</td></tr>
+
+      <tr class="cat-row"><td colspan="5">Apresentações & Documentos</td></tr>
+      <tr><td>Pitch deck / Slides</td><td><code>1920 × 1080</code></td><td>16:9 · RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Google Slides ou PowerPoint. Template no drive da 2P</td></tr>
+      <tr><td>Proposta comercial</td><td><code>A4 · 210 × 297mm</code></td><td>300 dpi · CMYK</td><td><span class="tag-theme tag-light">light</span></td><td>Tema light. Impressão e PDF. Margem 20mm</td></tr>
+      <tr><td>Relatório mensal</td><td><code>A4 · 210 × 297mm</code></td><td>300 dpi</td><td><span class="tag-theme tag-light">light</span></td><td>Ou digital full-width. Gráficos usam cores do DS</td></tr>
+
+      <tr class="cat-row"><td colspan="5">Display & OOH</td></tr>
+      <tr><td>Banner digital</td><td><code>300 × 250</code> · <code>728 × 90</code> · <code>160 × 600</code></td><td>72 dpi · RGB</td><td><span class="tag-theme tag-dark">dark</span></td><td>Tamanhos IAB padrão. Arquivo máx 150KB</td></tr>
+      <tr><td>Roll-up / Banner físico</td><td><code>800 × 2000mm</code></td><td>150 dpi mín · CMYK</td><td><span class="tag-theme tag-dark">dark</span></td><td>Arquivo em PDF/AI com sangria 5mm</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     6. MOTION & VÍDEO
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Motion & Vídeo</div>
+  <div class="section-sub">06 · animação · como a marca se comporta em movimento</div>
+
+  <!-- Princípios de motion -->
+  <div class="motion-principles">
+    <div class="motion-card">
+      <div class="motion-label">Velocidade padrão</div>
+      <div class="motion-value">100ms</div>
+      <p class="motion-desc">Transições rápidas e decisivas. A marca 2P não hesita. Micro-interações e aparecimentos em 100ms. Animações de entrada em 200ms.</p>
+    </div>
+    <div class="motion-card">
+      <div class="motion-label">Easing preferido</div>
+      <div class="motion-value">LINEAR</div>
+      <p class="motion-desc">Motion linear ou em steps (8 frames). Evite ease-in-out suave — parece UI genérica. O movimento 8-bit é intencional: cut ou step, não flow.</p>
+    </div>
+    <div class="motion-card">
+      <div class="motion-label">Duração máxima de intro</div>
+      <div class="motion-value">3s</div>
+      <p class="motion-desc">Vinheta/intro de vídeo nunca ultrapassa 3 segundos. O conteúdo começa rápido. Atenção é cara — não gaste com logo animado longo.</p>
+    </div>
+    <div class="motion-card">
+      <div class="motion-label">Cortes por minuto</div>
+      <div class="motion-value">8–12</div>
+      <p class="motion-desc">Ritmo de edição rápido, especialmente no começo. Primeiros 3 segundos: pelo menos 2 cortes. Reels especialmente: corte na batida.</p>
+    </div>
+    <div class="motion-card">
+      <div class="motion-label">Animação de número</div>
+      <div class="motion-value">COUNT</div>
+      <p class="motion-desc">Métricas e resultados entram com countup (contador progressivo). Duração: 1–2s. Easing: steps ou linear. VT323 neon piscando antes de revelar o número final.</p>
+    </div>
+    <div class="motion-card">
+      <div class="motion-label">Cursor piscante</div>
+      <div class="motion-value">BLINK</div>
+      <p class="motion-desc">O "▊" piscante é assinatura da 2P em motion. Steps(2), 1 segundo de ciclo. Aparece antes de um texto digitar ou revelar um resultado.</p>
+    </div>
+  </div>
+
+  <!-- Transições aprovadas/proibidas -->
+  <div style="margin-top:32px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Transições — o que usar</div>
+    <div class="transition-grid">
+      <div class="transition-card">
+        <div class="transition-type">Corte seco</div>
+        <div class="transition-status status-ok">✓ Aprovado</div>
+        <p class="transition-desc">O padrão. Trocar de cena sem transição. Rápido, direto, confiante. Funciona em 90% dos casos — Reels, YouTube, Social.</p>
+      </div>
+      <div class="transition-card">
+        <div class="transition-type">Pixel reveal</div>
+        <div class="transition-status status-ok">✓ Aprovado</div>
+        <p class="transition-desc">Wipe ou reveal em grid de pixels (steps). Funciona em After Effects com um matte em pixels quadrados. Usado em vinhetas e transições de seção em vídeos institucionais.</p>
+      </div>
+      <div class="transition-card">
+        <div class="transition-type">Glitch / Chromatic</div>
+        <div class="transition-status status-ok">✓ Com parcimônia</div>
+        <p class="transition-desc">Glitch de 2–3 frames no início de uma cena importante. Nunca como transição genérica — reservado pra momentos de impacto (revelação de número, CTA final).</p>
+      </div>
+      <div class="transition-card">
+        <div class="transition-type">Scan / Varredura</div>
+        <div class="transition-status status-ok">✓ Aprovado</div>
+        <p class="transition-desc">Linha horizontal varrendo de cima pra baixo revelando o próximo frame. Referência de monitor CRT. Usado em lower thirds e revelação de dados.</p>
+      </div>
+      <div class="transition-card">
+        <div class="transition-type">Dissolve / Cross-fade</div>
+        <div class="transition-status status-no">✗ Evitar</div>
+        <p class="transition-desc">Parece produção genérica de marketing. Desfaz a energia da marca. Se precisar de continuidade entre cenas, prefira corte seco ou zoom rápido.</p>
+      </div>
+      <div class="transition-card">
+        <div class="transition-type">Slide / Push</div>
+        <div class="transition-status status-no">✗ Evitar</div>
+        <p class="transition-desc">Deslizar de uma cena pra outra parece apresentação corporativa PowerPoint. Contrário à linguagem direta e confiante da 2P.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color grading -->
+  <div style="margin-top:40px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Direção de color grading</div>
+    <div class="grading-strip">
+      <div class="grading-step" style="background:#0a1a12"><span style="color:#00FFD1;font-family:var(--font-mono);font-size:11px">Sombras<br>Teal fundo</span></div>
+      <div class="grading-step" style="background:#0d1a14"><span style="color:rgba(0,255,209,0.6);font-family:var(--font-mono);font-size:11px">Meios-tons<br>escuros</span></div>
+      <div class="grading-step" style="background:#1a2a20"><span style="color:rgba(255,255,255,0.6);font-family:var(--font-mono);font-size:11px">Meios-tons<br>neutros</span></div>
+      <div class="grading-step" style="background:#2a3a2e"><span style="color:rgba(255,255,255,0.8);font-family:var(--font-mono);font-size:11px">Altas<br>luzes</span></div>
+      <div class="grading-step" style="background:#00FFD1"><span style="color:#100F0F;font-family:var(--font-mono);font-size:11px;font-weight:700">Luzes<br>neon</span></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+      <div style="background:var(--color-surface);border:1px solid var(--color-border);border-left:4px solid var(--brand-primary);padding:16px">
+        <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:var(--ls-wide);color:var(--brand-primary);margin-bottom:8px">Alvo de grading</div>
+        <div style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);line-height:1.6">Sombras puxadas para teal (#0a1a12 — quase preto com leve verde). Alto contraste geral (curva S agressiva). Luzes preservadas sem estourar. Pele (quando houver) com cor natural, sem desaturar. Resultado: imagem tech, limpa, com identidade de cor própria.</div>
+      </div>
+      <div style="background:var(--color-surface);border:1px solid var(--color-border);border-left:4px solid var(--color-danger);padding:16px">
+        <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:var(--ls-wide);color:var(--color-danger);margin-bottom:8px">Evitar</div>
+        <div style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);line-height:1.6">Grading laranja/teal genérico de Hollywood. Tons sépia ou vintage. Desaturação total (preto e branco). Look "clean & bright" de agência genérica. Filtro de Instagram. Grading quente/amarelado.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Duração de vídeos -->
+  <div style="margin-top:40px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Durações recomendadas</div>
+    <div class="duration-grid">
+      <div class="duration-card">
+        <div class="duration-format">Reels / TikTok</div>
+        <div class="duration-time">15–30s</div>
+        <p class="duration-desc">Gancho nos primeiros 2s, entrega de valor nos 10s seguintes, CTA nos últimos 3s. Máximo 60s em conteúdo educativo.</p>
+      </div>
+      <div class="duration-card">
+        <div class="duration-format">Stories</div>
+        <div class="duration-time">7–12s</div>
+        <p class="duration-desc">1 mensagem por story. Texto legível em 3s. CTA no final com botão/link. Série de stories: máx 5 seguidos.</p>
+      </div>
+      <div class="duration-card">
+        <div class="duration-format">Vídeo institucional</div>
+        <div class="duration-time">90–120s</div>
+        <p class="duration-desc">Máximo 2 minutos pra vídeo de sobre/empresa. Acima disso, dividir em série. Inclui vinheta (≤3s) e outro (≤5s).</p>
+      </div>
+      <div class="duration-card">
+        <div class="duration-format">Case de resultado</div>
+        <div class="duration-time">45–60s</div>
+        <p class="duration-desc">Problema → Solução → Resultado. Número de resultado aparece no segundo 30–40 com animação de countup. CTA final.</p>
+      </div>
+      <div class="duration-card">
+        <div class="duration-format">YouTube long-form</div>
+        <div class="duration-time">5–12min</div>
+        <p class="duration-desc">Para conteúdo educativo profundo. Estrutura: hook (0–30s), entrega (maioria), recap + CTA (últimos 60s).</p>
+      </div>
+      <div class="duration-card">
+        <div class="duration-format">Vinheta 2P</div>
+        <div class="duration-time">2–3s</div>
+        <p class="duration-desc">Logo animado + tagline. Pixel reveal ou glitch de entrada. Nunca mais de 3 segundos — no começo E no final do vídeo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     7. FOTOGRAFIA & IMAGEM
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Foto & Imagem</div>
+  <div class="section-sub">07 · direção de arte · para fotos, mockups e imagens de suporte</div>
+  <div class="photo-grid">
+    <div class="photo-rule">
+      <h4>Iluminação</h4>
+      <p>Alta chave com fundo escuro ou estúdio preto. Luz lateral dura que cria contraste nítido — sem fill suave que "amacia" tudo. Rim light opcional em tom de neon ou azul. Evite: foto com fundo branco limpo, iluminação flat de produto genérico.</p>
+    </div>
+    <div class="photo-rule">
+      <h4>Composição</h4>
+      <p>Deixe espaço pra receber texto — a foto serve de background estrutural, não de herói isolado. Prefira composições assimétricas com espaço negativo pra colar headline VT323. Nunca centralize sujeito sem intenção clara de simetria.</p>
+    </div>
+    <div class="photo-rule">
+      <h4>Pessoas & Equipe</h4>
+      <p>Fotos de equipe em ambiente profissional real — evite banco de imagens óbvio. Expressão: confiante, direta, sem pose forçada. Roupas sólidas (sem estampa). Fundo de escritório tech ou fundo preto. Pós: grading teal nas sombras, contraste elevado.</p>
+    </div>
+    <div class="photo-rule">
+      <h4>Tecnologia & Tela</h4>
+      <p>Screenshots de dashboards, gráficos, plataformas — sempre em tema dark se houver opção. Mockups de device em fundo preto. Evite mockups "lifestyle" com cafe e mão segurando celular em luz solar quente — parece banco de imagem.</p>
+    </div>
+    <div class="photo-rule">
+      <h4>Tratamento pós-foto</h4>
+      <p>Aplicar grading da seção de color: sombras teal, alto contraste, luzes preservadas. Overlay de scanlines em 15–25% de opacidade é permitido em fotos de background. Duotone neon (#00FFD1) sobre preto é aprovado pra fotos de destaque institucional.</p>
+    </div>
+    <div class="photo-rule">
+      <h4>Banco de imagens</h4>
+      <p>Se usar banco, prefira imagens que pareçam editoriais tech — não corporativo feliz. Shutterstock, Unsplash (coleções tech/studio). Descarte imediatamente se a imagem parecer muito "stock photo" — handshake, pessoa sorrindo em call, aperto de mão. Não é a 2P.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     8. GUIAS POR FERRAMENTA
+     ══════════════════════════════════════════════ -->
+<section>
+  <div class="section-title">Guias de ferramenta</div>
+  <div class="section-sub">08 · setup · como configurar cada ambiente com o DS da 2P</div>
+
+  <div class="tool-tabs" role="tablist">
+    <button class="tool-tab active" role="tab" aria-selected="true"  onclick="showPanel('canva')">Canva</button>
+    <button class="tool-tab"        role="tab" aria-selected="false" onclick="showPanel('adobe-static')">Adobe · Estático</button>
+    <button class="tool-tab"        role="tab" aria-selected="false" onclick="showPanel('adobe-motion')">Adobe · Motion</button>
+    <button class="tool-tab"        role="tab" aria-selected="false" onclick="showPanel('capcut')">CapCut</button>
+  </div>
+
+  <!-- CANVA -->
+  <div class="tool-panel active" id="panel-canva">
+    <div class="tool-steps">
+      <div class="tool-step">
+        <div class="step-n">01</div>
+        <div>
+          <div class="step-title">Adicionar as fontes</div>
+          <p class="step-body">No Canva Pro: clique no campo de fonte → "Adicionar fonte" → busque <code>VT323</code> e <code>Inconsolata</code>. Ative nos pesos disponíveis. Ficam salvas na sua conta e em times compartilhados.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">02</div>
+        <div>
+          <div class="step-title">Criar paleta de marca</div>
+          <p class="step-body">Brand Kit → "Cores da marca" → adicione as 4 cores principais: <code>#00FFD1</code> · <code>#FF00FF</code> · <code>#2409A9</code> · <code>#100F0F</code>. Adicione também os neutros: <code>#FFFFFF</code> · <code>#FAFAFA</code> · <code>#AFAEAF</code>. Com a paleta salva, qualquer membro do time acessa via "Cores da marca" ao editar qualquer template.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">03</div>
+        <div>
+          <div class="step-title">Usar fundo preto correto</div>
+          <p class="step-body">No Canva o preto padrão (#000000) é diferente do preto 2P (<code>#100F0F</code>). Sempre aplique o preto de marca via campo HEX — não use o preto da paleta padrão do Canva. Diferença sutil mas visível em vídeo e impressão.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">04</div>
+        <div>
+          <div class="step-title">Templates aprovados</div>
+          <p class="step-body">Acesse a pasta compartilhada do time no Canva — os templates de post, story e carrossel já estão configurados com as fontes e cores corretas. Nunca comece do zero sem checar se já tem template aprovado pra aquele formato.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">05</div>
+        <div>
+          <div class="step-title">Exportar corretamente</div>
+          <p class="step-body">Social estático: <code>PNG</code> em 2× (Canva chama de "Qualidade máxima"). Apresentações: <code>PDF Standard</code>. Vídeos: <code>MP4</code> 1080p. Nunca exporte JPEG pra peças com texto — compressão destrói a nitidez das fontes mono.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paleta HEX rápida pra Canva -->
+    <div style="margin-top:32px">
+      <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:16px;">Cole esses HEX no Canva</div>
+      <div class="canva-hex">
+        <div class="hex-chip"><div class="hex-color" style="background:#00FFD1"></div><div class="hex-label"><div class="hex-name">Neon</div><div class="hex-value">#00FFD1</div></div></div>
+        <div class="hex-chip"><div class="hex-color" style="background:#FF00FF"></div><div class="hex-label"><div class="hex-name">Fúchsia</div><div class="hex-value">#FF00FF</div></div></div>
+        <div class="hex-chip"><div class="hex-color" style="background:#2409A9"></div><div class="hex-label"><div class="hex-name">Tolopea</div><div class="hex-value">#2409A9</div></div></div>
+        <div class="hex-chip"><div class="hex-color" style="background:#100F0F;border:1px solid #333"></div><div class="hex-label"><div class="hex-name">Preto 2P</div><div class="hex-value">#100F0F</div></div></div>
+        <div class="hex-chip"><div class="hex-color" style="background:#FFFFFF;border:1px solid #ccc"></div><div class="hex-label"><div class="hex-name">Branco</div><div class="hex-value">#FFFFFF</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADOBE ESTÁTICO -->
+  <div class="tool-panel" id="panel-adobe-static">
+    <div class="adobe-ref">
+      <div class="adobe-card">
+        <div class="adobe-app">Illustrator · Photoshop</div>
+        <div class="adobe-tip"><strong>Fontes:</strong> VT323 instale via <a href="https://fonts.google.com/specimen/VT323" target="_blank" style="color:var(--brand-primary)">fonts.google.com</a> e ative no sistema. Inconsolata ative via Adobe Fonts (CC). Em Illustrator: Type → Fonts, busque "Inconsolata".</div>
+      </div>
+      <div class="adobe-card acc">
+        <div class="adobe-app">Illustrator</div>
+        <div class="adobe-tip"><strong>Swatches:</strong> Window → Swatches → menu → "New Color Group" → nomeie "2P Brand". Adicione as 4 cores de marca via HEX. Salve como library via CC Libraries pra compartilhar com o time.</div>
+      </div>
+      <div class="adobe-card">
+        <div class="adobe-app">Photoshop</div>
+        <div class="adobe-tip"><strong>Color Sampler:</strong> salve as 4 cores como amostras no painel de Swatches. Exporte o .aco para o drive compartilhado do time — qualquer designer importa em um clique.</div>
+      </div>
+      <div class="adobe-card acc">
+        <div class="adobe-app">InDesign</div>
+        <div class="adobe-tip"><strong>Estilos de parágrafo:</strong> crie styles para Headline VT323, Body Inconsolata 400, Body Bold 700. Defina as cores exatas. Exporte o .indd como template e compartilhe no drive.</div>
+      </div>
+      <div class="adobe-card">
+        <div class="adobe-app">Exportação print</div>
+        <div class="adobe-tip"><strong>PDF/X-1a</strong> para gráficas. CMYK com perfil ISO Coated v2. Mínimo 300 dpi para imagens. Fontes embutidas ou convertidas em curvas. Sangria: 3–5mm conforme especificação da gráfica.</div>
+      </div>
+      <div class="adobe-card acc">
+        <div class="adobe-app">Exportação digital</div>
+        <div class="adobe-tip"><strong>PNG</strong> para social (sem compressão). <strong>JPEG 90%</strong> para thumbnails e banners onde o peso importa. <strong>SVG</strong> para ícones e logos. Nunca exporte logo como JPEG — use sempre SVG ou PNG.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADOBE MOTION -->
+  <div class="tool-panel" id="panel-adobe-motion">
+    <div class="tool-steps">
+      <div class="tool-step">
+        <div class="step-n">01</div>
+        <div>
+          <div class="step-title">Composition settings</div>
+          <p class="step-body">Social vertical (Reels/Stories): <code>1080 × 1920</code> · 30fps · pixel square. YouTube/horizontal: <code>1920 × 1080</code> · 24 ou 30fps. Definir Background Color como <code>#100F0F</code> (não #000000).</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">02</div>
+        <div>
+          <div class="step-title">Easing de texto</div>
+          <p class="step-body">Texto digitando: use o animador de texto com <code>Opacity 0→100</code> por caractere, <code>Range Selector</code> com modo "Start". Timing: 100ms por caractere. Para feel 8-bit: selecione keyframes → <code>F9</code> Easy Ease, depois converta pra <code>Linear</code> nos graph editor. Resultado: steps discretos.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">03</div>
+        <div>
+          <div class="step-title">Cursor piscante</div>
+          <p class="step-body">Crie um retângulo <code>#00FFD1</code> de 4×20px. Opacity keyframes: 100% no frame 0, 0% no frame 15, 100% no frame 30 (ciclo de 1s em 30fps). Coloque no <code>Graph Editor</code> como Hold keyframes (não interpolação) — simula o <code>steps(2)</code> do CSS.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">04</div>
+        <div>
+          <div class="step-title">Countup de número</div>
+          <p class="step-body">Use expressão no Source Text de uma text layer: <code>Math.round(linear(time, inPoint, outPoint, 0, valorFinal))</code>. Duração de 1–1.5s. Aplique <code>VT323</code> em neon. Adicione "▊" piscante antes do número revelar.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">05</div>
+        <div>
+          <div class="step-title">Pixel reveal / Wipe</div>
+          <p class="step-body">Crie uma máscara de grid de pixels usando Shape Layers em array (ou plugin Overlord). Animar Scale ou Opacity em cascata com offset de 1–2 frames por bloco. Resultado: wipe pixelado característico da 2P. Salve como <code>.mogrt</code> pra reutilizar no Premiere.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">06</div>
+        <div>
+          <div class="step-title">Scanlines overlay</div>
+          <p class="step-body">Crie uma Solid <code>#100F0F</code> full-size. Aplique efeito <code>Stripes</code> (ou faça manualmente com repeating-linear via Shape Layers: linhas horizontais de 2px opacidade 30%). Blending mode: <code>Multiply</code>. Coloque acima de tudo como overlay permanente em composições institucionais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPCUT -->
+  <div class="tool-panel" id="panel-capcut">
+    <div class="tool-steps">
+      <div class="tool-step">
+        <div class="step-n">01</div>
+        <div>
+          <div class="step-title">Fontes disponíveis</div>
+          <p class="step-body">VT323 não está disponível no CapCut nativamente. Alternativa mais próxima disponível: <code>Space Mono</code> (monospace, look técnico similar). Para headline pixel-style: use texto pré-renderizado como <strong>PNG com fundo transparente</strong> criado no Canva e importe como elemento.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">02</div>
+        <div>
+          <div class="step-title">Paleta de cores</div>
+          <p class="step-body">CapCut aceita HEX no color picker. Cole exatamente: <code>#00FFD1</code> (neon), <code>#FF00FF</code> (fúchsia), <code>#2409A9</code> (tolopea), <code>#100F0F</code> (preto 2P). Salve como paleta customizada pra usar em todos os projetos.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">03</div>
+        <div>
+          <div class="step-title">Transições aprovadas no CapCut</div>
+          <p class="step-body">Prefira <strong>sem transição</strong> (corte seco). Das disponíveis, use: "Flash" (simula cut com glitch), "Glitch" (aplicar com cuidado, máx 2 vezes por vídeo). Evite: todos os wipes suaves, morphs, dissolves e zooms lentos.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">04</div>
+        <div>
+          <div class="step-title">Filtros de cor</div>
+          <p class="step-body">Ajuste manual em vez de filtro pronto: <strong>Contrast +30, Shadows para teal</strong> (arraste o shadow color picker pra zona verde-azulada), <strong>Highlights neutros</strong>, <strong>Saturation +10</strong>. Não use filtros pré-definidos do CapCut — nenhum deles corresponde ao look da 2P.</p>
+        </div>
+      </div>
+      <div class="tool-step">
+        <div class="step-n">05</div>
+        <div>
+          <div class="step-title">Legenda sempre</div>
+          <p class="step-body">Use o recurso de transcrição automática do CapCut. Estilo de legenda: fonte monospace disponível, cor branca (<code>#FFFFFF</code>), fundo preto semi-transparente. Ative também nos Reels do Instagram ao publicar. 85% dos reels são vistos sem som.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top:80px;padding-top:24px;border-top:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);display:flex;justify-content:space-between;letter-spacing:var(--ls-wide);text-transform:uppercase;">
+  <span>Design Gráfico & Motion · Bit System v2.0</span>
+  <a href="../index.html" style="color:var(--color-text-subtle)">← Voltar ao índice</a>
+</footer>
+
+<script>
+  function setTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('.theme-toggle button').forEach(b => {
+      b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+    });
+    localStorage.setItem('bs-theme', mode);
+  }
+  const saved = localStorage.getItem('bs-theme');
+  if (saved) setTheme(saved);
+
+  function showPanel(id) {
+    document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tool-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+    event.target.setAttribute('aria-selected','true');
+  }
+</script>
+
+</body>
+</html>

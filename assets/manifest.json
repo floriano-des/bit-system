@@ -3,14 +3,103 @@
     "system": "Bit System",
     "version": "2.0.0",
     "brand": "2P Growth Lab (Dois Palitos)",
-    "updated": "2026-04-18",
+    "updated": "2026-04-19",
     "description": "Catálogo completo de assets visuais da 2P Growth Lab. Use este arquivo para selecionar o asset correto com base no contexto de aplicação.",
     "base_path": "assets/"
   },
 
   "logos": {
-    "lettering": {
-      "$description": "Logo principal com texto 'doispalitos growth lab' em lowercase. 5 versões de cor.",
+
+    "logo_full": {
+      "$description": "Logo completo v2 — ícone-símbolo (seta estilizada) + lettering 'doispalitos growth lab'. Versão principal da marca. 3 variações de cor.",
+      "$note": "Usar sempre que houver espaço horizontal suficiente. Preferir sobre lettering ou símbolo isolados.",
+      "$clearspace": "Mínimo: altura do símbolo (ícone) em todos os 4 lados.",
+      "$formats": ["PNG com transparência"],
+      "$version": "v2 — identidade visual atual",
+
+      "neon": {
+        "file": "LOGO_Lettering_full_Verde.png",
+        "path": "assets/new-logos/LOGO_Lettering_full_Verde.png",
+        "color": "#00FFD1",
+        "background_recommended": "#100F0F",
+        "use_when": "Uso padrão. Fundo preto ou escuro. Social, site, apresentações, email dark.",
+        "use_cases": ["social media dark", "site institucional", "apresentações dark", "email signature dark", "vídeo watermark"],
+        "contrast_ratio": "9.6:1 sobre #100F0F",
+        "preferred": true
+      },
+      "black": {
+        "file": "LOGO_Lettering_full_Preto.png",
+        "path": "assets/new-logos/LOGO_Lettering_full_Preto.png",
+        "color": "#100F0F",
+        "background_recommended": "#FAFAFA",
+        "use_when": "Fundos claros. Propostas comerciais, relatórios impressos, documentos PDF light.",
+        "use_cases": ["propostas comerciais", "relatórios light", "impressão", "papelaria"],
+        "contrast_ratio": "≥ 15:1 sobre #FAFAFA"
+      },
+      "tolopea": {
+        "file": "LOGO_Lettering_full_Roxo.png",
+        "path": "assets/new-logos/LOGO_Lettering_full_Roxo.png",
+        "color": "#2409A9",
+        "background_recommended": "#FAFAFA",
+        "use_when": "Fundos claros quando preto não tem personalidade suficiente. Co-branding com parceiros de identidade clara.",
+        "use_cases": ["co-branding", "materiais light alternativos", "apresentações light"],
+        "contrast_ratio": "≥ 8:1 sobre #FAFAFA"
+      }
+    },
+
+    "symbol": {
+      "$description": "Símbolo isolado v2 — apenas o ícone-seta da 2P, sem lettering. Para usos compactos.",
+      "$note": "Usar quando o espaço não permite o logo completo, ou quando o lettering já aparece em outro elemento da peça.",
+      "$use_cases_preferred": ["favicon", "avatar de perfil", "watermark compacto", "ícone de app"],
+      "$formats": ["SVG (neon)", "PNG (preto e tolopea)"],
+      "$version": "v2",
+
+      "neon": {
+        "file": "LOGO_SEC_Verde.png",
+        "path": "assets/new-logos/LOGO_SEC_Verde.png",
+        "format": "PNG",
+        "color": "#00FFD1",
+        "background_recommended": "#100F0F",
+        "use_when": "Favicon, avatar, watermark dark. Preferir SVG para escala perfeita em qualquer tamanho.",
+        "preferred": true
+      },
+      "black": {
+        "file": "LOGO_SEC_Preto.png",
+        "path": "assets/new-logos/LOGO_SEC_Preto.png",
+        "format": "PNG",
+        "color": "#100F0F",
+        "background_recommended": "#FAFAFA",
+        "use_when": "Fundos claros. Impressão monocromática, carimbos, etiquetas."
+      },
+      "tolopea": {
+        "file": "LOGO_SEC_Roxo.png",
+        "path": "assets/new-logos/LOGO_SEC_Roxo.png",
+        "format": "PNG",
+        "color": "#2409A9",
+        "background_recommended": "#FAFAFA",
+        "use_when": "Fundos claros com personalidade de marca. Co-branding."
+      }
+    },
+
+    "lettering_v2": {
+      "$description": "Lettering isolado v2 — apenas o texto 'doispalitos growth lab', sem o ícone. Usar somente quando o símbolo já aparece em outro elemento da peça.",
+      "$version": "v2",
+      "$note": "Preferir o logo completo (logo_full). Usar lettering isolado apenas quando houver limitação de espaço ou duplicidade com o símbolo já presente.",
+
+      "neon": {
+        "file": "logo_lettering.png",
+        "path": "assets/new-logos/logo_lettering.png",
+        "color": "#00FFD1",
+        "background_recommended": "#100F0F",
+        "use_when": "Assinatura de rodapé, rodapé de e-mail, header de documento quando símbolo já aparece em outro ponto."
+      }
+    },
+
+    "lettering_v1_legacy": {
+      "$description": "Lettering v1 (legado) — versão anterior da marca, somente texto sem ícone-símbolo. Manter para compatibilidade. Não usar em novos materiais.",
+      "$version": "v1 — LEGADO",
+      "$note": "DEPRECATED. Use logo_full ou symbol para novos materiais.",
+      "$formats": ["PNG com transparência"],
       "$note": "Nunca distorcer, rotacionar, aplicar efeito, trocar a cor ou adicionar outline.",
       "$clearspace": "Mínimo: altura da letra 'd' do lettering em todos os 4 lados.",
       "$formats": ["PNG com transparência"],
