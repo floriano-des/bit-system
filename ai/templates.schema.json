@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bit-system/ai/templates.schema.json",
+  "title": "Bit System Templates Contract",
+  "type": "object",
+  "required": ["metadata", "templates"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["system", "version", "updated"],
+      "properties": {
+        "system": { "type": "string" },
+        "version": { "type": "string" },
+        "updated": { "type": "string" }
+      }
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "maturity", "target_output", "preferred_theme", "required_sections"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string" },
+          "maturity": { "type": "string" },
+          "target_output": { "type": "string" },
+          "preferred_theme": { "type": "string" },
+          "required_sections": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "preferred_recipes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "canonical_references": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

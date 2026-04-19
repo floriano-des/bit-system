@@ -1,0 +1,88 @@
+# Bit System AI Package
+
+Bit System is the internal design system for 2P Growth Lab.
+It is used across:
+- landing pages
+- institutional site pages
+- commercial proposals
+- monthly reports
+- pitch decks
+- social media materials
+
+This AI package exists because raw HTML and CSS are not a reliable universal interface for every model.
+The files in ./ai provide:
+- a compact reading order
+- machine-readable contracts
+- explicit source precedence
+- usage rules by context
+
+## Read this package in order
+
+1. ./index.md
+2. ./system.md
+3. ./system.json
+4. ./decision-rules.json
+5. ./components.json
+6. ./recipes.json
+7. ./templates.json
+8. ./assets.json
+9. ../tokens.json
+10. ../assets/manifest.json
+
+## What this system is
+
+Bit System is not only a component library.
+It is a combined brand system and operational design system with:
+- dark and light themes
+- design tokens
+- CSS runtime
+- layout primitives
+- UI components
+- brand recipes
+- asset governance
+- documentation for humans and AI
+
+## What to trust first
+
+Trust order:
+1. Files in ./ai
+2. ../tokens.json
+3. ../assets/manifest.json
+4. ../tokens.css and ../components.css
+5. ../SKILL.md and ../docs/ai-guide.md
+6. ../pages and ../examples as visual reference only
+
+## Core brand rules
+
+- Visual tone: retro-tech, high contrast, gamer accents, clean base.
+- Display type: VT323 only.
+- Body and UI type: Inconsolata only.
+- Primary brand color: neon #00FFD1.
+- Accent color: fuchsia #FF00FF.
+- Deep structural color: tolopea #2409A9.
+- Default theme: dark.
+- Light theme is mainly for proposals, reports, and editorial contexts.
+
+## Core interaction rules
+
+- Use semantic tokens in new implementation work.
+- Do not rely on primitive colors directly in new components.
+- Use one primary neon CTA per viewport at most.
+- Prefer recipes before custom composition.
+- Prefer current assets over legacy ones.
+
+## Runtime implementation
+
+Public CSS entrypoints:
+- ../tokens.css
+- ../components.css
+
+Canonical structural files:
+- ../tokens.json
+- ../assets/manifest.json
+- ../assets/icons.svg
+
+## Important limitation
+
+The CSS runtime is not yet generated automatically from ../tokens.json.
+When tokens and runtime disagree, treat ../tokens.json as the structural contract and verify runtime behavior in the CSS modules.

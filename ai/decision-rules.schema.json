@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bit-system/ai/decision-rules.schema.json",
+  "title": "Bit System Decision Rules",
+  "type": "object",
+  "required": ["metadata", "trust_order", "rules"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["system", "version", "updated"],
+      "properties": {
+        "system": { "type": "string" },
+        "version": { "type": "string" },
+        "updated": { "type": "string" }
+      }
+    },
+    "trust_order": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "instruction"],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "type": "string" },
+          "instruction": { "type": "string" },
+          "rationale": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ Cada domínio do sistema tem uma fonte de verdade própria:
 | Componentes e recipes | `components.css` | Entrypoint público para o CSS de UI |
 | Assets | `assets/manifest.json` | Catálogo canônico de logos, símbolos e ícones |
 | Sprite de ícones | `assets/icons.svg` | Implementação real dos ids de ícones |
+| Pacote genérico para IA | `ai/` | Camada universal para modelos, automações e RAG |
 | Instruções para IA | `SKILL.md` | Ordem de leitura e guardrails para agentes |
 | Onboarding humano | `README.md` e `docs/` | Visão geral, arquitetura e governança |
 
@@ -41,6 +42,7 @@ styles/
 pages/
 examples/
 assets/
+ai/
 docs/
 scripts/
 ```
@@ -74,6 +76,7 @@ As decisões de contraste, foco e uso por contexto ficam em `tokens.json` e no C
 
 ## Documentação
 
+- `ai/`: pacote de distribuição para IA genérica
 - `docs/system-architecture.md`: fronteiras, fonte de verdade e responsabilidades
 - `docs/ai-guide.md`: ordem de leitura e regras de consumo por agentes
 - `docs/governance.md`: release checklist, deprecações e manutenção
@@ -92,6 +95,12 @@ Ele valida:
 - existência dos assets referenciados
 - ids de ícones declarados no manifest
 - correspondência com `assets/icons.svg`
+
+Para validar o pacote de IA:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-ai-package.ps1
+```
 
 ## Princípios operacionais
 

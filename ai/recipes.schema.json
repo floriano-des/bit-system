@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bit-system/ai/recipes.schema.json",
+  "title": "Bit System Recipes Contract",
+  "type": "object",
+  "required": ["metadata", "recipes"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["system", "version", "updated"],
+      "properties": {
+        "system": { "type": "string" },
+        "version": { "type": "string" },
+        "updated": { "type": "string" }
+      }
+    },
+    "recipes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "purpose", "class_name", "contexts_allowed", "source_of_truth"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "type": "string" },
+          "purpose": { "type": "string" },
+          "class_name": { "type": "string" },
+          "contexts_allowed": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "contexts_forbidden": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required_children": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "anti_patterns": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "source_of_truth": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "example_references": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

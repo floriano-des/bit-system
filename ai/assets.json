@@ -1,0 +1,76 @@
+{
+  "$schema": "./assets.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19"
+  },
+  "asset_entries": [
+    {
+      "id": "logo-full-v2-neon",
+      "status": "current",
+      "kind": "logo",
+      "path": "../assets/new-logos/LOGO_Lettering_full_Verde.png",
+      "preferred_for": ["dark_header", "landing_page", "site_page", "social_dark", "deck_dark"],
+      "avoid_for": ["light_document", "print_on_white"]
+    },
+    {
+      "id": "logo-full-v2-black",
+      "status": "current",
+      "kind": "logo",
+      "path": "../assets/new-logos/LOGO_Lettering_full_Preto.png",
+      "preferred_for": ["proposal_document", "monthly_report", "light_document", "print"],
+      "avoid_for": ["dark_surface"]
+    },
+    {
+      "id": "logo-full-v2-tolopea",
+      "status": "current",
+      "kind": "logo",
+      "path": "../assets/new-logos/LOGO_Lettering_full_Roxo.png",
+      "preferred_for": ["light_brand_forward_material", "co_branding_light"],
+      "avoid_for": ["dark_surface"]
+    },
+    {
+      "id": "symbol-v2-png-neon",
+      "status": "current",
+      "kind": "symbol",
+      "path": "../assets/new-logos/LOGO_SEC_Verde.png",
+      "preferred_for": ["avatar", "watermark", "compact_mark", "social_profile"],
+      "avoid_for": ["vector_interface_requirement"]
+    },
+    {
+      "id": "symbol-v2-svg",
+      "status": "current",
+      "kind": "symbol",
+      "path": "../assets/new-logos/LOGO_SEC_Verde.svg",
+      "preferred_for": ["favicon", "app_icon", "technical_interface", "vector_scaling"],
+      "avoid_for": ["general_agency_export_when_png_is_enough"]
+    },
+    {
+      "id": "lettering-v2-neon",
+      "status": "current",
+      "kind": "lettering",
+      "path": "../assets/new-logos/logo_lettering.png",
+      "preferred_for": ["footer_signature", "closing_mark_when_symbol_already_present"],
+      "avoid_for": ["primary_brand_signature"]
+    },
+    {
+      "id": "lettering-v1-legacy",
+      "status": "legacy",
+      "kind": "legacy_logo",
+      "path": "../assets/logo-lettering-neon.png",
+      "preferred_for": ["legacy_material_maintenance_only"],
+      "avoid_for": ["new_material"]
+    }
+  ],
+  "icon_system": {
+    "sprite": "../assets/icons.svg",
+    "id_prefix": "bs-",
+    "rules": [
+      "Use only ids that exist in the sprite.",
+      "Prefer sprite usage over inventing new one-off SVG icons.",
+      "Treat perf-02 as deprecated because there is no matching chart-down icon in the current sprite.",
+      "Use icons as support, not as the primary carrier of meaning."
+    ]
+  }
+}

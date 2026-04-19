@@ -8,12 +8,20 @@ Leia este arquivo antes de gerar qualquer peça, interface, HTML, CSS, copy ou s
 Siga esta ordem:
 
 1. `SKILL.md`
-2. `docs/ai-guide.md`
-3. `tokens.json`
-4. `tokens.css`
-5. `components.css`
-6. `assets/manifest.json`
-7. `pages/` e `examples/`, somente como referência visual
+2. `ai/llms.txt`
+3. `ai/index.md`
+4. `ai/system.json`
+5. `ai/decision-rules.json`
+6. `ai/components.json`
+7. `ai/recipes.json`
+8. `ai/templates.json`
+9. `ai/assets.json`
+10. `docs/ai-guide.md`
+11. `tokens.json`
+12. `tokens.css`
+13. `components.css`
+14. `assets/manifest.json`
+15. `pages/` e `examples/`, somente como referência visual
 
 Regra crítica: não trate `pages/` e `examples/` como fonte de verdade estrutural. Eles são demonstração e material de referência.
 
@@ -21,6 +29,7 @@ Regra crítica: não trate `pages/` e `examples/` como fonte de verdade estrutur
 
 | Domínio | Arquivo canônico | Como usar |
 |---|---|---|
+| Pacote universal para IA | `ai/` | Usar como entrada rápida para modelos genéricos |
 | Tokens | `tokens.json` | Ler a estrutura, temas, acessibilidade e relações |
 | Runtime de tokens | `tokens.css` | Importar no HTML; ele distribui os módulos em `styles/` |
 | Componentes e recipes | `components.css` | Importar no HTML; ele distribui os módulos de layout, componentes e recipes |
@@ -28,6 +37,8 @@ Regra crítica: não trate `pages/` e `examples/` como fonte de verdade estrutur
 | Ícones | `assets/icons.svg` | Confiar nos ids reais do sprite |
 
 Observação: o CSS ainda não é gerado automaticamente a partir de `tokens.json`. Se houver conflito, trate `tokens.json` como contrato estrutural e valide o runtime em `styles/tokens-core.css`.
+
+Regra adicional: se a IA for genérica e não estiver operando como agente de código, priorize `ai/*.json` antes de abrir CSS bruto.
 
 ## 3. Identidade da marca
 

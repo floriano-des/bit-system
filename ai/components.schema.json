@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bit-system/ai/components.schema.json",
+  "title": "Bit System Components Contract",
+  "type": "object",
+  "required": ["metadata", "layout_primitives", "components"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["system", "version", "updated"],
+      "properties": {
+        "system": { "type": "string" },
+        "version": { "type": "string" },
+        "updated": { "type": "string" }
+      }
+    },
+    "layout_primitives": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    },
+    "components": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["id", "status", "purpose", "classes", "source_of_truth"],
+      "properties": {
+        "id": { "type": "string" },
+        "status": { "type": "string" },
+        "purpose": { "type": "string" },
+        "classes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "contexts_allowed": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "contexts_forbidden": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "required_tokens": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "anti_patterns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_of_truth": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "example_references": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -438,10 +438,10 @@
     <!-- Bloco de contexto / instrução -->
     <div class="recipe-console" style="margin-bottom: var(--space-8);">
       <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> Como consumir este Design System via IA</div>
-      <div class="recipe-console__line" style="margin-top: var(--space-3)"><span class="recipe-console__prompt">1.</span> Leia o <span class="recipe-console__value">SKILL.md</span> e o <span class="recipe-console__value">docs/ai-guide.md</span></div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">2.</span> Use o <span class="recipe-console__value">tokens.json</span> como contrato estrutural dos tokens</div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">3.</span> Use <span class="recipe-console__value">tokens.css</span> e <span class="recipe-console__value">components.css</span> como runtime público</div>
-      <div class="recipe-console__line"><span class="recipe-console__prompt">4.</span> Consulte <span class="recipe-console__value">assets/manifest.json</span> e valide ids com <span class="recipe-console__value">assets/icons.svg</span></div>
+      <div class="recipe-console__line" style="margin-top: var(--space-3)"><span class="recipe-console__prompt">1.</span> Comece por <span class="recipe-console__value">ai/llms.txt</span> e <span class="recipe-console__value">ai/system.json</span></div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">2.</span> Use <span class="recipe-console__value">ai/components.json</span>, <span class="recipe-console__value">ai/recipes.json</span> e <span class="recipe-console__value">ai/templates.json</span></div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">3.</span> Desça para <span class="recipe-console__value">tokens.json</span> e <span class="recipe-console__value">assets/manifest.json</span> quando precisar de detalhe canônico</div>
+      <div class="recipe-console__line"><span class="recipe-console__prompt">4.</span> Use <span class="recipe-console__value">tokens.css</span> e <span class="recipe-console__value">components.css</span> como runtime público</div>
       <div class="recipe-console__line" style="margin-top: var(--space-4)"><span class="recipe-console__prompt">&gt;</span> all_files_indexed = <span class="recipe-console__value">true</span> <span class="fx-cursor"></span></div>
     </div>
 
@@ -455,6 +455,67 @@
         <p class="ai-card__desc">Guia principal para agentes. Define ordem de leitura, guardrails, recipes reais, setup mínimo e o que não assumir.</p>
         <div class="ai-card__meta">
           <span class="ai-card__format">Markdown</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card ai-card--primary" href="ai/llms.txt" target="_blank">
+        <div class="ai-card__badge">PACOTE AI</div>
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-info"/></svg></div>
+        <h3 class="ai-card__name">ai/llms.txt</h3>
+        <p class="ai-card__desc">Entrada curta e genérica para qualquer IA. Resume escopo, trust order e ordem de leitura do pacote machine-readable.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">Plain Text</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="ai/system.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-settings"/></svg></div>
+        <h3 class="ai-card__name">ai/system.json</h3>
+        <p class="ai-card__desc">Índice do pacote de IA. Define trust order, source of truth por domínio, contratos e regras globais de consumo.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="ai/components.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-controller"/></svg></div>
+        <h3 class="ai-card__name">ai/components.json</h3>
+        <p class="ai-card__desc">Contrato compacto de layouts e componentes. Traz classes reais, contextos permitidos, anti-patterns e referências canônicas.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="ai/recipes.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-star"/></svg></div>
+        <h3 class="ai-card__name">ai/recipes.json</h3>
+        <p class="ai-card__desc">Lista de recipes reais do sistema com propósito, contexto, filhos obrigatórios e riscos de uso indevido.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="ai/templates.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-folder"/></svg></div>
+        <h3 class="ai-card__name">ai/templates.json</h3>
+        <p class="ai-card__desc">Contextos operacionais da agência, com maturidade declarada, seções obrigatórias e recipes preferidas.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON</span>
+          <span class="ai-card__link">Abrir →</span>
+        </div>
+      </a>
+
+      <a class="ai-card" href="ai/assets.json" target="_blank">
+        <div class="ai-card__icon"><svg width="28" height="28" aria-hidden="true"><use href="#bs-folder"/></svg></div>
+        <h3 class="ai-card__name">ai/assets.json</h3>
+        <p class="ai-card__desc">Guia condensado de logos, símbolos e ícones para IA genérica, com foco em seleção rápida e sem ambiguidade.</p>
+        <div class="ai-card__meta">
+          <span class="ai-card__format">JSON</span>
           <span class="ai-card__link">Abrir →</span>
         </div>
       </a>
@@ -534,9 +595,9 @@
     <!-- Nota de uso por IA -->
     <div class="ai-note">
       <strong>Ordem de leitura recomendada para agentes:</strong>
-      SKILL.md → docs/ai-guide.md → tokens.json → tokens.css → components.css → assets/manifest.json
+      SKILL.md → ai/llms.txt → ai/system.json → ai/components.json → ai/recipes.json → ai/templates.json → ai/assets.json → tokens.json → assets/manifest.json
       <span style="margin-left: var(--space-4); color: var(--color-text-subtle);">·</span>
-      <span style="margin-left: var(--space-4);">Pacote mínimo recomendado para contexto: SKILL.md + docs/ai-guide.md + tokens.json + assets/manifest.json</span>
+      <span style="margin-left: var(--space-4);">Pacote mínimo recomendado para contexto: ai/llms.txt + ai/system.json + ai/components.json + ai/templates.json + assets/manifest.json</span>
     </div>
   </section>
 

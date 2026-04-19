@@ -3,16 +3,22 @@
 ## Ordem de leitura
 
 1. `SKILL.md`
-2. `docs/ai-guide.md`
-3. `tokens.json`
-4. `tokens.css`
-5. `components.css`
-6. `assets/manifest.json`
-7. `pages/` e `examples/`, se precisar de referência visual
+2. `ai/llms.txt`
+3. `ai/index.md`
+4. `ai/system.json`
+5. `ai/decision-rules.json`
+6. `ai/components.json`
+7. `ai/recipes.json`
+8. `ai/templates.json`
+9. `ai/assets.json`
+10. `tokens.json`
+11. `assets/manifest.json`
+12. `pages/` e `examples/`, se precisar de referência visual
 
 ## O que confiar
 
 - Confie em `tokens.json` para nomes de tokens, temas, acessibilidade e relações.
+- Confie em `ai/*.json` para leitura rápida e interoperável por modelos genéricos.
 - Confie em `assets/manifest.json` para escolha de logo, símbolo e ícone.
 - Confie em `assets/icons.svg` para ids reais do sprite.
 - Confie em `components.css` para nomes reais de classes.
@@ -22,6 +28,7 @@
 - Contagens escritas manualmente em páginas HTML.
 - Exemplos com estilos inline.
 - Nomes históricos de arquivos ou recipes não presentes no CSS atual.
+- Qualquer página de showcase como se fosse contrato canônico.
 
 ## Regras operacionais
 
@@ -58,6 +65,15 @@ Use somente estas classes:
 - `recipe-player`
 - `recipe-console`
 - `recipe-ticker`
+
+## Pacote universal para IA
+
+Use `ai/` quando a IA:
+
+- não conhece o repositório
+- trabalha melhor com Markdown e JSON do que com CSS
+- precisa de trust order explícita
+- vai alimentar RAG, automação, deck builder ou gerador genérico
 
 ## Checklist rápido
 

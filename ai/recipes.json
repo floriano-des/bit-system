@@ -1,0 +1,82 @@
+{
+  "$schema": "./recipes.schema.json",
+  "metadata": {
+    "system": "Bit System",
+    "version": "2.1.0",
+    "updated": "2026-04-19"
+  },
+  "recipes": [
+    {
+      "id": "mission",
+      "status": "current",
+      "purpose": "Feature, service, pillar, or capability card with strong brand signature.",
+      "class_name": "recipe-mission",
+      "contexts_allowed": ["landing_page", "institutional_site_page", "pitch_deck"],
+      "contexts_forbidden": ["monthly_report_data_table", "footer", "dense_legal_text"],
+      "required_children": ["recipe-mission__num", "recipe-mission__title", "recipe-mission__body"],
+      "anti_patterns": ["Using arbitrary heading scales instead of the recipe structure.", "Replacing the level number with decorative noise."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "boss-stats",
+      "status": "current",
+      "purpose": "Large metric card for impact numbers.",
+      "class_name": "recipe-boss-stats",
+      "contexts_allowed": ["landing_page", "proposal_document", "monthly_report", "pitch_deck"],
+      "contexts_forbidden": ["body_copy_card"],
+      "required_children": ["recipe-boss-stats__label", "recipe-boss-stats__value", "recipe-boss-stats__delta"],
+      "anti_patterns": ["Using it for qualitative text.", "Using positive green delta for a metric that should go down unless explicitly intended."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html"]
+    },
+    {
+      "id": "save-point",
+      "status": "current",
+      "purpose": "High-contrast conversion section or campaign checkpoint CTA.",
+      "class_name": "recipe-save-point",
+      "contexts_allowed": ["landing_page", "institutional_site_page", "pitch_deck"],
+      "contexts_forbidden": ["monthly_report", "dense_proposal_body"],
+      "required_children": ["h2", "p"],
+      "anti_patterns": ["Using more than one save-point in a single short page.", "Removing the strong contrast CTA from the section while keeping it as a conversion block."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "player",
+      "status": "current",
+      "purpose": "Testimonial or player quote with rating and identity.",
+      "class_name": "recipe-player",
+      "contexts_allowed": ["landing_page", "institutional_site_page", "proposal_document", "pitch_deck"],
+      "contexts_forbidden": ["monthly_report_numeric_card"],
+      "required_children": ["recipe-player__stars", "recipe-player__quote"],
+      "anti_patterns": ["Inventing old class name recipe-player-card.", "Using anonymous testimonials when credibility matters."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    },
+    {
+      "id": "console",
+      "status": "current",
+      "purpose": "Brand-tech terminal block for hero support, diagnostics, or process framing.",
+      "class_name": "recipe-console",
+      "contexts_allowed": ["landing_page", "institutional_site_page", "pitch_deck", "proposal_document"],
+      "contexts_forbidden": ["long_paragraph_content", "tabular_report"],
+      "required_children": ["recipe-console__line"],
+      "anti_patterns": ["Filling it with unrelated lorem ipsum.", "Using it as the only place where important prose exists."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html", "../index.html"]
+    },
+    {
+      "id": "ticker",
+      "status": "current",
+      "purpose": "Continuous marquee for metrics, slogans, and compact proof points.",
+      "class_name": "recipe-ticker",
+      "contexts_allowed": ["landing_page", "institutional_site_page", "event_branding"],
+      "contexts_forbidden": ["monthly_report", "proposal_document_body"],
+      "required_children": ["recipe-ticker__track"],
+      "anti_patterns": ["Single set of items without duplication for loop continuity.", "Dense paragraphs inside the ticker."],
+      "source_of_truth": ["../styles/recipes.css", "../components.css"],
+      "example_references": ["../pages/recipes.html", "../examples/landing-page.html"]
+    }
+  ]
+}
