@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<title>Proposta Comercial · 2P Growth Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+
+/* ============================================================
+   PROPOSTA COMERCIAL · 2P GROWTH LAB
+   Light theme — print-ready — A4 format
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --page-w: 794px;      /* A4 width in 96dpi */
+  --page-h: 1123px;     /* A4 height in 96dpi */
+  --page-pad: 64px;
+  --page-pad-lg: 80px;
+}
+
+html { background: #e8e8e8; }
+
+body {
+  margin: 0;
+  font-family: var(--font-mono);
+  background: #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 40px 20px 80px;
+}
+
+/* ── PAGE SHELL ─────────────────────────────────────────── */
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  background: var(--neutral-0);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0,0,0,.18), 4px 4px 0 var(--neutral-950);
+}
+
+/* ── NAVIGATION BAR ─────────────────────────────────────── */
+.doc-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: var(--neutral-950);
+  border-bottom: 2px solid var(--neon-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 44px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+.doc-nav a { color: var(--neon-500); text-decoration: none; }
+.doc-nav .doc-actions { display: flex; gap: 12px; }
+.doc-nav button {
+  background: transparent; border: 1px solid var(--neutral-700);
+  color: var(--neutral-300); padding: 4px 12px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: var(--ls-overline); text-transform: uppercase;
+  cursor: pointer;
+}
+.doc-nav button:hover { background: var(--neutral-800); }
+.doc-nav button.primary {
+  background: var(--neon-500); color: var(--neutral-950);
+  border-color: var(--neon-500);
+}
+.doc-nav button.primary:hover { background: var(--neon-400); }
+
+body { padding-top: 84px; }
+
+/* ── DECORATIVE ELEMENTS ────────────────────────────────── */
+.corner-mark {
+  position: absolute;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-300);
+}
+.corner-mark.tl { top: 20px; left: 24px; }
+.corner-mark.tr { top: 20px; right: 24px; text-align: right; }
+.corner-mark.bl { bottom: 20px; left: 24px; }
+.corner-mark.br { bottom: 20px; right: 24px; text-align: right; }
+
+.page-num {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  font-family: var(--font-pixel);
+  font-size: 32px;
+  color: var(--neutral-200);
+  line-height: 1;
+}
+
+.accent-strip {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--neon-500);
+}
+
+.top-strip {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--neon-500);
+}
+
+.pixel-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--neon-500);
+  margin-right: 8px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.rule-neon {
+  border: none;
+  border-top: 2px solid var(--neon-500);
+  margin: 0;
+}
+
+.rule-light {
+  border: none;
+  border-top: 1px solid var(--neutral-100);
+  margin: 0;
+}
+
+/* ── SECTION LABEL ──────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neon-600);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--neon-500);
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────── */
+.display {
+  font-family: var(--font-pixel);
+  font-size: 80px;
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.heading-xl {
+  font-family: var(--font-pixel);
+  font-size: 56px;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.heading-lg {
+  font-family: var(--font-pixel);
+  font-size: 40px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.heading-md {
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.body-text {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--neutral-700);
+  margin: 0;
+}
+
+.body-text strong { color: var(--neutral-950); font-weight: 700; }
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--neutral-500);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ── STAT BOX ───────────────────────────────────────────── */
+.stat-box {
+  border: 1px solid var(--neutral-200);
+  padding: 20px 24px 16px;
+  position: relative;
+}
+.stat-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--neon-500);
+}
+.stat-box .stat-num {
+  font-family: var(--font-pixel);
+  font-size: 48px;
+  line-height: 1;
+  color: var(--neutral-950);
+}
+.stat-box .stat-num span {
+  color: var(--neon-600);
+}
+.stat-box .stat-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--neutral-600);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── SERVICE CARD ───────────────────────────────────────── */
+.svc-card {
+  border: 1px solid var(--neutral-200);
+  padding: 20px;
+  position: relative;
+}
+.svc-card .svc-icon {
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  color: var(--neon-600);
+  margin-bottom: 8px;
+  display: block;
+}
+.svc-card .svc-name {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  text-transform: uppercase;
+  color: var(--neutral-950);
+  margin-bottom: 8px;
+}
+.svc-card .svc-desc {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--neutral-600);
+}
+
+/* ── METHOD STEP ────────────────────────────────────────── */
+.method-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--neutral-100);
+}
+.method-step:last-child { border-bottom: none; }
+.method-step .step-num {
+  font-family: var(--font-pixel);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--neutral-200);
+  flex-shrink: 0;
+  width: 56px;
+  text-align: center;
+}
+.method-step .step-content {}
+.method-step .step-title {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--neutral-950);
+  margin-bottom: 6px;
+}
+.method-step .step-desc {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--neutral-600);
+}
+.method-step .step-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+.method-step .step-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border: 1px solid var(--neutral-300);
+  color: var(--neutral-600);
+}
+
+/* ── CASE CARD ──────────────────────────────────────────── */
+.case-card {
+  border: 1px solid var(--neutral-200);
+  padding: 0;
+  overflow: hidden;
+}
+.case-card .case-header {
+  background: var(--neutral-950);
+  padding: 14px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.case-card .case-client {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--neon-500);
+}
+.case-card .case-segment {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-500);
+}
+.case-card .case-body { padding: 16px 20px; }
+.case-card .case-metrics {
+  display: flex; gap: 16px; margin-bottom: 12px;
+}
+.case-card .case-metric {
+  flex: 1;
+}
+.case-card .case-metric .metric-val {
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  color: var(--neutral-950);
+  line-height: 1;
+}
+.case-card .case-metric .metric-val em {
+  color: var(--neon-600);
+  font-style: normal;
+}
+.case-card .case-metric .metric-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--neutral-500);
+  margin-top: 2px;
+}
+.case-card .case-note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--neutral-600);
+  border-top: 1px solid var(--neutral-100);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* ── INVESTMENT TABLE ───────────────────────────────────── */
+.inv-table { width: 100%; border-collapse: collapse; }
+.inv-table th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-500);
+  text-align: left;
+  padding: 10px 16px;
+  background: var(--neutral-50);
+  border-bottom: 2px solid var(--neutral-200);
+}
+.inv-table td {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--neutral-800);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--neutral-100);
+  vertical-align: top;
+}
+.inv-table tr:last-child td { border-bottom: none; }
+.inv-table td.price {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  color: var(--neutral-950);
+  white-space: nowrap;
+}
+.inv-table td.price em {
+  font-style: normal;
+  color: var(--neon-600);
+}
+.inv-table .row-highlight td {
+  background: var(--neutral-950);
+  color: var(--neon-500);
+}
+.inv-table .row-highlight td.price {
+  color: var(--neon-500);
+  font-size: 26px;
+}
+.inv-table .row-highlight td.price em { color: var(--fuchsia-400); }
+
+/* ── TIMELINE ───────────────────────────────────────────── */
+.timeline { display: flex; gap: 0; position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: 0; right: 0;
+  height: 2px;
+  background: var(--neutral-200);
+}
+.timeline-item {
+  flex: 1;
+  padding-top: 40px;
+  position: relative;
+  padding-right: 12px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 13px; left: 0;
+  width: 14px; height: 14px;
+  background: var(--neon-500);
+  border: 2px solid var(--neutral-0);
+  outline: 2px solid var(--neon-500);
+}
+.timeline-item .tl-week {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neon-600);
+  margin-bottom: 4px;
+}
+.timeline-item .tl-title {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--neutral-950);
+  margin-bottom: 4px;
+}
+.timeline-item .tl-desc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--neutral-600);
+  line-height: 1.6;
+}
+
+/* ── CHECKLIST ──────────────────────────────────────────── */
+.checklist { list-style: none; padding: 0; margin: 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--neutral-700);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--neutral-100);
+  line-height: 1.5;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: '▶';
+  color: var(--neon-500);
+  font-size: 10px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ── DARK SECTION ───────────────────────────────────────── */
+.dark-section {
+  background: var(--neutral-950);
+  margin: 0 -var(--page-pad);
+  padding: 40px var(--page-pad);
+}
+
+/* ── QUOTE / HIGHLIGHT BOX ──────────────────────────────── */
+.highlight-box {
+  background: var(--neutral-950);
+  padding: 28px 32px;
+  position: relative;
+}
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--neon-500);
+}
+.highlight-box p {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--neutral-0);
+  margin: 0 0 12px;
+}
+.highlight-box .attribution {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--neon-500);
+}
+
+/* ── FOOTER BAR ─────────────────────────────────────────── */
+.page-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40px;
+  background: var(--neutral-950);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-pad);
+}
+.page-footer .footer-brand {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--neon-500);
+  letter-spacing: var(--ls-overline);
+}
+.page-footer .footer-info {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--neutral-600);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+/* ── GRID UTILITIES ─────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+/* ── COVER SPECIFICS ────────────────────────────────────── */
+#cover {
+  background: var(--neutral-950);
+  min-height: var(--page-h);
+  display: flex;
+  flex-direction: column;
+}
+#cover .cover-top {
+  flex: 1;
+  padding: var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+#cover .cover-logo {
+  font-family: var(--font-pixel);
+  font-size: 96px;
+  line-height: 0.85;
+  text-transform: uppercase;
+  color: var(--neon-500);
+  margin-bottom: 0;
+}
+#cover .cover-logo span {
+  color: var(--fuchsia-500);
+  display: block;
+}
+#cover .cover-tagline {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--neutral-500);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+#cover .cover-divider {
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-500), var(--fuchsia-500), transparent);
+  margin: 32px var(--page-pad);
+}
+#cover .cover-bottom {
+  padding: 32px var(--page-pad) var(--page-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#cover .cover-client-block {}
+#cover .cover-for-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-600);
+  margin-bottom: 6px;
+}
+#cover .cover-client-name {
+  font-family: var(--font-pixel);
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--neutral-0);
+  line-height: 1;
+}
+#cover .cover-meta {
+  text-align: right;
+}
+#cover .cover-date {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  color: var(--neutral-500);
+  letter-spacing: var(--ls-wide);
+}
+#cover .cover-doc-type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--neutral-700);
+  margin-top: 4px;
+}
+
+/* ── CTA BLOCK ──────────────────────────────────────────── */
+.cta-block {
+  background: var(--neutral-950);
+  padding: 40px var(--page-pad);
+  text-align: center;
+}
+.cta-block .cta-heading {
+  font-family: var(--font-pixel);
+  font-size: 40px;
+  text-transform: uppercase;
+  color: var(--neutral-0);
+  margin-bottom: 8px;
+}
+.cta-block .cta-sub {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--neutral-500);
+  margin-bottom: 28px;
+}
+.cta-block .cta-btn {
+  display: inline-block;
+  background: var(--neon-500);
+  color: var(--neutral-950);
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  letter-spacing: var(--ls-wide);
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--fuchsia-500);
+}
+.cta-block .cta-contact {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+.cta-block .cta-contact-item {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--neutral-500);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+.cta-block .cta-contact-item strong {
+  display: block;
+  color: var(--neon-500);
+  font-size: 14px;
+}
+
+/* ── PRINT ──────────────────────────────────────────────── */
+@media print {
+  html { background: white; }
+  body { padding: 0; gap: 0; background: white; }
+  .doc-nav { display: none; }
+  .page {
+    box-shadow: none;
+    page-break-after: always;
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV BAR -->
+<nav class="doc-nav">
+  <span><a href="../index.html">← bit-system</a> / proposta-comercial</span>
+  <div class="doc-actions">
+    <button onclick="window.print()">⬡ Imprimir / PDF</button>
+    <a href="../index.html"><button class="primary">← Hub</button></a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 1 · CAPA
+     ══════════════════════════════════════════════════════ -->
+<div class="page" id="cover">
+  <div class="cover-top">
+    <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--neutral-700);margin-bottom:80px;">
+      PROPOSTA · CONFIDENCIAL
+    </div>
+    <div class="cover-logo">
+      2P<span>Growth<br>Lab</span>
+    </div>
+    <p class="cover-tagline">Performance que converte. Resultado que escala.</p>
+  </div>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-bottom">
+    <div class="cover-client-block">
+      <div class="cover-for-label">Preparado para</div>
+      <div class="cover-client-name" id="client-name">[Nome do Cliente]</div>
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--neutral-600);margin-top:4px;">[Segmento · Empresa]</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-date" id="doc-date">Abril 2026</div>
+      <div class="cover-doc-type">Proposta comercial v1.0</div>
+    </div>
+  </div>
+
+  <!-- bottom strip -->
+  <div style="height:6px;background:linear-gradient(90deg,var(--neon-500),var(--fuchsia-500));position:absolute;bottom:0;left:0;right:0;"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 2 · DIAGNÓSTICO
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-strip"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label">01 · Diagnóstico</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:32px;">
+      O problema<br>que você<br>precisa resolver
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:32px;">
+
+    <p class="body-text" style="max-width:560px;margin-bottom:32px;">
+      A maioria das empresas hoje investe em marketing digital sem saber, de fato,
+      o que está funcionando. Verba desperdiçada, relatórios confusos, agências que
+      entregam <strong>prints bonitos mas não entregam crescimento real.</strong>
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:0;margin-bottom:40px;">
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--neutral-50);border-left:3px solid var(--red-600);margin-bottom:2px;">
+        <span style="font-family:var(--font-pixel);font-size:18px;color:var(--red-600);">✕</span>
+        <span style="font-family:var(--font-mono);font-size:13px;color:var(--neutral-700);">Você não sabe o custo real de aquisição de cada cliente</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--neutral-50);border-left:3px solid var(--red-600);margin-bottom:2px;">
+        <span style="font-family:var(--font-pixel);font-size:18px;color:var(--red-600);">✕</span>
+        <span style="font-family:var(--font-mono);font-size:13px;color:var(--neutral-700);">Sua agência atual não acompanha os resultados com frequência</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--neutral-50);border-left:3px solid var(--red-600);margin-bottom:2px;">
+        <span style="font-family:var(--font-pixel);font-size:18px;color:var(--red-600);">✕</span>
+        <span style="font-family:var(--font-mono);font-size:13px;color:var(--neutral-700);">Você tem verba investida em tráfego, mas as vendas não acompanham</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 20px;background:var(--neutral-50);border-left:3px solid var(--red-600);">
+        <span style="font-family:var(--font-pixel);font-size:18px;color:var(--red-600);">✕</span>
+        <span style="font-family:var(--font-mono);font-size:13px;color:var(--neutral-700);">Decisões são tomadas por feeling, não por dados</span>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p>"Marketing sem dados não é estratégia. É aposta."</p>
+      <span class="attribution">— Princípio 2P · Bit System v2</span>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 3 · SOBRE A 2P
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-strip" style="background:var(--fuchsia-500);"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label" style="color:var(--fuchsia-600);">02 · Sobre a 2P</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Quem somos
+    </h2>
+    <p style="font-family:var(--font-mono);font-size:14px;color:var(--neutral-500);letter-spacing:var(--ls-wide);text-transform:uppercase;margin:0 0 32px;">Agência de marketing de performance</p>
+    <hr class="rule-neon" style="margin-bottom:32px;">
+
+    <p class="body-text" style="max-width:560px;margin-bottom:40px;">
+      A <strong>2P Growth Lab</strong> é uma agência de performance focada em transformar
+      verba de marketing em resultado mensurável. Trabalhamos com empresas que querem
+      crescer com inteligência — usando dados, criatividade e tecnologia como
+      vantagens competitivas.
+    </p>
+
+    <div class="grid-4" style="margin-bottom:40px;">
+      <div class="stat-box">
+        <div class="stat-num">38<span>+</span></div>
+        <div class="stat-label">Clientes ativos</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">4<span>x</span></div>
+        <div class="stat-label">ROAS médio</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">3<span>k</span></div>
+        <div class="stat-label">Leads/mês</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Retenção anual</div>
+      </div>
+    </div>
+
+    <div style="background:var(--neutral-50);border:1px solid var(--neutral-200);padding:24px 28px;">
+      <div class="section-label" style="margin-bottom:16px;">Por que somos diferentes</div>
+      <ul class="checklist">
+        <li>Time dedicado com especialistas em tráfego pago, SEO e conversão</li>
+        <li>Relatórios semanais com dados reais — sem achismo</li>
+        <li>Estratégia construída em cima dos seus objetivos de negócio</li>
+        <li>Reuniões de alinhamento mensais com apresentação de resultados</li>
+        <li>Acesso direto ao estrategista responsável pela conta</li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">03</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 4 · SERVIÇOS
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="top-strip"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label">03 · Serviços</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      O que<br>entregamos
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:32px;">
+
+    <div class="grid-2" style="gap:12px;margin-bottom:16px;">
+      <div class="svc-card">
+        <span class="svc-icon">▶▶</span>
+        <div class="svc-name">Tráfego Pago</div>
+        <div class="svc-desc">Gestão completa de campanhas Meta Ads e Google Ads. Segmentação avançada, criativos, A/B tests e otimização contínua de ROAS.</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">◆◆</span>
+        <div class="svc-name">Growth Strategy</div>
+        <div class="svc-desc">Planejamento estratégico de crescimento: funil de aquisição, retenção, CRM e automações para maximizar o LTV dos clientes.</div>
+      </div>
+    </div>
+    <div class="grid-2" style="gap:12px;margin-bottom:16px;">
+      <div class="svc-card">
+        <span class="svc-icon">★★</span>
+        <div class="svc-name">Social Media</div>
+        <div class="svc-desc">Estratégia editorial, produção de conteúdo, gestão de comunidade e análise de performance para Instagram, LinkedIn e TikTok.</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">⬢⬢</span>
+        <div class="svc-name">Analytics & BI</div>
+        <div class="svc-desc">Setup e gestão de GA4, dashboards personalizados, rastreamento de conversões e relatórios executivos mensais com insights acionáveis.</div>
+      </div>
+    </div>
+    <div class="grid-2" style="gap:12px;">
+      <div class="svc-card">
+        <span class="svc-icon">⚡⚡</span>
+        <div class="svc-name">Performance Creative</div>
+        <div class="svc-desc">Criação de peças publicitárias orientadas a performance: copy, design e vídeo pensados para converter, não apenas para impressionar.</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">◉◉</span>
+        <div class="svc-name">Consultoria Mensal</div>
+        <div class="svc-desc">Reuniões estratégicas recorrentes com análise de dados, benchmarking de mercado e recomendações de otimização por especialistas.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">04</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 5 · METODOLOGIA
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-strip"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label">04 · Metodologia</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Como<br>trabalhamos
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:8px;">
+    <p class="body-text" style="margin-bottom:32px;">Um processo estruturado em 4 fases que garante alinhamento, execução e crescimento contínuo.</p>
+
+    <div>
+      <div class="method-step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Imersão & Diagnóstico</div>
+          <div class="step-desc">Levantamento completo do seu negócio, mercado, concorrência e histórico de marketing. Identificamos onde está o gargalo e onde está a maior oportunidade de crescimento.</div>
+          <div class="step-tags">
+            <span class="step-tag">Workshop 2h</span>
+            <span class="step-tag">Análise de conta</span>
+            <span class="step-tag">Benchmarking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Estratégia & Plano</div>
+          <div class="step-desc">Construção do plano de ação com metas claras, canais priorizados, budget recomendado e projeções realistas. Nada é feito sem aprovação sua.</div>
+          <div class="step-tags">
+            <span class="step-tag">Planejamento mensal</span>
+            <span class="step-tag">KPIs definidos</span>
+            <span class="step-tag">Budget allocation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Execução & Otimização</div>
+          <div class="step-desc">Campanha no ar, monitoramento diário de métricas e ajustes semanais baseados em dados. Operamos em ciclos curtos para maximizar resultado.</div>
+          <div class="step-tags">
+            <span class="step-tag">Check-in semanal</span>
+            <span class="step-tag">A/B testing contínuo</span>
+            <span class="step-tag">Otimização de bid</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Relatório & Escala</div>
+          <div class="step-desc">Relatório executivo mensal com resultados, insights e próximos passos. A partir dos dados, escalamos o que funciona e pausamos o que não converte.</div>
+          <div class="step-tags">
+            <span class="step-tag">Relatório mensal</span>
+            <span class="step-tag">Reunião de revisão</span>
+            <span class="step-tag">Planejamento próximo mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">05</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 6 · CASES
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="top-strip" style="background:var(--fuchsia-500);"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label" style="color:var(--fuchsia-600);">05 · Resultados</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Cases<br>reais
+    </h2>
+    <hr style="border:none;border-top:2px solid var(--fuchsia-500);margin-bottom:8px;">
+    <p class="body-text" style="margin-bottom:32px;">Empresas que apostaram no crescimento orientado a dados. Resultados dos últimos 12 meses.</p>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-client">Clínica Estética Bloom</div>
+            <div class="case-segment">saúde &amp; beleza · São Paulo</div>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--neutral-600);letter-spacing:var(--ls-wide);">8 meses</span>
+        </div>
+        <div class="case-body">
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="metric-val">3<em>.2x</em></div>
+              <div class="metric-label">ROAS</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">-<em>41%</em></div>
+              <div class="metric-label">Custo por lead</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">+<em>280</em></div>
+              <div class="metric-label">Consultas/mês</div>
+            </div>
+          </div>
+          <div class="case-note">Reestruturação completa de campanhas Meta Ads + implementação de funil de nutrição WhatsApp. Redução de CPL de R$42 para R$25 em 60 dias.</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-client">TechSolve B2B</div>
+            <div class="case-segment">software · SaaS · Remote</div>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--neutral-600);letter-spacing:var(--ls-wide);">12 meses</span>
+        </div>
+        <div class="case-body">
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="metric-val">+<em>180%</em></div>
+              <div class="metric-label">MRR</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">4<em>.8x</em></div>
+              <div class="metric-label">Pipeline gerado</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">22<em>%</em></div>
+              <div class="metric-label">Taxa conversão</div>
+            </div>
+          </div>
+          <div class="case-note">Estratégia de conteúdo B2B + LinkedIn Ads + automação HubSpot. Crescimento de 12 para 34 clientes enterprise em menos de um ano.</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-header">
+          <div>
+            <div class="case-client">Casa &amp; Reforma Outlet</div>
+            <div class="case-segment">e-commerce · varejo · Nacional</div>
+          </div>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--neutral-600);letter-spacing:var(--ls-wide);">6 meses</span>
+        </div>
+        <div class="case-body">
+          <div class="case-metrics">
+            <div class="case-metric">
+              <div class="metric-val">+<em>320%</em></div>
+              <div class="metric-label">Receita digital</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">5<em>.1x</em></div>
+              <div class="metric-label">ROAS Google</div>
+            </div>
+            <div class="case-metric">
+              <div class="metric-val">-<em>58%</em></div>
+              <div class="metric-label">CAC vs. anterior</div>
+            </div>
+          </div>
+          <div class="case-note">Performance Creative + Google Shopping otimizado + remarketing dinâmico. De R$85k para R$360k em faturamento digital em 6 meses.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">06</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 7 · INVESTIMENTO
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="accent-strip"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label">06 · Investimento</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Planos &<br>valores
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:8px;">
+    <p class="body-text" style="margin-bottom:32px;">Pacotes pensados para diferentes estágios de crescimento. Sem taxa de setup. Contrato flexível a partir de 3 meses.</p>
+
+    <table class="inv-table" style="margin-bottom:32px;">
+      <thead>
+        <tr>
+          <th>Plano</th>
+          <th>Inclui</th>
+          <th>Verba gerenciada</th>
+          <th class="price">Mensalidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Starter</strong><br><span style="font-size:11px;color:var(--neutral-500);">Ideal para começar</span></td>
+          <td>1 canal · Relatório mensal · Reunião mensal</td>
+          <td>Até R$ 5.000</td>
+          <td class="price">R$ <em>1.5k</em></td>
+        </tr>
+        <tr>
+          <td><strong>Growth</strong><br><span style="font-size:11px;color:var(--neutral-500);">Mais popular</span></td>
+          <td>2 canais · Social · Relatório semanal · 2 reuniões</td>
+          <td>Até R$ 20.000</td>
+          <td class="price">R$ <em>3.5k</em></td>
+        </tr>
+        <tr class="row-highlight">
+          <td><strong style="color:var(--neon-500);">Scale ★</strong><br><span style="font-size:11px;color:var(--neutral-500);">Recomendado</span></td>
+          <td style="color:var(--neutral-300);">Todos os canais · Analytics BI · Check-in semanal · Estrategista dedicado</td>
+          <td style="color:var(--neutral-300);">Acima de R$ 20.000</td>
+          <td class="price">R$ <em>6.5k</em></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:flex;gap:12px;">
+      <div style="flex:1;background:var(--neutral-50);border:1px solid var(--neutral-200);padding:20px;">
+        <div style="font-family:var(--font-pixel);font-size:14px;text-transform:uppercase;color:var(--neutral-950);margin-bottom:10px;">Incluso em todos os planos</div>
+        <ul class="checklist" style="font-size:12px;">
+          <li>Onboarding completo sem custo adicional</li>
+          <li>Acesso ao dashboard de performance em tempo real</li>
+          <li>Suporte via WhatsApp em dias úteis</li>
+          <li>Relatório de resultado com insights acionáveis</li>
+        </ul>
+      </div>
+      <div style="flex:1;background:var(--neutral-950);padding:20px;">
+        <div style="font-family:var(--font-pixel);font-size:14px;text-transform:uppercase;color:var(--neon-500);margin-bottom:10px;">Precisa de algo personalizado?</div>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--neutral-400);line-height:1.7;margin:0 0 14px;">Montamos propostas sob medida para empresas com operações complexas, múltiplos canais ou necessidades específicas.</p>
+        <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:var(--ls-wide);text-transform:uppercase;color:var(--neon-500);">→ contato@doispalitosmkt.com.br</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">07</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 8 · CRONOGRAMA DE INÍCIO
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="top-strip"></div>
+  <div style="padding: 56px 72px 80px;">
+
+    <div class="section-label">07 · Onboarding</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Do contrato<br>ao ar em<br>2 semanas
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:32px;">
+
+    <div class="timeline" style="margin-bottom:48px;">
+      <div class="timeline-item">
+        <div class="tl-week">Semana 1</div>
+        <div class="tl-title">Kickoff</div>
+        <div class="tl-desc">Workshop de imersão, acesso às contas, análise de histórico e levantamento de objetivos.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">Semana 2</div>
+        <div class="tl-title">Estratégia</div>
+        <div class="tl-desc">Planejamento, definição de KPIs, criação de criativos e estrutura de campanha.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">Semana 3</div>
+        <div class="tl-title">Lançamento</div>
+        <div class="tl-desc">Campanhas no ar, setup de rastreamento, dashboards ativos e primeiros dados.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-week">Semana 4+</div>
+        <div class="tl-title">Otimização</div>
+        <div class="tl-desc">Análise das primeiras semanas, ajustes de segmentação e início da rotina de relatórios.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--neutral-50);border:1px solid var(--neutral-200);padding:24px 28px;">
+      <div class="section-label" style="margin-bottom:16px;">Para começarmos, precisamos de</div>
+      <div class="grid-2">
+        <ul class="checklist" style="font-size:12px;">
+          <li>Acesso à conta Meta Business Manager</li>
+          <li>Acesso à conta Google Ads / Google Analytics</li>
+          <li>Briefing de marca e materiais de identidade visual</li>
+        </ul>
+        <ul class="checklist" style="font-size:12px;">
+          <li>Dados de histórico de vendas (últimos 6 meses)</li>
+          <li>Personas e público-alvo definido</li>
+          <li>Assinatura do contrato e NF emitida</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer">
+    <span class="footer-brand">2P · Growth Lab</span>
+    <span class="footer-info">CONFIDENCIAL · 2026</span>
+  </div>
+  <div class="page-num">08</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 9 · PRÓXIMOS PASSOS + CTA
+     ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div style="padding: 56px 72px 200px;">
+
+    <div class="section-label">08 · Próximos Passos</div>
+    <h2 class="heading-xl" style="color:var(--neutral-950);margin-bottom:8px;">
+      Pronto para<br>crescer?
+    </h2>
+    <hr class="rule-neon" style="margin-bottom:32px;">
+
+    <p class="body-text" style="max-width:520px;margin-bottom:40px;">
+      Esta proposta tem validade de <strong>15 dias corridos</strong> a partir do envio.
+      Após a aprovação, iniciamos o processo de onboarding imediatamente.
+    </p>
+
+    <div class="grid-2" style="gap:16px;margin-bottom:40px;">
+      <div>
+        <div style="font-family:var(--font-pixel);font-size:14px;text-transform:uppercase;color:var(--neutral-950);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--neon-500);">Se você aprovar hoje</div>
+        <ul class="checklist" style="font-size:13px;">
+          <li>Agendamos o kickoff ainda essa semana</li>
+          <li>Você recebe o contrato em menos de 24h</li>
+          <li>Campanhas no ar em até 14 dias</li>
+          <li>Primeiro relatório em 30 dias</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:var(--font-pixel);font-size:14px;text-transform:uppercase;color:var(--neutral-950);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--neutral-300);">Tem alguma dúvida?</div>
+        <ul class="checklist" style="font-size:13px;">
+          <li>Podemos marcar uma call de 30min sem compromisso</li>
+          <li>Podemos ajustar o escopo se precisar</li>
+          <li>Temos disponibilidade para começar em data a combinar</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA Block full width at bottom -->
+  <div style="position:absolute;bottom:40px;left:0;right:0;">
+    <div class="cta-block">
+      <div class="cta-heading">Bora crescer juntos?</div>
+      <div class="cta-sub">Responda este e-mail ou fale direto pelo WhatsApp. A gente resolve rápido.</div>
+      <div class="cta-contact">
+        <div class="cta-contact-item">
+          <strong>contato@doispalitosmkt.com.br</strong>
+          E-mail
+        </div>
+        <div class="cta-contact-item">
+          <strong>@doispalitosmkt</strong>
+          Instagram
+        </div>
+        <div class="cta-contact-item">
+          <strong>2pgrowthlab.com.br</strong>
+          Site
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num" style="bottom:48px;">09</div>
+</div>
+
+
+<script>
+// ── Auto date
+const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const now = new Date();
+document.getElementById('doc-date').textContent = months[now.getMonth()] + ' ' + now.getFullYear();
+
+// ── Allow editing client name on click
+const clientName = document.getElementById('client-name');
+clientName.setAttribute('title', 'Clique para editar');
+clientName.style.cursor = 'pointer';
+clientName.addEventListener('click', () => {
+  const name = prompt('Nome do cliente:', clientName.textContent);
+  if (name) clientName.textContent = name;
+});
+</script>
+
+</body>
+</html>

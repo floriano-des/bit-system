@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Bit System · 2P Growth Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="components.css" />
+<style>
+  body { min-height: 100vh; }
+  .shell { max-width: 1440px; margin: 0 auto; padding: 48px 64px 120px; }
+
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-10);
+    border-bottom: var(--border-1) solid var(--color-border);
+  }
+  .top-bar .brand { display: flex; align-items: center; gap: var(--space-4); }
+  .top-bar .brand img { height: 32px; }
+  .top-bar .meta  { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); text-transform: uppercase; letter-spacing: var(--ls-wide); }
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  .hero {
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-16);
+    align-items: center;
+    margin-bottom: var(--space-24);
+  }
+  .hero h1 {
+    font-family: var(--font-pixel);
+    font-size: 128px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--brand-primary);
+    margin: 0 0 var(--space-6);
+    text-shadow: 6px 6px 0 var(--brand-accent);
+    letter-spacing: var(--ls-tight);
+  }
+  .hero .kicker {
+    display: inline-flex; gap: var(--space-2); align-items: center;
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: var(--fs-caption);
+    letter-spacing: var(--ls-overline); text-transform: uppercase;
+    color: var(--brand-primary);
+    margin-bottom: var(--space-5);
+  }
+  .hero .kicker .dot { width: 8px; height: 8px; background: var(--brand-primary); animation: bit-blink 1s var(--ease-blink) infinite; }
+  .hero p { font-family: var(--font-mono); font-size: var(--fs-body-lg); line-height: var(--lh-relax); color: var(--color-text-muted); max-width: 540px; margin: 0 0 var(--space-6); }
+
+  .vitals { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin-top: var(--space-8); }
+  .vital {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    padding: var(--space-5);
+  }
+  .vital .n { font-family: var(--font-pixel); font-size: 56px; line-height: 1; color: var(--brand-primary); }
+  .vital .l { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); letter-spacing: var(--ls-overline); text-transform: uppercase; margin-top: var(--space-2); }
+
+  /* Section intro */
+  .section { margin-bottom: var(--space-24); }
+  .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-6); margin-bottom: var(--space-8); }
+  .section-head h2 { font-family: var(--font-pixel); font-size: 56px; line-height: 1; text-transform: uppercase; margin: 0; color: var(--color-text); }
+  .section-head .lbl { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); letter-spacing: var(--ls-overline); text-transform: uppercase; }
+  .section-head p { font-family: var(--font-mono); font-size: var(--fs-body); color: var(--color-text-muted); max-width: 480px; margin: var(--space-3) 0 0; }
+
+  /* Cards grid */
+  .pages { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+  .page-card {
+    text-decoration: none;
+    background: var(--color-surface);
+    border: var(--border-2) solid var(--color-border);
+    padding: var(--space-8);
+    display: flex; flex-direction: column; gap: var(--space-4);
+    min-height: 220px;
+    transition: transform var(--motion-base) var(--ease-smooth), box-shadow var(--motion-base) var(--ease-smooth), border-color var(--motion-base);
+  }
+  .page-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-brand); border-color: var(--brand-primary); }
+  .page-card .tag { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); letter-spacing: var(--ls-overline); text-transform: uppercase; }
+  .page-card h3  { font-family: var(--font-pixel); font-size: 40px; line-height: 1; text-transform: uppercase; margin: 0; color: var(--color-text); }
+  .page-card p   { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-normal); }
+  .page-card .arrow { margin-top: auto; font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--brand-primary); display: flex; align-items: center; gap: var(--space-2); }
+
+  /* Use-cases */
+  .uses { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  .use {
+    background: var(--color-surface);
+    border-left: var(--border-4) solid var(--brand-primary);
+    padding: var(--space-6);
+  }
+  .use h4 { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-body-lg); margin: 0 0 var(--space-2); color: var(--color-text); }
+  .use p  { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relax); }
+  .use--accent { border-color: var(--brand-accent); }
+
+  /* Principles */
+  .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+  .principle {
+    padding: var(--space-6); border: var(--border-1) solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .principle .n {
+    font-family: var(--font-pixel); font-size: 48px; line-height: 1;
+    color: var(--brand-primary); margin-bottom: var(--space-3);
+  }
+  .principle h4 { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-body); margin: 0 0 var(--space-2); }
+  .principle p  { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relax); }
+
+  footer { margin-top: var(--space-24); padding-top: var(--space-6); border-top: var(--border-1) solid var(--color-border); font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); display: flex; justify-content: space-between; letter-spacing: var(--ls-wide); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="top-bar">
+    <div class="brand">
+      <img src="assets/logo-lettering-neon.png" alt="doispalitos growth lab">
+      <span class="meta">bit system · v2.0</span>
+    </div>
+    <div class="theme-toggle" role="group" aria-label="Tema">
+      <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+      <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="kicker"><span class="dot"></span> DESIGN SYSTEM INTERNO</div>
+      <h1>Bit<br>System</h1>
+      <p>A linguagem visual da 2P Growth Lab. Pra landings, propostas comerciais, decks de pitch, relatórios, social e site. Dark-first, retrô-tech, sem floreio.</p>
+      <div class="bs-row">
+        <a class="btn btn-lg" href="pages/components.html">Abrir componentes</a>
+        <a class="btn btn-ghost btn-lg" href="#como-usar">Como usar</a>
+      </div>
+    </div>
+    <div>
+      <div class="recipe-console">
+        <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> bit-system --status</div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> tokens      = <span class="recipe-console__value">142</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> components  = <span class="recipe-console__value">24</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> recipes     = <span class="recipe-console__value">7</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> themes      = <span class="recipe-console__value">dark · light</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> last_update = <span class="recipe-console__value">2026-04-18</span></div>
+        <div class="recipe-console__line" style="margin-top: var(--space-4)"><span class="recipe-console__prompt">&gt;</span> ready_<span class="fx-cursor"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <div class="lbl">01 · Escopo</div>
+        <h2>Onde<br>usamos.</h2>
+      </div>
+      <p>Todas as peças que saem com a cara da 2P usam o Bit System. É o que mantém a marca coerente entre quem faz deck, quem faz post e quem faz landing.</p>
+    </div>
+    <div class="uses">
+      <div class="use"><h4>🎯 Site institucional &amp; landings de captação</h4><p>Home, páginas de serviço, landings de iscas digitais, cases publicados.</p></div>
+      <div class="use use--accent"><h4>📑 Propostas comerciais &amp; pitch decks</h4><p>PDFs e slides pra prospects. Usa tema light pra facilitar impressão/leitura.</p></div>
+      <div class="use"><h4>📊 Relatórios internos &amp; reports pra clientes</h4><p>Dashboards exportados, relatórios mensais, retros trimestrais.</p></div>
+      <div class="use use--accent"><h4>📱 Social da 2P &amp; branding de eventos</h4><p>Posts do Insta/LinkedIn da agência, convites, roll-ups, kit-mídia.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="fundacoes">
+    <div class="section-head">
+      <div>
+        <div class="lbl">02 · Fundações</div>
+        <h2>As bases.</h2>
+      </div>
+      <p>Tokens e regras. São a fonte da verdade. Se não tá aqui, não inventa.</p>
+    </div>
+    <div class="pages">
+      <a class="page-card" href="pages/colors.html">
+        <span class="tag">01</span>
+        <h3>Cores</h3>
+        <p>Neon, Fúchsia, Tolopea, Neutrals + feedback. Escalas 50–950.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/typography.html">
+        <span class="tag">02</span>
+        <h3>Tipografia</h3>
+        <p>VT323 (display pixel) + Inconsolata (body mono). Só duas.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/tokens.html">
+        <span class="tag">03</span>
+        <h3>Tokens</h3>
+        <p>Espaçamento 4px, raios, sombras, motion, sizes.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="marca">
+    <div class="section-head">
+      <div>
+        <div class="lbl">03 · Marca</div>
+        <h2>Identidade.</h2>
+      </div>
+      <p>Logo, símbolo 2P pixel, ícones. Tudo que a marca da 2P é feita de.</p>
+    </div>
+    <div class="pages">
+      <a class="page-card" href="pages/logos.html">
+        <span class="tag">01</span>
+        <h3>Logos</h3>
+        <p>Lettering (5 versões) + símbolo 2P pixel. Clearspace, regras.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/icons.html">
+        <span class="tag">02</span>
+        <h3>Ícones</h3>
+        <p>Stroke 2px, grid 24. + 2 pixel icons pra easter eggs.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/voice.html">
+        <span class="tag">03</span>
+        <h3>Voz &amp; copy</h3>
+        <p>Tom retrô-gamer direto. Biblioteca de microcopy + do/don't.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="building-blocks">
+    <div class="section-head">
+      <div>
+        <div class="lbl">04 · Building blocks</div>
+        <h2>Componentes<br>+ recipes.</h2>
+      </div>
+      <p>Componentes primitivos (botões, inputs) e <em>recipes</em> — composições assinadas da 2P pra uso rápido em landing.</p>
+    </div>
+    <div class="pages">
+      <a class="page-card" href="pages/components.html">
+        <span class="tag">01</span>
+        <h3>Componentes</h3>
+        <p>Botões, inputs, badges, cards, accordions, alerts. Todos os estados.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/recipes.html">
+        <span class="tag">02</span>
+        <h3>Recipes</h3>
+        <p>Mission Card, Boss Stats, Save Point, Player Card, Ticker. Assinados.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+      <a class="page-card" href="pages/sections.html">
+        <span class="tag">03</span>
+        <h3>Seções</h3>
+        <p>Nav, hero, CTA, testimonials, footer. Copy/cola direto.</p>
+        <span class="arrow">Abrir →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="como-usar">
+    <div class="section-head">
+      <div>
+        <div class="lbl">05 · Como usar</div>
+        <h2>Getting<br>started.</h2>
+      </div>
+      <p>4 passos pra começar um projeto novo com o Bit System.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="n">01</div>
+        <h4>Importe os CSS</h4>
+        <p>Link <code>tokens.css</code> e <code>components.css</code>. Fontes vêm junto via Google Fonts.</p>
+      </div>
+      <div class="principle">
+        <div class="n">02</div>
+        <h4>Defina o tema</h4>
+        <p>No <code>&lt;html data-theme="dark"&gt;</code>. Use <code>light</code> pra propostas em PDF.</p>
+      </div>
+      <div class="principle">
+        <div class="n">03</div>
+        <h4>Monte com recipes</h4>
+        <p>Sempre que possível, comece pelos recipes. São as peças com cara de 2P.</p>
+      </div>
+      <div class="principle">
+        <div class="n">04</div>
+        <h4>Respeite a gramática</h4>
+        <p>Só VT323 e Inconsolata. Neon só em 1 CTA por tela. Copy em minúscula.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="exemplos">
+    <div class="section-head">
+      <div>
+        <div class="lbl">06 · Exemplos</div>
+        <h2>No mundo<br>real.</h2>
+      </div>
+      <p>Peças completas montadas com o Bit System. Copie descaradamente.</p>
+    </div>
+    <div class="pages">
+      <a class="page-card" href="examples/landing-page.html">
+        <span class="tag">Ex. 01</span>
+        <h3>Landing<br>institucional</h3>
+        <p>Home da 2P completa — hero, serviços, cases, CTA, footer.</p>
+        <span class="arrow">Ver →</span>
+      </a>
+      <a class="page-card" href="examples/proposta-comercial.html">
+        <span class="tag">Ex. 02</span>
+        <h3>Proposta<br>comercial</h3>
+        <p>Deck de prospect em tema light, pronto pra imprimir.</p>
+        <span class="arrow">Ver →</span>
+      </a>
+      <a class="page-card" href="examples/relatorio.html">
+        <span class="tag">Ex. 03</span>
+        <h3>Relatório<br>mensal</h3>
+        <p>Report de performance — KPIs, gráficos, insights.</p>
+        <span class="arrow">Ver →</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 · doispalitos growth lab · bit system v2.0</span>
+    <span>owned by · design ops</span>
+  </footer>
+
+</div>
+
+<script>
+  function setTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('.theme-toggle button').forEach(b => {
+      b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+    });
+    localStorage.setItem('bs-theme', mode);
+  }
+  const saved = localStorage.getItem('bs-theme');
+  if (saved) setTheme(saved);
+</script>
+
+</body>
+</html>

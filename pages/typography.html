@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Tipografia · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--neutral-800); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--neon); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--fg-muted); max-width: 720px; line-height: 1.6; }
+
+  section { margin-top: 56px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 32px; }
+
+  /* Font family showcase — duas famílias grandes */
+  .families { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .family-card {
+    background: var(--neutral-900);
+    border: 1px solid var(--neutral-800);
+    padding: 40px;
+    display: flex; flex-direction: column; gap: 16px;
+    min-height: 540px;
+  }
+  .family-card.family-pixel { background: var(--neutral-black); }
+  .family-card.family-pixel .big { font-family: var(--font-pixel); font-size: 280px; line-height: 0.85; color: var(--neon); letter-spacing: -0.02em; text-transform: uppercase; }
+  .family-card.family-mono  .big { font-family: var(--font-mono);  font-weight: 700; font-size: 240px; line-height: 0.9; color: var(--fg); letter-spacing: -0.03em; }
+  .family-card .role {
+    font-family: var(--font-mono); font-weight: 700; font-size: 12px;
+    letter-spacing: var(--ls-overline); text-transform: uppercase;
+    color: var(--error-300);
+  }
+  .family-card.family-mono .role { color: var(--fuchsia); }
+  .family-card .name {
+    font-family: var(--font-mono); font-weight: 700; font-size: 24px; color: var(--fg);
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .family-card .name small { font-family: var(--font-mono); font-weight: 500; font-size: 12px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  .family-card .desc {
+    font-family: var(--font-mono); font-size: 16px; line-height: 1.6; color: var(--fg-muted);
+  }
+  .family-card .glyph-row {
+    display: flex; justify-content: space-between; padding-top: 20px;
+    border-top: 1px solid var(--neutral-800);
+    margin-top: auto;
+  }
+  .family-card.family-pixel .glyph-row span { font-family: var(--font-pixel); font-size: 36px; color: var(--neon); text-transform: uppercase; }
+  .family-card.family-mono  .glyph-row span { font-family: var(--font-mono); font-weight: 700; font-size: 28px; color: var(--fg); }
+
+  /* Weights */
+  .weights { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--neutral-800); border: 1px solid var(--neutral-800); }
+  .weight-card { background: var(--neutral-900); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+  .weight-card .sample { font-family: var(--font-mono); font-size: 56px; line-height: 1; color: var(--fg); }
+  .weight-card .name { font-family: var(--font-mono); font-size: 12px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+
+  /* Scale table */
+  .scale-row {
+    display: grid;
+    grid-template-columns: 220px 140px 100px 100px 140px 180px 1fr;
+    border-bottom: 1px solid var(--neutral-800);
+    padding: 20px 0;
+    align-items: center;
+    gap: 16px;
+  }
+  .scale-row.head {
+    border-bottom: 1px solid var(--neutral-700);
+    padding: 12px 0;
+  }
+  .scale-row.head > div {
+    font-family: var(--font-mono);
+    font-weight: 700; font-size: 12px;
+    color: var(--fg-subtle);
+    letter-spacing: var(--ls-overline);
+    text-transform: uppercase;
+  }
+  .scale-row > div { font-family: var(--font-mono); font-size: 14px; color: var(--fg-muted); }
+  .scale-row .token { color: var(--neon); font-weight: 600; }
+  .scale-row .sample-name { font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--fg); text-transform: uppercase; letter-spacing: var(--ls-wide); }
+  .sample { font-family: var(--font-mono); color: var(--fg); }
+
+  /* Specimens */
+  .specimens { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .specimen {
+    background: var(--neutral-black);
+    border: 1px solid var(--neutral-800);
+    padding: 48px;
+    min-height: 320px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .specimen.on-neon { background: var(--neon); color: var(--neutral-black); border: 0; }
+  .specimen.on-tolopea { background: var(--tolopea); color: var(--neon); border: 0; }
+  .specimen .kicker { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: var(--ls-overline); text-transform: uppercase; margin-bottom: 16px; opacity: .7; }
+  .specimen .headline { font-family: var(--font-pixel); font-size: 64px; line-height: 0.9; margin: 0 0 16px; text-transform: uppercase; }
+  .specimen .body { font-family: var(--font-mono); font-size: 16px; line-height: 1.6; margin: 0; }
+
+  /* Rules */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .rule { padding: 24px; border: 1px solid var(--neutral-800); background: var(--neutral-900); }
+  .rule.do   { border-left: 4px solid var(--success); }
+  .rule.dont { border-left: 4px solid var(--error); }
+  .rule h4 { font-family: var(--font-pixel); font-size: 28px; margin: 0 0 16px; text-transform: uppercase; }
+  .rule.do h4   { color: var(--success); }
+  .rule.dont h4 { color: var(--error); }
+  .rule ul { font-family: var(--font-mono); font-size: 14px; line-height: 1.6; padding-left: 20px; color: var(--fg-muted); margin: 0; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / fundamentos</a>
+    <h1>Tipografia</h1>
+  </div>
+  <div class="intro">
+    Apenas duas vozes. <strong style="color:var(--neon)">VT323</strong> pixel para todos os headlines, CTAs e números-assinatura. <strong style="color:var(--fuchsia)">Inconsolata</strong> monoespaçada para corpo, UI, labels e qualquer texto não-display. Sem sans-serif no sistema.
+  </div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<section>
+  <h2 class="section-title">As duas famílias</h2>
+  <div class="section-sub">display + corpo · nada além disso</div>
+  <div class="families">
+    <div class="family-card family-pixel">
+      <div class="role">Display · Headlines · CTAs · Números</div>
+      <div class="big">Aa</div>
+      <div class="name">VT323 <small>Regular · 1 weight</small></div>
+      <div class="desc">Fonte pixel monoespaçada — a voz da marca. Use sempre em caixa alta. Ideal para títulos gigantes, números-assinatura (ROAS, CPA, %), CTAs e badges. Nunca em corpo de texto.</div>
+      <div class="glyph-row">
+        <span>ABC</span><span>123</span><span>!?@</span><span>$★→</span>
+      </div>
+    </div>
+    <div class="family-card family-mono">
+      <div class="role">Body · UI · Labels · Qualquer coisa que não seja display</div>
+      <div class="big">Aa</div>
+      <div class="name">Inconsolata <small>400 · 500 · 600 · 700</small></div>
+      <div class="desc">Monoespaçada com ótima leitura entre 14–20px. Reforça a estética tech-retrô sem comprometer clareza. Use em textos corridos, descrições, labels de UI, navegação, formulários e captions.</div>
+      <div class="glyph-row">
+        <span>ABC</span><span>123</span><span>!?@</span><span>$→•</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Pesos · Inconsolata</h2>
+  <div class="section-sub">VT323 só tem regular</div>
+  <div class="weights">
+    <div class="weight-card">
+      <div class="sample" style="font-weight: 400">Aa</div>
+      <div class="name">400 · Regular</div>
+    </div>
+    <div class="weight-card">
+      <div class="sample" style="font-weight: 500">Aa</div>
+      <div class="name">500 · Medium</div>
+    </div>
+    <div class="weight-card">
+      <div class="sample" style="font-weight: 600">Aa</div>
+      <div class="name">600 · SemiBold</div>
+    </div>
+    <div class="weight-card">
+      <div class="sample" style="font-weight: 700">Aa</div>
+      <div class="name">700 · Bold</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Escala tipográfica</h2>
+  <div class="section-sub">tokens, tamanhos e amostras</div>
+  <div class="scale-row head">
+    <div>Role</div>
+    <div>Fonte</div>
+    <div>Weight</div>
+    <div>Size</div>
+    <div>Line-height</div>
+    <div>Token</div>
+    <div>Sample</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Display</div><div>VT323</div><div>Regular</div><div>96px</div><div>100%</div><div class="token">$display</div>
+    <div class="sample" style="font-family:var(--font-pixel); font-size:96px; line-height:1; color: var(--neon);">INSERT COIN</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Headline 1</div><div>VT323</div><div>Regular</div><div>64px</div><div>100%</div><div class="token">$headline-01</div>
+    <div class="sample" style="font-family:var(--font-pixel); font-size:64px; line-height:1;">PRESS START</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Headline 2</div><div>VT323</div><div>Regular</div><div>48px</div><div>100%</div><div class="token">$headline-02</div>
+    <div class="sample" style="font-family:var(--font-pixel); font-size:48px; line-height:1;">GAME OVER? NO.</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Headline 3</div><div>Inconsolata</div><div>Bold</div><div>32px</div><div>40px</div><div class="token">$headline-03</div>
+    <div class="sample" style="font-family:var(--font-mono); font-weight:700; font-size:32px;">Level up seu funil</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Headline 4</div><div>Inconsolata</div><div>SemiBold</div><div>24px</div><div>32px</div><div class="token">$headline-04</div>
+    <div class="sample" style="font-family:var(--font-mono); font-weight:600; font-size:24px;">Aperte START pra jogar</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Headline 5</div><div>Inconsolata</div><div>SemiBold</div><div>20px</div><div>28px</div><div class="token">$headline-05</div>
+    <div class="sample" style="font-family:var(--font-mono); font-weight:600; font-size:20px;">Checkpoint salvo</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Body 1</div><div>Inconsolata</div><div>Regular</div><div>18px</div><div>26px</div><div class="token">$body-01</div>
+    <div class="sample" style="font-family:var(--font-mono); font-size:18px;">Estratégia, mídia paga e conteúdo num só combo.</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Body 2</div><div>Inconsolata</div><div>Regular</div><div>16px</div><div>24px</div><div class="token">$body-02</div>
+    <div class="sample" style="font-family:var(--font-mono); font-size:16px;">Relatórios mensais no seu WhatsApp, sem planilha feia.</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Body 3</div><div>Inconsolata</div><div>Regular</div><div>14px</div><div>20px</div><div class="token">$body-03</div>
+    <div class="sample" style="font-family:var(--font-mono); font-size:14px;">Texto auxiliar pra contextos discretos, captions ou notas.</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Caption</div><div>Inconsolata</div><div>SemiBold</div><div>14px</div><div>20px</div><div class="token">$caption</div>
+    <div class="sample" style="font-family:var(--font-mono); font-weight:600; font-size:14px; letter-spacing:0.04em; text-transform:uppercase;">LABEL · 01 · BIT SYSTEM</div>
+  </div>
+  <div class="scale-row">
+    <div class="sample-name">Overline</div><div>Inconsolata</div><div>Medium</div><div>12px</div><div>16px</div><div class="token">$overline</div>
+    <div class="sample" style="font-family:var(--font-mono); font-weight:500; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--fg-subtle);">NEW HIGH SCORE</div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Specimens</h2>
+  <div class="section-sub">como soa em peças reais</div>
+  <div class="specimens">
+    <div class="specimen">
+      <div class="kicker">01 · HERO</div>
+      <div class="headline" style="color:var(--neon); text-shadow: 3px 3px 0 var(--fuchsia)">Press Start<br>to level up</div>
+      <p class="body c-fg-muted">Performance, criativo e mídia paga rodando 24/7. Sem placar mentiroso, sem relatório-placebo. Só resultado que o CFO entende.</p>
+    </div>
+    <div class="specimen on-neon">
+      <div class="kicker">02 · CTA</div>
+      <div class="headline">+320%<br>de roas</div>
+      <p class="body" style="font-weight: 600">Novo high score desbloqueado pela nossa co-op com a Loja X. E a campanha mal saiu do modo fácil.</p>
+    </div>
+    <div class="specimen on-tolopea">
+      <div class="kicker" style="color: var(--neon)">03 · SECTION</div>
+      <div class="headline">Co-op<br>mode.</div>
+      <p class="body" style="color: var(--neutral-50)">A gente joga junto com você. Estratégia compartilhada, métricas transparentes, ajuste de rota semanal.</p>
+    </div>
+    <div class="specimen">
+      <div class="kicker">04 · QUOTE</div>
+      <p class="body" style="font-family: var(--font-mono); font-size: 22px; line-height: 1.5; font-weight: 500; color: var(--fg);">"Trocamos a última agência pela 2P e, em 90 dias, nosso CPA caiu 42%."</p>
+      <p class="body c-fg-muted" style="margin-top: 16px; font-size: 14px;">— Marcelo Ribas, CMO · Acme Logística</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Regras de aplicação</h2>
+  <div class="section-sub">hierarquia e pareamento</div>
+  <div class="rules">
+    <div class="rule do">
+      <h4>✓ Faça</h4>
+      <ul>
+        <li>VT323 <strong>sempre</strong> em caixa alta. Ele foi desenhado pra isso.</li>
+        <li>Pare a escala de VT323 em 48px pra baixo — a partir dali, Inconsolata Bold.</li>
+        <li>Use Inconsolata Medium/SemiBold pra destacar palavras em corrido.</li>
+        <li>Line-height travado em múltiplos de 4 (grid base).</li>
+      </ul>
+    </div>
+    <div class="rule dont">
+      <h4>✗ Evite</h4>
+      <ul>
+        <li>VT323 em parágrafo. Vira ilegível abaixo de 24px.</li>
+        <li>Misturar sans-serif (Poppins, Inter etc.) — o sistema não tem.</li>
+        <li>Itálico em VT323. A fonte não tem e a simulação oblíqua fica torta.</li>
+        <li>VT323 em minúsculas ou case misto.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.theme-toggle button').forEach(b => {
+    b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+  });
+  localStorage.setItem('bs-theme', mode);
+}
+const saved = localStorage.getItem('bs-theme');
+if (saved) setTheme(saved);
+</script>
+</body>
+</html>

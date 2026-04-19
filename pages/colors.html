@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Cores · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--neutral-800); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--neon); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--fg-muted); max-width: 720px; line-height: 1.6; }
+
+  .palette { margin-top: 56px; }
+  .palette-title {
+    font-family: var(--font-pixel);
+    font-size: 40px;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+  }
+  .palette-sub {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: 24px;
+  }
+  .scale {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--neutral-800);
+    border: 1px solid var(--neutral-800);
+  }
+  .swatch {
+    background: var(--neutral-900);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 180px;
+  }
+  .swatch .chip {
+    width: 100%;
+    aspect-ratio: 1.4;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch .token {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--error-300);
+    text-transform: lowercase;
+  }
+  .swatch .weight {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--fg);
+  }
+  .swatch .hex {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--fg-subtle);
+  }
+
+  .feedback-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .feedback-card {
+    background: var(--neutral-900);
+    border: 1px solid var(--neutral-800);
+    padding: 24px;
+  }
+  .feedback-card .dot { width: 32px; height: 32px; border-radius: 50%; margin-bottom: 12px; }
+  .feedback-card h4 { font-family: var(--font-pixel); font-size: 24px; margin: 0; text-transform: uppercase; }
+  .feedback-card p { font-family: var(--font-mono); font-size: 14px; color: var(--fg-muted); margin: 4px 0 0; }
+
+  .gradients { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
+  .gradient-card {
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--neutral-black);
+  }
+
+  .usage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  .usage-do, .usage-dont {
+    padding: 24px;
+    border: 1px solid var(--neutral-800);
+  }
+  .usage-do    { border-left: 4px solid var(--success); }
+  .usage-dont  { border-left: 4px solid var(--error); }
+  .usage-do h4, .usage-dont h4 { font-family: var(--font-pixel); font-size: 24px; margin: 0 0 12px; text-transform: uppercase; }
+  .usage-do h4   { color: var(--success); }
+  .usage-dont h4 { color: var(--error); }
+  .usage-do ul, .usage-dont ul { font-family: var(--font-mono); font-size: 14px; line-height: 1.6; padding-left: 20px; color: var(--fg-muted); margin: 0; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / fundamentos</a>
+    <h1>Cores</h1>
+  </div>
+  <div class="intro">
+    Paleta construída pra transmitir presença digital, tecnologia e ousadia. Neon é a cor da marca; fúchsia dá personalidade; tolopea estrutura. Use feedback colors apenas pra status.
+  </div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<section class="palette">
+  <h2 class="palette-title" style="color:var(--neon)">Neon</h2>
+  <div class="palette-sub">primary · $neon · ações, destaques, ctas</div>
+  <div class="scale" id="scale-neon"></div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title" style="color:var(--fuchsia)">Fúchsia</h2>
+  <div class="palette-sub">accent · $fuchsia · hovers, destaques secundários</div>
+  <div class="scale" id="scale-fuchsia"></div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title" style="color:var(--tolopea-600)">Tolopea</h2>
+  <div class="palette-sub">secondary · $tolopea · backgrounds, títulos estruturais</div>
+  <div class="scale" id="scale-tolopea"></div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title" style="color:var(--fg)">Neutrals</h2>
+  <div class="palette-sub">$neutral · textos, fundos, separadores</div>
+  <div class="scale" id="scale-neutral"></div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title">Feedback</h2>
+  <div class="palette-sub">status · apenas para indicar estados</div>
+  <div class="feedback-row">
+    <div class="feedback-card">
+      <div class="dot" style="background:var(--success)"></div>
+      <h4 style="color:var(--success)">Success</h4>
+      <p class="t-mono"><code>#4CFF4C</code> · <code>$success</code></p>
+      <p>Confirmação, status positivo, métrica subindo.</p>
+    </div>
+    <div class="feedback-card">
+      <div class="dot" style="background:var(--warning)"></div>
+      <h4 style="color:var(--warning)">Warning</h4>
+      <p class="t-mono"><code>#FFD54C</code> · <code>$warning</code></p>
+      <p>Atenção, alerta leve, cuidado — não é erro.</p>
+    </div>
+    <div class="feedback-card">
+      <div class="dot" style="background:var(--error)"></div>
+      <h4 style="color:var(--error)">Error</h4>
+      <p class="t-mono"><code>#FF7C71</code> · <code>$error</code></p>
+      <p>Falha, validação crítica, bloqueio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title">Gradientes</h2>
+  <div class="palette-sub">background, overlays, banners</div>
+  <div class="gradients">
+    <div class="gradient-card" style="background: var(--gradient-primary)">Primary · neon → fúchsia</div>
+    <div class="gradient-card" style="background: var(--gradient-secondary); color: var(--neon)">Secondary · tolopea → fúchsia</div>
+    <div class="gradient-card" style="background: var(--gradient-tertiary)">Tertiary · neon → tolopea</div>
+  </div>
+</section>
+
+<section class="palette">
+  <h2 class="palette-title">Quando usar / quando não</h2>
+  <div class="usage-grid">
+    <div class="usage-do">
+      <h4>✓ Faça</h4>
+      <ul>
+        <li>Use neon como <strong>única</strong> cor primária de CTA por tela.</li>
+        <li>Combine neon + preto pra máximo contraste em CTAs.</li>
+        <li>Use fúchsia em hovers, badges e sombras de destaque.</li>
+        <li>Tolopea pra backgrounds estruturais e seções de respiro.</li>
+      </ul>
+    </div>
+    <div class="usage-dont">
+      <h4>✗ Evite</h4>
+      <ul>
+        <li>Neon e fúchsia juntos em botões de mesmo nível.</li>
+        <li>Cores de feedback (success/warning/error) em elementos decorativos.</li>
+        <li>Gradientes em texto corrido.</li>
+        <li>Neon sobre fúchsia — contraste ruim.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  const scales = {
+    neon:    [['100','#CBFFEF'],['200','#B8FFEA'],['300','#A4FFE5'],['400','#8DFFDF'],['500','#73FFDA'],['600','#51FFD5'],['700','#00FFD1']],
+    fuchsia: [['100','#FFC4FF'],['200','#FFB0FF'],['300','#FF9AFF'],['400','#FF83FF'],['500','#FF68FF'],['600','#FF48FF'],['700','#FF00FF']],
+    tolopea: [['500','#5742FF'],['600','#411CFF'],['700','#310AF7'],['800','#2908CF'],['900','#2409A9']],
+    neutral: [['50','#FAFAFA'],['100','#E4E4E4'],['200','#C9C9C9'],['300','#AFAEAF'],['400','#969595'],['500','#7E7C7D'],['600','#666465'],['700','#4C4A4A'],['800','#393838'],['900','#221F20'],['black','#100F0F']],
+  };
+  for (const [key, arr] of Object.entries(scales)) {
+    const el = document.getElementById('scale-'+key);
+    el.innerHTML = arr.map(([w, hex]) => `
+      <div class="swatch">
+        <div class="chip" style="background:${hex}"></div>
+        <div class="token">$${key}-${w}</div>
+        <div class="weight">${w}</div>
+        <div class="hex">${hex}</div>
+      </div>`).join('');
+  }
+
+  function setTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    document.querySelectorAll('.theme-toggle button').forEach(b => {
+      b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+    });
+    localStorage.setItem('bs-theme', mode);
+  }
+  const saved = localStorage.getItem('bs-theme');
+  if (saved) setTheme(saved);
+</script>
+</body>
+</html>

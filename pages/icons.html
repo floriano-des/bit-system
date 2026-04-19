@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Ícones · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 720px; line-height: 1.6; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  section { margin-top: 56px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+
+  /* Spec de estilo */
+  .style-specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .spec-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .spec-card .label { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-subtle); text-transform: uppercase; letter-spacing: var(--ls-wide); text-align: center; }
+
+  /* Grid de ícones */
+  .icon-category { margin-bottom: 40px; }
+  .icon-category-label { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 12px; padding-bottom: 8px; border-bottom: var(--border-1) solid var(--color-border); }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1px; background: var(--color-border); border: var(--border-1) solid var(--color-border); }
+  .icon-cell {
+    background: var(--color-surface);
+    padding: 20px 12px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    cursor: pointer;
+    transition: background var(--motion-fast);
+    position: relative;
+  }
+  .icon-cell:hover { background: var(--color-surface-raised); }
+  .icon-cell:hover .icon-cell-copied { opacity: 1; }
+  .icon-cell svg { width: 24px; height: 24px; color: var(--brand-primary); }
+  .icon-cell.pixel-icon svg { width: 32px; height: 32px; }
+  .icon-cell .name { font-family: var(--font-mono); font-size: 10px; color: var(--color-text-subtle); text-align: center; word-break: break-all; }
+  .icon-cell-copied {
+    position: absolute; top: 4px; right: 4px;
+    font-family: var(--font-mono); font-size: 9px;
+    background: var(--brand-primary); color: var(--brand-primary-ink);
+    padding: 2px 5px; text-transform: uppercase;
+    opacity: 0; transition: opacity var(--motion-fast);
+    pointer-events: none;
+  }
+
+  /* Tamanhos */
+  .sizes-row { display: flex; gap: 32px; align-items: flex-end; background: var(--color-surface); padding: 32px; border: var(--border-1) solid var(--color-border); }
+  .size-col { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .size-col svg { color: var(--brand-primary); }
+  .size-col .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); text-transform: uppercase; letter-spacing: var(--ls-wide); text-align: center; }
+
+  /* Como usar */
+  .code-block { background: var(--neutral-950); border: var(--border-1) solid var(--neutral-800); padding: 20px 24px; font-family: var(--font-mono); font-size: 13px; color: var(--neon-400); line-height: 1.7; overflow-x: auto; white-space: pre; margin-top: 16px; }
+  .code-block .kw { color: var(--fuchsia-400); }
+  .code-block .str { color: var(--neon-300); }
+  .code-block .comment { color: var(--neutral-500); }
+
+  /* Copied toast */
+  #toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--brand-primary); color: var(--brand-primary-ink); font-family: var(--font-mono); font-size: 13px; font-weight: 700; padding: 10px 20px; text-transform: uppercase; letter-spacing: var(--ls-wide); transition: transform 200ms var(--ease-smooth); pointer-events: none; z-index: var(--z-toast); }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<object type="image/svg+xml" data="../assets/icons.svg" style="display:none"></object>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / marca</a>
+    <h1>Ícones</h1>
+    <p class="intro">Ícones de linha, stroke 2px, grid 24×24, cap square. Dois pixel-icons para toques de marca. Clique em qualquer ícone para copiar o código.</p>
+  </div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<!-- Spec de estilo -->
+<section>
+  <h2 class="section-title">Especificação</h2>
+  <div class="section-sub">todos os ícones seguem o mesmo padrão — sem exceção</div>
+  <div class="style-specs">
+    <div class="spec-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" stroke-linecap="square" width="40" height="40">
+        <path d="M4 12 H20 M14 6 L20 12 L14 18"/>
+      </svg>
+      <div class="label">Stroke · 2px<br>sempre stroke-width="2"</div>
+    </div>
+    <div class="spec-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" stroke-linecap="square" width="40" height="40">
+        <rect x="4" y="4" width="16" height="16"/>
+      </svg>
+      <div class="label">Cap · Square<br>stroke-linecap="square"</div>
+    </div>
+    <div class="spec-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2" width="40" height="40">
+        <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1"/>
+      </svg>
+      <div class="label">Grid · 24×24<br>viewBox="0 0 24 24"</div>
+    </div>
+    <div class="spec-card">
+      <svg viewBox="0 0 24 24" fill="var(--brand-primary)" width="40" height="40">
+        <path d="M13 2 L4 14 H11 L9 22 L20 10 H13 Z"/>
+      </svg>
+      <div class="label">Cor · currentColor<br>nunca hardcode de cor</div>
+    </div>
+  </div>
+</section>
+
+<!-- Tamanhos -->
+<section>
+  <h2 class="section-title">Escala de tamanhos</h2>
+  <div class="section-sub">6 tamanhos · --size-icon-{xs|sm|md|lg|xl|2xl}</div>
+  <div class="sizes-row">
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="12" height="12"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">xs<br>12px</div>
+    </div>
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="16" height="16"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">sm<br>16px</div>
+    </div>
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="20" height="20"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">md<br>20px</div>
+    </div>
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="24" height="24"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">lg · padrão<br>24px</div>
+    </div>
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="32" height="32"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">xl<br>32px</div>
+    </div>
+    <div class="size-col">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" width="48" height="48"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      <div class="lbl">2xl<br>48px</div>
+    </div>
+  </div>
+</section>
+
+<!-- Grid completo de ícones -->
+<section>
+  <h2 class="section-title">Biblioteca completa</h2>
+  <div class="section-sub">clique em qualquer ícone para copiar o código · sprite: assets/icons.svg</div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">Navegação &amp; direção</div>
+    <div class="icon-grid" id="grid-nav"></div>
+  </div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">UI &amp; ações gerais</div>
+    <div class="icon-grid" id="grid-ui"></div>
+  </div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">Performance &amp; negócio</div>
+    <div class="icon-grid" id="grid-perf"></div>
+  </div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">Pessoas &amp; comunicação</div>
+    <div class="icon-grid" id="grid-people"></div>
+  </div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">Arquivos &amp; sistema</div>
+    <div class="icon-grid" id="grid-files"></div>
+  </div>
+
+  <div class="icon-category">
+    <div class="icon-category-label">Pixel icons · toques de marca</div>
+    <div class="icon-grid" id="grid-pixel"></div>
+  </div>
+</section>
+
+<!-- Como usar -->
+<section>
+  <h2 class="section-title">Como usar</h2>
+  <div class="section-sub">sprite inline · sempre currentColor</div>
+  <div class="code-block"><span class="comment">&lt;!-- 1. Adicione o sprite na &lt;body&gt; (apenas uma vez) --&gt;</span>
+<span class="kw">&lt;object</span> type=<span class="str">"image/svg+xml"</span> data=<span class="str">"assets/icons.svg"</span> style=<span class="str">"display:none"</span><span class="kw">&gt;&lt;/object&gt;</span>
+
+<span class="comment">&lt;!-- 2. Use com &lt;use href&gt; — cor via currentColor (CSS) --&gt;</span>
+<span class="kw">&lt;svg</span> width=<span class="str">"24"</span> height=<span class="str">"24"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;use</span> href=<span class="str">"assets/icons.svg#bs-bolt"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- 3. Tamanho via width/height. Cor via color ou fill --&gt;</span>
+<span class="kw">&lt;svg</span> width=<span class="str">"32"</span> height=<span class="str">"32"</span> style=<span class="str">"color: var(--brand-primary)"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;use</span> href=<span class="str">"assets/icons.svg#bs-trophy"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/svg&gt;</span>
+
+<span class="comment">&lt;!-- 4. Pixel icons: viewBox 16x16, shape-rendering crispEdges --&gt;</span>
+<span class="kw">&lt;svg</span> viewBox=<span class="str">"0 0 16 16"</span> width=<span class="str">"32"</span> height=<span class="str">"32"</span> shape-rendering=<span class="str">"crispEdges"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;use</span> href=<span class="str">"assets/icons.svg#bs-coin"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/svg&gt;</span></div>
+</section>
+
+<div id="toast">✓ Copiado!</div>
+
+<script>
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.theme-toggle button').forEach(b => {
+    b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+  });
+  localStorage.setItem('bs-theme', mode);
+}
+const saved = localStorage.getItem('bs-theme');
+if (saved) setTheme(saved);
+
+// Definição de todos os ícones por categoria
+const icons = {
+  'grid-nav': [
+    { id: 'bs-arrow-right', label: 'arrow-right' },
+    { id: 'bs-arrow-left',  label: 'arrow-left' },
+    { id: 'bs-arrow-down',  label: 'arrow-down' },
+    { id: 'bs-arrow-up-right', label: 'arrow-up-right' },
+    { id: 'bs-menu',        label: 'menu' },
+    { id: 'bs-close',       label: 'close' },
+  ],
+  'grid-ui': [
+    { id: 'bs-plus',        label: 'plus' },
+    { id: 'bs-minus',       label: 'minus' },
+    { id: 'bs-check',       label: 'check' },
+    { id: 'bs-search',      label: 'search' },
+    { id: 'bs-settings',    label: 'settings' },
+    { id: 'bs-clock',       label: 'clock' },
+    { id: 'bs-alert',       label: 'alert' },
+    { id: 'bs-info',        label: 'info' },
+    { id: 'bs-play',        label: 'play' },
+    { id: 'bs-pause',       label: 'pause' },
+    { id: 'bs-stop',        label: 'stop' },
+    { id: 'bs-star',        label: 'star' },
+    { id: 'bs-heart',       label: 'heart' },
+    { id: 'bs-controller',  label: 'controller' },
+  ],
+  'grid-perf': [
+    { id: 'bs-chart',         label: 'chart' },
+    { id: 'bs-trending-up',   label: 'trending-up' },
+    { id: 'bs-target',        label: 'target' },
+    { id: 'bs-bolt',          label: 'bolt' },
+    { id: 'bs-trophy',        label: 'trophy' },
+  ],
+  'grid-people': [
+    { id: 'bs-user',          label: 'user' },
+    { id: 'bs-users',         label: 'users' },
+    { id: 'bs-mail',          label: 'mail' },
+    { id: 'bs-phone',         label: 'phone' },
+    { id: 'bs-whatsapp',      label: 'whatsapp' },
+    { id: 'bs-instagram',     label: 'instagram' },
+    { id: 'bs-linkedin',      label: 'linkedin' },
+  ],
+  'grid-files': [
+    { id: 'bs-file',          label: 'file' },
+    { id: 'bs-folder',        label: 'folder' },
+    { id: 'bs-download',      label: 'download' },
+  ],
+  'grid-pixel': [
+    { id: 'bs-heart-pixel', label: 'heart-pixel', pixel: true },
+    { id: 'bs-coin',        label: 'coin',         pixel: true },
+  ],
+};
+
+function copyCode(id, pixel) {
+  const code = pixel
+    ? `<svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">\n  <use href="assets/icons.svg#${id}"/>\n</svg>`
+    : `<svg width="24" height="24">\n  <use href="assets/icons.svg#${id}"/>\n</svg>`;
+  navigator.clipboard.writeText(code).catch(() => {});
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+for (const [gridId, list] of Object.entries(icons)) {
+  const grid = document.getElementById(gridId);
+  if (!grid) continue;
+  grid.innerHTML = list.map(({ id, label, pixel }) => {
+    const svgAttr = pixel
+      ? `viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges"`
+      : `viewBox="0 0 24 24" width="24" height="24"`;
+    return `
+      <div class="icon-cell${pixel ? ' pixel-icon' : ''}" onclick="copyCode('${id}', ${!!pixel})" title="Copiar código · ${id}">
+        <div class="icon-cell-copied">Copiado</div>
+        <svg ${svgAttr} style="color:var(--brand-primary)"><use href="../assets/icons.svg#${id}"/></svg>
+        <div class="name">${label}</div>
+      </div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>

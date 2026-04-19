@@ -1,0 +1,7 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  
+  <path fill="currentColor" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z"></path>
+  
+  <path fill="currentColor" d="M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"></path>
+</svg>

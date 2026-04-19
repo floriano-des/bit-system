@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>2P Growth Lab — Performance que dá High Score</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  /* ── Layout utilitários da landing ── */
+  section { padding: var(--space-24) 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-8); }
+
+  /* ── Navbar ── */
+  .nav-top {
+    background: var(--brand-deep);
+    color: var(--brand-primary);
+    padding: var(--space-2) var(--space-8);
+    font-family: var(--font-mono);
+    font-size: var(--fs-caption);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .navbar {
+    background: rgba(16,15,15,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-1) solid var(--color-border);
+    padding: var(--space-4) var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-overlay);
+  }
+  .navbar-logo { display: flex; align-items: center; gap: var(--space-3); }
+  .navbar-logo img { height: 28px; }
+  .navbar-links { display: flex; gap: var(--space-8); }
+  .navbar-links a {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--fs-body-sm);
+    letter-spacing: var(--ls-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    transition: color var(--motion-fast);
+  }
+  .navbar-links a:hover { color: var(--brand-primary); }
+
+  /* ── Hero ── */
+  .hero {
+    background:
+      radial-gradient(ellipse at 5% 0%, rgba(0,255,209,0.10), transparent 55%),
+      radial-gradient(ellipse at 95% 90%, rgba(255,0,255,0.09), transparent 55%),
+      var(--neutral-950);
+    padding: var(--space-24) 0 var(--space-16);
+    overflow: hidden;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-16); align-items: center; }
+  .hero-kicker {
+    display: inline-flex; gap: var(--space-2); align-items: center;
+    font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption);
+    letter-spacing: var(--ls-overline); text-transform: uppercase;
+    color: var(--brand-primary);
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border-brand);
+    padding: var(--space-2) var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .hero-kicker .dot { width: 8px; height: 8px; background: var(--brand-primary); animation: bit-blink 1s steps(2) infinite; }
+  .hero h1 {
+    font-family: var(--font-pixel);
+    font-size: 112px;
+    line-height: 0.9;
+    color: var(--brand-primary);
+    text-transform: uppercase;
+    margin: 0 0 var(--space-6);
+    text-shadow: 6px 6px 0 var(--brand-accent);
+    letter-spacing: var(--ls-tight);
+  }
+  .hero-lead { font-family: var(--font-mono); font-size: var(--fs-body-lg); line-height: var(--lh-relax); color: var(--color-text-muted); margin: 0 0 var(--space-8); max-width: 520px; }
+  .hero-ctas { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+  /* ── Stats ── */
+  .stats-bar {
+    background: var(--color-surface);
+    border-top: var(--border-1) solid var(--color-border);
+    border-bottom: var(--border-1) solid var(--color-border);
+    padding: var(--space-8) 0;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .stat-item {
+    padding: var(--space-4) var(--space-8);
+    border-right: var(--border-1) solid var(--color-border);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--font-pixel); font-size: 64px; line-height: 1; color: var(--brand-primary); }
+  .stat-lbl { font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; margin-top: var(--space-2); }
+
+  /* ── Seção genérica ── */
+  .section-eyebrow { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption); letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--brand-primary); margin-bottom: var(--space-3); }
+  .section-h2 { font-family: var(--font-pixel); font-size: 64px; text-transform: uppercase; margin: 0 0 var(--space-5); line-height: 1; }
+  .section-intro { font-family: var(--font-mono); font-size: var(--fs-body-lg); color: var(--color-text-muted); max-width: 600px; line-height: var(--lh-relax); margin: 0 0 var(--space-12); }
+
+  /* ── Modo: como funciona ── */
+  .how-bg { background: var(--color-surface); }
+  .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+  .how-step {
+    padding: var(--space-6);
+    border: var(--border-1) solid var(--color-border);
+    background: var(--color-bg);
+    position: relative;
+  }
+  .how-step-num { font-family: var(--font-pixel); font-size: 64px; color: var(--color-surface-raised); line-height: 1; margin-bottom: var(--space-4); }
+  .how-step h3 { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-h4); margin: 0 0 var(--space-3); color: var(--color-text); }
+  .how-step p { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0; line-height: var(--lh-relax); }
+  .how-connector {
+    position: absolute;
+    right: -24px; top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    color: var(--brand-primary);
+    z-index: 1;
+  }
+  .how-step:last-child .how-connector { display: none; }
+
+  /* ── Cases ── */
+  .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  .case-card {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    overflow: hidden;
+    transition: transform var(--motion-base) var(--ease-smooth), box-shadow var(--motion-base);
+  }
+  .case-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-brand); border-color: var(--brand-primary); }
+  .case-banner {
+    background: var(--brand-deep);
+    height: 160px;
+    display: grid; place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-banner-num { font-family: var(--font-pixel); font-size: 128px; line-height: 1; color: rgba(0,255,209,0.15); position: absolute; }
+  .case-banner-stat { font-family: var(--font-pixel); font-size: 64px; color: var(--brand-primary); position: relative; text-shadow: 3px 3px 0 var(--brand-accent); }
+  .case-body { padding: var(--space-6); }
+  .case-tags { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-4); }
+  .case-body h3 { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-h4); margin: 0 0 var(--space-3); }
+  .case-body p  { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); margin: 0 0 var(--space-4); line-height: var(--lh-relax); }
+  .case-link { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--brand-primary); }
+
+  /* ── Depoimentos ── */
+  .testi-bg { background: var(--color-surface); }
+
+  /* ── FAQ ── */
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--neutral-950);
+    border-top: var(--border-4) solid var(--brand-primary);
+    padding: var(--space-16) 0 var(--space-8);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-12); padding-bottom: var(--space-12); border-bottom: var(--border-1) solid var(--color-border); margin-bottom: var(--space-8); }
+  .footer-brand img { height: 32px; margin-bottom: var(--space-4); }
+  .footer-brand p { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-subtle); line-height: var(--lh-relax); max-width: 280px; }
+  .footer-col h4 { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-caption); letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--brand-primary); margin: 0 0 var(--space-4); }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+  .footer-col li { font-family: var(--font-mono); font-size: var(--fs-body-sm); color: var(--color-text-muted); }
+  .footer-col a { color: var(--color-text-muted); }
+  .footer-col a:hover { color: var(--brand-primary); }
+  .footer-bottom { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: var(--fs-caption); color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- ██ NAV TOP ██ -->
+<div class="nav-top">
+  <span>● PLAYER 2 MODE: ATIVADO</span>
+  <span>contato@doispalitosmkt.com.br · WhatsApp</span>
+</div>
+
+<!-- ██ NAVBAR ██ -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    <img src="../assets/logo-lettering-neon.png" alt="Dois Palitos Growth Lab" />
+  </div>
+  <div class="navbar-links">
+    <a href="#servicos">Missões</a>
+    <a href="#como">Como</a>
+    <a href="#cases">Cases</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a class="btn btn-primary" href="#cta">INSERT COIN →</a>
+</nav>
+
+<!-- ██ TICKER ██ -->
+<div class="recipe-ticker">
+  <div class="recipe-ticker__track">
+    <span>ROAS +320%</span>
+    <span>CAC -42%</span>
+    <span>LEADS +180%</span>
+    <span>38 CLIENTES ATIVOS</span>
+    <span>MODO: HARDCORE</span>
+    <span>HIGH SCORE DESBLOQUEADO</span>
+    <span>PRESS START</span>
+    <span>ROAS +320%</span>
+    <span>CAC -42%</span>
+    <span>LEADS +180%</span>
+    <span>38 CLIENTES ATIVOS</span>
+    <span>MODO: HARDCORE</span>
+    <span>HIGH SCORE DESBLOQUEADO</span>
+    <span>PRESS START</span>
+  </div>
+</div>
+
+<!-- ██ HERO ██ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-kicker"><span class="dot"></span> 2P Growth Lab · Player 2 mode</div>
+        <h1>Press<br>Start<br>to grow.</h1>
+        <p class="hero-lead">Performance, criativo e mídia paga rodando como um co-op. Você cuida do produto — a gente cuida do ROAS. Sem placar mentiroso, sem relatório-placebo.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-xl" href="#cta">INSERT COIN →</a>
+          <a class="btn btn-ghost btn-lg" href="#cases">Ver high scores</a>
+        </div>
+      </div>
+      <div>
+        <div class="recipe-console">
+          <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> 2p-lab --diagnostico</div>
+          <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> roas_atual    = <span class="recipe-console__value">1.8x</span> <span style="color:var(--color-danger)">← muito baixo</span></div>
+          <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> cac_atual     = <span class="recipe-console__value">R$380</span> <span style="color:var(--color-danger)">← alto demais</span></div>
+          <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> funil         = <span class="recipe-console__value">modo fácil</span></div>
+          <div class="recipe-console__line" style="margin-top: var(--space-4);"><span class="recipe-console__prompt">&gt;</span> carregando plano de ataque...<span class="fx-cursor"></span></div>
+          <div class="recipe-console__line" style="color: var(--brand-primary); margin-top: var(--space-2);">// 2P co-op mode: player 2 joined the game</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ STATS ██ -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">+320%</div>
+        <div class="stat-lbl">ROAS médio dos clientes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">-42%</div>
+        <div class="stat-lbl">Queda de CPA em 90 dias</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">38</div>
+        <div class="stat-lbl">Clientes em co-op ativo</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5★</div>
+        <div class="stat-lbl">NPS médio dos players</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ██ SERVIÇOS ██ -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-eyebrow">02 · Missões</div>
+    <h2 class="section-h2">O que a<br>gente faz.</h2>
+    <p class="section-intro">Cada serviço é uma missão com objetivo claro, métricas definidas e checkpoint de entrega. Sem scope infinito, sem promessa genérica.</p>
+    <div class="bs-grid-3">
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">01</span>
+        <h3 class="recipe-mission__title">Mídia Paga</h3>
+        <p class="recipe-mission__body">Google Ads, Meta Ads, TikTok e LinkedIn gerenciados como um ecossistema. Sem silos, sem campanha esquecida no ar, sem budget desperdiçado.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">02</span>
+        <h3 class="recipe-mission__title">Criativo & Copy</h3>
+        <p class="recipe-mission__body">Copies que convertem, criativos que param o scroll. Toda peça nasce de dado — não de achismo de designer.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">03</span>
+        <h3 class="recipe-mission__title">Analytics & BI</h3>
+        <p class="recipe-mission__body">Dashboard ao vivo, relatório semanal, retro mensal. Você vê o que está acontecendo antes de precisar perguntar.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">04</span>
+        <h3 class="recipe-mission__title">SEO & Conteúdo</h3>
+        <p class="recipe-mission__body">Tráfego orgânico que cresce enquanto você dorme. Conteúdo que ranqueia e converte — não só atrai clique curioso.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">05</span>
+        <h3 class="recipe-mission__title">CRO & Landing Pages</h3>
+        <p class="recipe-mission__body">Tráfego caro demais pra jogar fora em landing ruim. A gente otimiza o que já existe e cria o que falta.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">06</span>
+        <h3 class="recipe-mission__title">CRM & Automação</h3>
+        <p class="recipe-mission__body">Lead que chegou não pode escapar. Fluxos de nutrição, recuperação de carrinho, reativação — tudo no piloto automático.</p>
+        <a class="recipe-mission__link" href="#">Ver missão →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ COMO FUNCIONA ██ -->
+<section class="how-bg" id="como">
+  <div class="container">
+    <div class="section-eyebrow">03 · Modo co-op</div>
+    <h2 class="section-h2">Como a<br>gente joga.</h2>
+    <p class="section-intro">4 etapas. Sem mistério, sem surpresa de escopo, sem reunião desnecessária.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h3>Diagnóstico</h3>
+        <p>20 minutos de conversa. A gente mapeia onde seu funil está vazando e o que está funcionando.</p>
+        <div class="how-connector">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h3>Plano de ataque</h3>
+        <p>Proposta com metas, métricas de sucesso e prazo real. Nada de "depende".</p>
+        <div class="how-connector">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h3>Co-op ativo</h3>
+        <p>Execução semanal com update. Dashboard ao vivo, acesso direto ao time, retro mensal.</p>
+        <div class="how-connector">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">04</div>
+        <h3>Level up</h3>
+        <p>Ciclo de otimização contínua. Quando um boss é derrotado, a gente vai pro próximo nível.</p>
+        <div class="how-connector">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ CASES ██ -->
+<section id="cases">
+  <div class="container">
+    <div class="section-eyebrow">04 · Hall of Fame</div>
+    <h2 class="section-h2">High<br>Scores.</h2>
+    <p class="section-intro">Resultados reais, com empresas reais. Sem extrapolação, sem média enganosa.</p>
+    <div class="case-grid">
+      <div class="case-card">
+        <div class="case-banner">
+          <div class="case-banner-num">+320</div>
+          <div class="case-banner-stat">+320%</div>
+        </div>
+        <div class="case-body">
+          <div class="case-tags">
+            <span class="badge badge-brand">Mídia Paga</span>
+            <span class="badge">E-commerce</span>
+            <span class="badge">Google Ads</span>
+          </div>
+          <h3>Loja de moda fatura 6x mais em 8 meses</h3>
+          <p>Com orçamento estagnado há 2 anos, reestruturamos as campanhas do zero. ROAS foi de 1.8x pra 7.2x. CPA caiu 58%.</p>
+          <a class="case-link" href="#">Ver case completo →</a>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-banner" style="background: var(--fuchsia-900);">
+          <div class="case-banner-num" style="color: rgba(255,0,255,0.2);">-42</div>
+          <div class="case-banner-stat" style="text-shadow: 3px 3px 0 var(--neon-500);">-42%</div>
+        </div>
+        <div class="case-body">
+          <div class="case-tags">
+            <span class="badge badge-accent">CRO</span>
+            <span class="badge">SaaS</span>
+            <span class="badge">Meta Ads</span>
+          </div>
+          <h3>SaaS B2B corta CPA quase pela metade</h3>
+          <p>Reformulamos as landing pages e o funil de conversão. CPL caiu de R$380 pra R$218. Trial-to-paid subiu 28%.</p>
+          <a class="case-link" href="#">Ver case completo →</a>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-banner" style="background: var(--tolopea-900);">
+          <div class="case-banner-num" style="color: rgba(0,255,209,0.1);">180</div>
+          <div class="case-banner-stat">+180%</div>
+        </div>
+        <div class="case-body">
+          <div class="case-tags">
+            <span class="badge badge-brand">SEO</span>
+            <span class="badge">Conteúdo</span>
+            <span class="badge">B2C</span>
+          </div>
+          <h3>Clínica médica triplica leads orgânicos em 6 meses</h3>
+          <p>Estratégia de conteúdo + SEO local. Tráfego orgânico passou de 2k pra 8.4k visitas/mês. Leads qualificados +180%.</p>
+          <a class="case-link" href="#">Ver case completo →</a>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-banner" style="background: linear-gradient(135deg, var(--brand-deep), var(--fuchsia-900));">
+          <div class="case-banner-num" style="color: rgba(0,255,209,0.1);">900</div>
+          <div class="case-banner-stat" style="font-size: 56px;">900%<br><span style="font-size:28px;">ROAS</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-tags">
+            <span class="badge badge-accent">High Score ★</span>
+            <span class="badge">E-commerce</span>
+            <span class="badge">TikTok Ads</span>
+          </div>
+          <h3>E-commerce de nicho bate recorde com TikTok</h3>
+          <p>ROAS de 9x no primeiro mês de TikTok Ads. Produto chegou a viral orgânico. Faturamento mensal 4x em 60 dias.</p>
+          <a class="case-link" href="#">Ver case completo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ DEPOIMENTOS ██ -->
+<section class="testi-bg">
+  <div class="container">
+    <div class="section-eyebrow">05 · Players</div>
+    <h2 class="section-h2">O que os<br>players dizem.</h2>
+    <p class="section-intro">Sem depoimento genérico, sem "ótimo atendimento". Só resultado com nome e cargo.</p>
+    <div class="bs-grid-3">
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Trocamos a última agência pela 2P e, em 90 dias, nosso CPA caiu 42%. A diferença é que eles pensam junto com a gente — não só entregam relatório."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">MR</div>
+          <div>
+            <div class="recipe-player__name">Marcelo Ribas</div>
+            <div class="recipe-player__role">CMO · Acme Logística</div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Em 6 meses, saímos de R$30k pra R$200k de faturamento. A 2P praticamente jogou co-op com a gente — eles sentiram a pressão de resultado tanto quanto a gente."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">JL</div>
+          <div>
+            <div class="recipe-player__name">Juliana Lima</div>
+            <div class="recipe-player__role">Fundadora · Studio JL</div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Pela primeira vez eu entendo o que está sendo feito com meu budget. Dashboard ao vivo, reunião semanal objetiva. Nunca mais agência que some depois de fechar contrato."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">RP</div>
+          <div>
+            <div class="recipe-player__name">Rafael Pinto</div>
+            <div class="recipe-player__role">CEO · Distribuidora Pinto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ SAVE POINT / CTA ██ -->
+<section id="cta" style="padding: 0;">
+  <section class="recipe-save-point">
+    <h2>CHECKPOINT.<br>E AGORA?</h2>
+    <p>Você leu até aqui. Isso significa que o funil está vazando ou o ROAS está baixo. A 2P resolve isso — começa com 20 minutos de diagnóstico, sem compromisso.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a class="btn btn-xl" href="https://wa.me/55" style="background: var(--neutral-950); color: var(--brand-primary);">FALAR COM A 2P →</a>
+      <a class="btn btn-ghost btn-lg" href="#cases" style="border-color: var(--neutral-950); color: var(--neutral-950);">Ver cases antes</a>
+    </div>
+  </section>
+</section>
+
+<!-- ██ FAQ ██ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-eyebrow">06 · FAQ</div>
+    <h2 class="section-h2">Perguntas<br>frequentes.</h2>
+    <div class="faq-grid">
+      <div>
+        <details class="accordion">
+          <summary>Quanto custa trabalhar com a 2P?</summary>
+          <div class="accordion-body">Modelo de fee mensal atrelado a resultado. O valor varia conforme o escopo, volume de mídia e complexidade. Diagnóstico é gratuito — a proposta vem depois.</div>
+        </details>
+        <details class="accordion">
+          <summary>Em quanto tempo vejo resultado?</summary>
+          <div class="accordion-body">Depende do canal. Mídia paga: primeiros dados relevantes em 2 semanas. Otimização real: 45–90 dias. SEO: 3–6 meses. A gente é transparente sobre prazos — não prometemos mágica.</div>
+        </details>
+        <details class="accordion">
+          <summary>Vocês trabalham com qualquer segmento?</summary>
+          <div class="accordion-body">Não. Temos foco em e-commerce, SaaS, serviços B2B e negócios locais de médio porte. Se não for nosso forte, falamos isso na primeira conversa.</div>
+        </details>
+      </div>
+      <div>
+        <details class="accordion">
+          <summary>Como funciona o acompanhamento?</summary>
+          <div class="accordion-body">Dashboard ao vivo (você acessa quando quiser), reunião semanal de 30 minutos e retro mensal completa. Canal direto com o time — sem intermediário.</div>
+        </details>
+        <details class="accordion">
+          <summary>Qual o contrato mínimo?</summary>
+          <div class="accordion-body">3 meses. Menos do que isso não dá tempo pra testar, aprender e otimizar. A gente não assina contratos de 12 meses logo de cara — queremos ganhar a renovação com resultado.</div>
+        </details>
+        <details class="accordion">
+          <summary>A 2P gerencia o budget de mídia?</summary>
+          <div class="accordion-body">Sim. O budget fica em contas do cliente (você é o dono), a 2P gerencia. Total transparência — você vê cada centavo gasto em tempo real.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ██ FOOTER ██ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/logo-lettering-neon.png" alt="Dois Palitos Growth Lab" />
+        <p>A agência de performance que joga co-op com você. Mídia paga, criativo e analytics rodando em modo hardcore.</p>
+        <div style="margin-top: 24px; display: flex; gap: 12px;">
+          <a class="btn btn-sm btn-ghost" href="#">Instagram</a>
+          <a class="btn btn-sm btn-ghost" href="#">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Missões</h4>
+        <ul>
+          <li><a href="#">Mídia Paga</a></li>
+          <li><a href="#">Criativo</a></li>
+          <li><a href="#">SEO</a></li>
+          <li><a href="#">CRO</a></li>
+          <li><a href="#">CRM</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>2P Lab</h4>
+        <ul>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Cases</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>contato@doispalitosmkt.com.br</li>
+          <li><a class="btn btn-sm btn-whatsapp" href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 · Dois Palitos Growth Lab</span>
+      <span>Bit System v2.0 · feito em modo hardcore</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

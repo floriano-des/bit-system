@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Seções · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { background: var(--neutral-black); padding-bottom: 120px; }
+  .page-header { max-width: 1440px; margin: 0 auto; padding: 48px 64px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; border-bottom: 1px solid var(--neutral-800); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--neon); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--fg-muted); max-width: 720px; line-height: 1.6; }
+
+  .section-label {
+    max-width: 1440px; margin: 56px auto 16px; padding: 0 64px;
+    font-family: var(--font-mono); font-weight: 700; font-size: 14px;
+    color: var(--fg-subtle); letter-spacing: var(--ls-overline); text-transform: uppercase;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::after { content: ""; flex: 1; height: 1px; background: var(--neutral-800); }
+
+  .demo-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+  .demo-stage {
+    border: 1px solid var(--neutral-800);
+    background: var(--neutral-black);
+    overflow: hidden;
+  }
+
+  /* ---- NAVBAR demo ---- */
+  .nav-wrap { background: var(--neutral-black); }
+
+  /* ---- HERO demo ---- */
+  .hero {
+    background:
+      radial-gradient(ellipse at 10% 0%, rgba(0,255,209,0.12), transparent 60%),
+      radial-gradient(ellipse at 100% 100%, rgba(255,0,255,0.10), transparent 60%),
+      var(--neutral-black);
+    padding: 96px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .hero-kicker { display: inline-flex; gap: 8px; align-items: center; font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--neon); background: var(--neutral-900); border: 1px solid var(--neutral-800); padding: 8px 14px; margin-bottom: 20px; }
+  .hero-kicker .dot { width: 8px; height: 8px; background: var(--neon); animation: bit-blink 1s steps(2) infinite; }
+  .hero h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; color: var(--neon); text-transform: uppercase; margin: 0 0 24px; text-shadow: 4px 4px 0 var(--fuchsia); }
+  .hero p { font-family: var(--font-mono); font-size: 20px; line-height: 1.5; color: var(--fg-muted); margin: 0 0 32px; max-width: 540px; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .console-visual {
+    background: var(--neutral-900);
+    border: 4px solid var(--neutral-50);
+    aspect-ratio: 1;
+    position: relative;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .console-visual::before {
+    content: "● ● ●";
+    position: absolute;
+    top: 12px; left: 20px;
+    color: var(--neon);
+    font-size: 14px;
+    letter-spacing: 6px;
+  }
+  .console-line { font-family: var(--font-mono); font-size: 14px; color: var(--fg-muted); }
+  .console-line .prompt { color: var(--neon); }
+  .console-line .value { color: var(--fuchsia); }
+  .bar { display: flex; align-items: center; gap: 12px; }
+  .bar .name { font-family: var(--font-mono); font-size: 12px; color: var(--fg-subtle); width: 60px; text-transform: uppercase; letter-spacing: var(--ls-wide); }
+  .bar .track { flex: 1; height: 16px; background: var(--neutral-800); position: relative; }
+  .bar .fill { height: 100%; background: var(--neon); }
+  .bar .val { font-family: var(--font-pixel); font-size: 20px; color: var(--neon); width: 60px; text-align: right; }
+
+  /* ---- CTA demo ---- */
+  .cta-big {
+    padding: 96px 64px;
+    background: var(--neon);
+    color: var(--neutral-black);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-big::before, .cta-big::after {
+    content: "★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★";
+    position: absolute;
+    left: 0; right: 0;
+    font-family: var(--font-pixel);
+    font-size: 24px;
+    color: var(--fuchsia);
+    letter-spacing: 32px;
+    opacity: .7;
+  }
+  .cta-big::before { top: 16px; }
+  .cta-big::after { bottom: 16px; }
+  .cta-big h2 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; text-transform: uppercase; margin: 0 0 24px; }
+  .cta-big p { font-family: var(--font-mono); font-size: 20px; max-width: 600px; margin: 0 auto 32px; line-height: 1.5; }
+
+  /* ---- Testimonial ---- */
+  .testimonial-sec {
+    padding: 96px 64px;
+    background: var(--tolopea-900);
+  }
+  .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+  .testimonial {
+    background: var(--neutral-black);
+    border: 1px solid var(--neutral-800);
+    padding: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .testimonial .stars { color: var(--warning); font-family: var(--font-pixel); font-size: 24px; letter-spacing: 4px; }
+  .testimonial p { font-family: var(--font-mono); font-size: 16px; line-height: 1.6; color: var(--fg); margin: 0; }
+  .testimonial .author { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+  .testimonial .avatar { width: 40px; height: 40px; background: var(--neon); color: var(--neutral-black); display: grid; place-items: center; font-family: var(--font-pixel); font-size: 20px; }
+  .testimonial .name { font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: var(--fg); }
+  .testimonial .role { font-family: var(--font-mono); font-size: 12px; color: var(--fg-subtle); }
+
+  /* ---- Footer ---- */
+  .foot {
+    background: var(--neutral-black);
+    padding: 64px 64px 32px;
+    border-top: 4px solid var(--neon);
+  }
+  .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+  .foot-col h4 { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--fg-subtle); margin: 0 0 16px; }
+  .foot-col a { display: block; font-family: var(--font-mono); font-size: 14px; color: var(--fg); text-decoration: none; padding: 4px 0; }
+  .foot-col a:hover { color: var(--neon); }
+  .foot-bottom { max-width: 1200px; margin: 48px auto 0; padding-top: 24px; border-top: 1px solid var(--neutral-800); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--fg-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  .foot-logo img { height: 40px; }
+  .foot-logo p { font-family: var(--font-mono); font-size: 14px; color: var(--fg-muted); line-height: 1.5; max-width: 300px; margin-top: 16px; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / seções</a>
+    <h1>Seções</h1>
+  </div>
+  <div class="intro">Blocos montados — hero, nav, CTA, depoimentos e footer. Copy / cola direto na landing.</div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<div class="section-label">01 · Navbar (institucional + top bar)</div>
+<div class="demo-wrapper">
+  <div class="demo-stage nav-wrap">
+    <div class="navbar-top">
+      <div>◉ Atendendo agora · Player 1 ready</div>
+      <div style="display: flex; gap: 24px">
+        <span>hello@2pgrowth.com</span>
+        <span>+55 11 99999-0000</span>
+      </div>
+    </div>
+    <div class="navbar">
+      <img src="../assets/logo-lettering-neon.png" alt="doispalitos" style="height: 32px;">
+      <div style="display: flex; gap: 32px">
+        <a href="#">Serviços</a>
+        <a href="#">Cases</a>
+        <a href="#">Manifesto</a>
+        <a href="#">Carreira</a>
+        <a href="#">Blog</a>
+      </div>
+      <button class="btn btn-primary btn-sm">Press Start</button>
+    </div>
+  </div>
+</div>
+
+<div class="section-label">02 · Hero</div>
+<div class="demo-wrapper">
+  <div class="demo-stage">
+    <section class="hero scanlines">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-kicker"><span class="dot"></span> NEW MISSION UNLOCKED</div>
+          <h1>Level up<br>seu funil.</h1>
+          <p>Estratégia, mídia paga e conteúdo rodando 24/7. Sem placar mentiroso. Só resultado que o CFO entende.</p>
+          <div class="hero-ctas">
+            <button class="btn btn-primary btn-lg">Agendar diagnóstico</button>
+            <button class="btn btn-ghost btn-lg">Ver cases</button>
+          </div>
+        </div>
+        <div class="console-visual">
+          <div class="console-line"><span class="prompt">&gt;</span> running dois-palitos.sh<span class="fx-cursor"></span></div>
+          <div class="console-line"><span class="prompt">$</span> clients_active = <span class="value">38</span></div>
+          <div class="console-line"><span class="prompt">$</span> roas_avg      = <span class="value">4.3x</span></div>
+          <div class="console-line"><span class="prompt">$</span> level_up_time = <span class="value">90d</span></div>
+          <div style="margin-top: 16px"></div>
+          <div class="bar"><div class="name">CAC</div><div class="track"><div class="fill" style="width: 35%; background: var(--success)"></div></div><div class="val">-42%</div></div>
+          <div class="bar"><div class="name">ROAS</div><div class="track"><div class="fill" style="width: 85%"></div></div><div class="val">+320%</div></div>
+          <div class="bar"><div class="name">LTV</div><div class="track"><div class="fill" style="width: 65%; background: var(--fuchsia)"></div></div><div class="val">+210%</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="section-label">03 · CTA</div>
+<div class="demo-wrapper">
+  <div class="demo-stage">
+    <section class="cta-big">
+      <h2>Insert coin.</h2>
+      <p>Uma call de 30 minutos, zero apresentação-placebo. A gente abre seu dashboard e aponta os 3 vazamentos mais caros.</p>
+      <button class="btn btn-accent btn-lg">Agendar diagnóstico grátis</button>
+    </section>
+  </div>
+</div>
+
+<div class="section-label">04 · Depoimentos</div>
+<div class="demo-wrapper">
+  <div class="demo-stage">
+    <section class="testimonial-sec">
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Trocamos a agência antiga pela 2P. Em 90 dias, CPA caiu 42% e a gente passou a entender o funil."</p>
+          <div class="author">
+            <div class="avatar">MR</div>
+            <div>
+              <div class="name">Marcelo Ribas</div>
+              <div class="role">CMO · Acme Logística</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Nunca tive um parceiro que entregava relatório com a mesma franqueza que o time interno. É rara a honestidade aqui."</p>
+          <div class="author">
+            <div class="avatar" style="background: var(--fuchsia)">JS</div>
+            <div>
+              <div class="name">Julia Seixas</div>
+              <div class="role">Head Growth · TechX</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p>"Co-op mode é real. Ficam lado a lado, não acima. Em 6 meses, dobramos o número de leads SQL."</p>
+          <div class="author">
+            <div class="avatar" style="background: var(--warning)">CP</div>
+            <div>
+              <div class="name">Carlos Penna</div>
+              <div class="role">CEO · FinOps BR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="section-label">05 · Footer</div>
+<div class="demo-wrapper">
+  <div class="demo-stage">
+    <footer class="foot">
+      <div class="foot-grid">
+        <div class="foot-logo">
+          <img src="../assets/logo-lettering-neon.png" alt="doispalitos">
+          <p>Growth lab brasileira. A gente bota ficha junto com você até o próximo high score.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Serviços</h4>
+          <a href="#">Performance</a>
+          <a href="#">Conteúdo</a>
+          <a href="#">CRM &amp; Automação</a>
+          <a href="#">Estratégia</a>
+        </div>
+        <div class="foot-col">
+          <h4>Empresa</h4>
+          <a href="#">Manifesto</a>
+          <a href="#">Cases</a>
+          <a href="#">Carreira</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contato</h4>
+          <a href="#">hello@2pgrowth.com</a>
+          <a href="#">+55 11 99999-0000</a>
+          <a href="#">São Paulo · Brasil</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 doispalitos growth lab · cnpj 00.000.000/0001-00</span>
+        <span>built with <span style="color: var(--error)">♥</span> + Bit System</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<script>
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.theme-toggle button').forEach(b => {
+    b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+  });
+  localStorage.setItem('bs-theme', mode);
+}
+const saved = localStorage.getItem('bs-theme');
+if (saved) setTheme(saved);
+</script>
+</body>
+</html>

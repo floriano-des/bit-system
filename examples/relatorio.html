@@ -1,0 +1,1224 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Relatório de Performance · 2P Growth Lab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+
+/* ============================================================
+   RELATÓRIO DE PERFORMANCE · 2P GROWTH LAB
+   Dark theme — dashboard-style — monthly report template
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+/* ── REPORT SHELL ───────────────────────────────────────── */
+.report-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* ── SIDEBAR ────────────────────────────────────────────── */
+.sidebar {
+  background: var(--neutral-900);
+  border-right: 1px solid var(--color-border);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-brand {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+.sidebar-logo {
+  font-family: var(--font-pixel);
+  font-size: 28px;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.sidebar-doc-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+.sidebar-meta {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+.sidebar-meta .meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-subtle);
+  padding: 4px 0;
+}
+.sidebar-meta .meta-row strong {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+.sidebar-nav {
+  padding: 16px 0;
+  flex: 1;
+}
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  text-decoration: none;
+  transition: all var(--motion-fast) var(--ease-smooth);
+}
+.sidebar-nav a:hover {
+  background: var(--neutral-800);
+  color: var(--color-text);
+}
+.sidebar-nav a.active {
+  background: var(--neutral-800);
+  color: var(--brand-primary);
+  border-left: 2px solid var(--brand-primary);
+}
+.sidebar-nav a .nav-dot {
+  width: 6px; height: 6px;
+  background: var(--color-border-strong);
+  flex-shrink: 0;
+}
+.sidebar-nav a.active .nav-dot { background: var(--brand-primary); }
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-subtle);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ── MAIN CONTENT ───────────────────────────────────────── */
+.main-content {
+  overflow-x: hidden;
+}
+
+/* ── SECTION ────────────────────────────────────────────── */
+.report-section {
+  padding: 48px 56px;
+  border-bottom: 1px solid var(--color-border);
+}
+.report-section:last-child { border-bottom: none; }
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: 32px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1;
+}
+.section-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-subtle);
+}
+
+/* ── KPI CARDS ──────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.kpi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--kpi-color, var(--color-border-strong));
+}
+.kpi-card .kpi-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 10px;
+}
+.kpi-card .kpi-value {
+  font-family: var(--font-pixel);
+  font-size: 40px;
+  color: var(--color-text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.kpi-card .kpi-value em {
+  font-style: normal;
+  color: var(--kpi-color, var(--brand-primary));
+}
+.kpi-card .kpi-delta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.kpi-card .kpi-delta.up { color: var(--color-success); }
+.kpi-card .kpi-delta.down { color: var(--color-danger); }
+.kpi-card .kpi-delta.neutral { color: var(--color-text-subtle); }
+.kpi-card .kpi-prev {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-subtle);
+  margin-top: 2px;
+}
+
+/* ── CHART BAR ──────────────────────────────────────────── */
+.chart-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 24px;
+}
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.chart-title {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+.chart-legend {
+  display: flex;
+  gap: 16px;
+}
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-subtle);
+}
+.chart-legend-dot {
+  width: 8px; height: 8px;
+  flex-shrink: 0;
+}
+
+/* CSS Bar Chart */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 160px;
+  padding-bottom: 0;
+}
+.bar-group {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  flex: 1;
+}
+.bar-col {
+  flex: 1;
+  min-height: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.bar-col .bar-fill {
+  background: var(--bar-color, var(--brand-primary));
+  opacity: 0.85;
+  transition: opacity var(--motion-base) var(--ease-smooth);
+}
+.bar-col:hover .bar-fill { opacity: 1; }
+.bar-col .bar-val {
+  position: absolute;
+  top: -20px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
+.bar-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-text-subtle);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+.bar-axis {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+.bar-axis-labels {
+  display: flex;
+  gap: 8px;
+}
+.bar-axis-label {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+/* ── LINE / AREA CHART ──────────────────────────────────── */
+.sparkline-wrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 24px;
+}
+.sparkline-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.sparkline-row:last-child { border-bottom: none; }
+.sparkline-info { width: 160px; flex-shrink: 0; }
+.sparkline-metric {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-bottom: 4px;
+}
+.sparkline-val {
+  font-family: var(--font-pixel);
+  font-size: 24px;
+  color: var(--color-text);
+  line-height: 1;
+}
+.sparkline-delta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-top: 2px;
+}
+.sparkline-delta.up { color: var(--color-success); }
+.sparkline-delta.down { color: var(--color-danger); }
+.sparkline-svg-wrap { flex: 1; height: 44px; }
+.sparkline-svg-wrap svg { width: 100%; height: 100%; }
+
+/* ── FUNNEL ─────────────────────────────────────────────── */
+.funnel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.funnel-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.funnel-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  width: 120px;
+  flex-shrink: 0;
+}
+.funnel-bar-wrap {
+  flex: 1;
+  background: var(--color-surface-raised);
+  height: 32px;
+  position: relative;
+}
+.funnel-bar-fill {
+  height: 100%;
+  background: var(--funnel-color, var(--brand-primary));
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--neutral-950);
+  min-width: 60px;
+}
+.funnel-pct {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-subtle);
+  width: 48px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── INSIGHT CARDS ──────────────────────────────────────── */
+.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.insight-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.insight-card .insight-icon {
+  font-family: var(--font-pixel);
+  font-size: 24px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+.insight-card .insight-title {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+.insight-card .insight-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+.insight-card.positive { border-left: 3px solid var(--color-success); }
+.insight-card.negative { border-left: 3px solid var(--color-danger); }
+.insight-card.neutral  { border-left: 3px solid var(--color-warning); }
+.insight-card.action   { border-left: 3px solid var(--brand-primary); }
+.insight-card.positive .insight-icon { color: var(--color-success); }
+.insight-card.negative .insight-icon { color: var(--color-danger); }
+.insight-card.neutral  .insight-icon { color: var(--color-warning); }
+.insight-card.action   .insight-icon { color: var(--brand-primary); }
+
+/* ── CAMPAIGN TABLE ─────────────────────────────────────── */
+.report-table { width: 100%; border-collapse: collapse; }
+.report-table thead th {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  padding: 8px 12px;
+  text-align: left;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border-strong);
+}
+.report-table tbody td {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+.report-table tbody tr:last-child td { border-bottom: none; }
+.report-table tbody tr:hover td { background: var(--color-surface); }
+.report-table td.num {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  color: var(--color-text);
+}
+.report-table td .badge-status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  padding: 2px 8px;
+}
+.report-table td .badge-status.good { background: var(--color-success-bg); color: var(--color-success); }
+.report-table td .badge-status.warn { background: var(--color-warning-bg); color: var(--color-warning); }
+.report-table td .badge-status.bad  { background: var(--color-danger-bg);  color: var(--color-danger); }
+
+/* ── PROGRESS BAR ───────────────────────────────────────── */
+.progress-bar {
+  height: 4px;
+  background: var(--color-surface-raised);
+  width: 80px;
+  display: inline-block;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--bar-color, var(--brand-primary));
+}
+
+/* ── HEADER ─────────────────────────────────────────────── */
+.report-header {
+  background: var(--neutral-950);
+  border-bottom: 2px solid var(--brand-primary);
+  padding: 24px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.report-header .header-title {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+.report-header .header-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  margin-top: 2px;
+}
+.report-header .header-actions { display: flex; gap: 8px; }
+
+/* ── PRINT ──────────────────────────────────────────────── */
+@media print {
+  .report-grid { display: block; }
+  .sidebar { display: none; }
+  .main-content { width: 100%; }
+  .report-section { page-break-inside: avoid; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="report-grid">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">2P</div>
+      <div class="sidebar-doc-label">Relatório de Performance</div>
+    </div>
+
+    <div class="sidebar-meta">
+      <div class="meta-row">
+        <span>Cliente</span>
+        <strong id="report-client">— Editar —</strong>
+      </div>
+      <div class="meta-row">
+        <span>Período</span>
+        <strong id="report-period">Abr 2026</strong>
+      </div>
+      <div class="meta-row">
+        <span>Responsável</span>
+        <strong>2P Growth Lab</strong>
+      </div>
+      <div class="meta-row">
+        <span>Versão</span>
+        <strong>v1.0</strong>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#overview" class="active">
+        <div class="nav-dot"></div> Overview
+      </a>
+      <a href="#trafego">
+        <div class="nav-dot"></div> Tráfego Pago
+      </a>
+      <a href="#social">
+        <div class="nav-dot"></div> Social Media
+      </a>
+      <a href="#funil">
+        <div class="nav-dot"></div> Funil
+      </a>
+      <a href="#campanhas">
+        <div class="nav-dot"></div> Campanhas
+      </a>
+      <a href="#insights">
+        <div class="nav-dot"></div> Insights
+      </a>
+      <a href="#proximo">
+        <div class="nav-dot"></div> Próximo mês
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="../index.html" style="color:var(--color-text-subtle);text-decoration:none;">← Bit System Hub</a>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main-content">
+
+    <!-- Header -->
+    <div class="report-header">
+      <div>
+        <div class="header-title">Relatório Mensal · Abril 2026</div>
+        <div class="header-sub">Performance — Canais Digitais · 2P Growth Lab</div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-ghost btn-sm" onclick="window.print()">⬡ Exportar PDF</button>
+        <button class="btn btn-primary btn-sm" onclick="toggleTheme()">◑ Tema</button>
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 1 · OVERVIEW
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="overview">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">01 · Overview</div>
+          <h2 class="section-title">Resumo do mês</h2>
+        </div>
+        <div class="section-badge">Abril 2026</div>
+      </div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card" style="--kpi-color: var(--neon-500);">
+          <div class="kpi-label">Investimento total</div>
+          <div class="kpi-value">R$ <em>18.4k</em></div>
+          <div class="kpi-delta neutral">→ Dentro do budget</div>
+          <div class="kpi-prev">Meta: R$ 20.000</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color: var(--green-400);">
+          <div class="kpi-label">Receita atribuída</div>
+          <div class="kpi-value">R$ <em>74k</em></div>
+          <div class="kpi-delta up">▲ +22% vs. março</div>
+          <div class="kpi-prev">Março: R$ 60.7k</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color: var(--fuchsia-500);">
+          <div class="kpi-label">ROAS geral</div>
+          <div class="kpi-value"><em>4.0</em>x</div>
+          <div class="kpi-delta up">▲ +0.4 vs. março</div>
+          <div class="kpi-prev">Março: 3.6x</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color: var(--amber-400);">
+          <div class="kpi-label">Leads gerados</div>
+          <div class="kpi-value"><em>312</em></div>
+          <div class="kpi-delta up">▲ +18% vs. março</div>
+          <div class="kpi-prev">Março: 264</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="kpi-card" style="--kpi-color:var(--tolopea-300);">
+          <div class="kpi-label">Custo por lead (CPL)</div>
+          <div class="kpi-value">R$ <em>59</em></div>
+          <div class="kpi-delta up">▼ -12% vs. março</div>
+          <div class="kpi-prev">Março: R$ 67</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--green-400);">
+          <div class="kpi-label">Taxa de conversão</div>
+          <div class="kpi-value"><em>18</em><span style="font-size:24px;color:var(--color-text-subtle);">%</span></div>
+          <div class="kpi-delta up">▲ +3pp vs. março</div>
+          <div class="kpi-prev">Março: 15%</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 2 · TRÁFEGO PAGO
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="trafego">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">02 · Tráfego Pago</div>
+          <h2 class="section-title">Meta & Google</h2>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+
+        <!-- Meta Ads -->
+        <div class="chart-wrap">
+          <div class="chart-header">
+            <div class="chart-title">Meta Ads</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-subtle);">ROAS: <strong style="color:var(--neon-500);">3.8x</strong></div>
+          </div>
+          <div class="bar-chart" id="meta-chart">
+            <!-- rendered by JS -->
+          </div>
+          <div class="bar-axis-labels" id="meta-labels"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:20px;">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">Investido</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--color-text);">R$ 11.2k</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">Receita</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--neon-500);">R$ 42.5k</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">CPL</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--color-text);">R$ 48</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Ads -->
+        <div class="chart-wrap">
+          <div class="chart-header">
+            <div class="chart-title">Google Ads</div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-subtle);">ROAS: <strong style="color:var(--fuchsia-500);">4.4x</strong></div>
+          </div>
+          <div class="bar-chart" id="google-chart"></div>
+          <div class="bar-axis-labels" id="google-labels"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:20px;">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">Investido</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--color-text);">R$ 7.2k</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">Receita</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--fuchsia-400);">R$ 31.5k</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);">CPC Médio</div>
+              <div style="font-family:var(--font-pixel);font-size:22px;color:var(--color-text);">R$ 2.80</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sparklines -->
+      <div class="sparkline-wrap">
+        <div class="chart-header">
+          <div class="chart-title">Tendência — últimas 4 semanas</div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">Impressões</div>
+            <div class="sparkline-val">487k</div>
+            <div class="sparkline-delta up">▲ +14%</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,35 50,28 100,20 150,14 200,8" stroke="var(--neon-500)" stroke-width="2" fill="none"/>
+              <polyline points="0,44 0,35 50,28 100,20 150,14 200,8 200,44" fill="var(--neon-500)" opacity="0.1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">Cliques</div>
+            <div class="sparkline-val">12.4k</div>
+            <div class="sparkline-delta up">▲ +8%</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,30 50,26 100,32 150,18 200,12" stroke="var(--fuchsia-500)" stroke-width="2" fill="none"/>
+              <polyline points="0,44 0,30 50,26 100,32 150,18 200,12 200,44" fill="var(--fuchsia-500)" opacity="0.1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">CTR Médio</div>
+            <div class="sparkline-val">2.5%</div>
+            <div class="sparkline-delta down">▼ -0.3pp</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,10 50,14 100,12 150,20 200,24" stroke="var(--amber-400)" stroke-width="2" fill="none"/>
+              <polyline points="0,44 0,10 50,14 100,12 150,20 200,24 200,44" fill="var(--amber-400)" opacity="0.1"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 3 · SOCIAL MEDIA
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="social">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">03 · Social Media</div>
+          <h2 class="section-title">Orgânico</h2>
+        </div>
+      </div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px;">
+        <div class="kpi-card" style="--kpi-color:var(--fuchsia-500);">
+          <div class="kpi-label">Seguidores ganhos</div>
+          <div class="kpi-value"><em>+842</em></div>
+          <div class="kpi-delta up">▲ +31% vs. março</div>
+          <div class="kpi-prev">Total: 14.2k</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--neon-500);">
+          <div class="kpi-label">Alcance total</div>
+          <div class="kpi-value"><em>68k</em></div>
+          <div class="kpi-delta up">▲ +19%</div>
+          <div class="kpi-prev">Março: 57k</div>
+        </div>
+        <div class="kpi-card" style="--kpi-color:var(--amber-400);">
+          <div class="kpi-label">Taxa de engajamento</div>
+          <div class="kpi-value"><em>4.2</em>%</div>
+          <div class="kpi-delta neutral">→ Estável</div>
+          <div class="kpi-prev">Março: 4.0%</div>
+        </div>
+      </div>
+
+      <div class="sparkline-wrap">
+        <div class="chart-header">
+          <div class="chart-title">Top posts do mês</div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">Reels · Bastidores</div>
+            <div class="sparkline-val">12.8k</div>
+            <div class="sparkline-delta up">▲ Alcance</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,40 60,10 120,6 200,4" stroke="var(--fuchsia-500)" stroke-width="2.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">Carrossel · Dicas</div>
+            <div class="sparkline-val">8.4k</div>
+            <div class="sparkline-delta up">▲ Salvamentos</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,40 80,20 140,14 200,10" stroke="var(--neon-500)" stroke-width="2.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+        <div class="sparkline-row">
+          <div class="sparkline-info">
+            <div class="sparkline-metric">Story · Case</div>
+            <div class="sparkline-val">6.1k</div>
+            <div class="sparkline-delta neutral">→ Views</div>
+          </div>
+          <div class="sparkline-svg-wrap">
+            <svg viewBox="0 0 200 44" fill="none" preserveAspectRatio="none">
+              <polyline points="0,30 50,28 100,22 150,24 200,20" stroke="var(--amber-400)" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 4 · FUNIL
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="funil">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">04 · Funil de Conversão</div>
+          <h2 class="section-title">Jornada</h2>
+        </div>
+      </div>
+
+      <div class="funnel">
+        <div class="funnel-step">
+          <div class="funnel-label">Impressões</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--tolopea-400);width:100%;">487,000</div>
+          </div>
+          <div class="funnel-pct">100%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Cliques</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--neon-600);width:2.5%;">12,400</div>
+          </div>
+          <div class="funnel-pct">2.5%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Visitas site</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--neon-500);width:2.1%;">10,200</div>
+          </div>
+          <div class="funnel-pct">2.1%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Leads</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--fuchsia-600);width:0.064%;">312</div>
+          </div>
+          <div class="funnel-pct">3.1%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Oportunidades</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--fuchsia-500);width:0.024%;">118</div>
+          </div>
+          <div class="funnel-pct">38%</div>
+        </div>
+        <div class="funnel-step">
+          <div class="funnel-label">Vendas</div>
+          <div class="funnel-bar-wrap">
+            <div class="funnel-bar-fill" style="--funnel-color:var(--amber-400);width:0.011%;">56</div>
+          </div>
+          <div class="funnel-pct">18%</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;">
+        <div style="background:var(--color-surface);border:1px solid var(--color-border);padding:16px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:6px;">Lead → Oportunidade</div>
+          <div style="font-family:var(--font-pixel);font-size:32px;color:var(--neon-500);">38%</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-success);">▲ +5pp vs. março</div>
+        </div>
+        <div style="background:var(--color-surface);border:1px solid var(--color-border);padding:16px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:6px;">Oport. → Venda</div>
+          <div style="font-family:var(--font-pixel);font-size:32px;color:var(--neon-500);">47%</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-success);">▲ +3pp vs. março</div>
+        </div>
+        <div style="background:var(--color-surface);border:1px solid var(--color-border);padding:16px;text-align:center;">
+          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:var(--ls-overline);text-transform:uppercase;color:var(--color-text-subtle);margin-bottom:6px;">Ticket médio</div>
+          <div style="font-family:var(--font-pixel);font-size:32px;color:var(--neon-500);">R$ 1.3k</div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--color-text-subtle);">→ Estável</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 5 · CAMPANHAS
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="campanhas">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">05 · Campanhas Ativas</div>
+          <h2 class="section-title">Detalhamento</h2>
+        </div>
+      </div>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Campanha</th>
+            <th>Canal</th>
+            <th>Investimento</th>
+            <th>Leads</th>
+            <th>CPL</th>
+            <th>ROAS</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:var(--color-text);">Conversão — Produto A</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Público: Lookalike 2%</span></td>
+            <td><span style="color:var(--fuchsia-400);">Meta</span></td>
+            <td class="num">R$ 4.8k</td>
+            <td class="num">128</td>
+            <td class="num">R$ 37</td>
+            <td class="num" style="color:var(--neon-500);">4.2x</td>
+            <td><span class="badge-status good">✓ Ótimo</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--color-text);">Remarketing — Carrinho</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Público: Site 30 dias</span></td>
+            <td><span style="color:var(--fuchsia-400);">Meta</span></td>
+            <td class="num">R$ 2.1k</td>
+            <td class="num">64</td>
+            <td class="num">R$ 33</td>
+            <td class="num" style="color:var(--neon-500);">5.1x</td>
+            <td><span class="badge-status good">✓ Ótimo</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--color-text);">Geração de Leads — B2B</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Formulário nativo</span></td>
+            <td><span style="color:var(--fuchsia-400);">Meta</span></td>
+            <td class="num">R$ 4.3k</td>
+            <td class="num">96</td>
+            <td class="num">R$ 45</td>
+            <td class="num" style="color:var(--amber-400);">2.8x</td>
+            <td><span class="badge-status warn">⚠ Otimizar</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--color-text);">Search — Marca</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Branded keywords</span></td>
+            <td><span style="color:var(--tolopea-300);">Google</span></td>
+            <td class="num">R$ 1.8k</td>
+            <td class="num">48</td>
+            <td class="num">R$ 38</td>
+            <td class="num" style="color:var(--neon-500);">6.2x</td>
+            <td><span class="badge-status good">✓ Ótimo</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--color-text);">Search — Concorrência</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Competitor keywords</span></td>
+            <td><span style="color:var(--tolopea-300);">Google</span></td>
+            <td class="num">R$ 2.6k</td>
+            <td class="num">52</td>
+            <td class="num">R$ 50</td>
+            <td class="num" style="color:var(--neon-500);">3.8x</td>
+            <td><span class="badge-status good">✓ Bom</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:var(--color-text);">Performance Max</strong><br><span style="font-size:10px;color:var(--color-text-subtle);">Todos os inventários</span></td>
+            <td><span style="color:var(--tolopea-300);">Google</span></td>
+            <td class="num">R$ 2.8k</td>
+            <td class="num">24</td>
+            <td class="num">R$ 116</td>
+            <td class="num" style="color:var(--red-400);">1.8x</td>
+            <td><span class="badge-status bad">✕ Pausar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 6 · INSIGHTS
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="insights">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">06 · Análise Estratégica</div>
+          <h2 class="section-title">Insights do mês</h2>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-card positive">
+          <div class="insight-icon">★</div>
+          <div>
+            <div class="insight-title">ROAS acima da meta</div>
+            <div class="insight-text">Campanhas de conversão Meta atingiram 4.2x de ROAS, superando a meta de 3.5x. A segmentação por Lookalike 2% performou melhor que o esperado. Recomendamos manter e expandir verba em 20%.</div>
+          </div>
+        </div>
+        <div class="insight-card negative">
+          <div class="insight-icon">✕</div>
+          <div>
+            <div class="insight-title">Performance Max abaixo</div>
+            <div class="insight-text">A campanha PMax no Google Ads está com ROAS de 1.8x — abaixo do break-even de 2.5x. A causa provável é o inventário de Display consumindo budget sem gerar conversões. Recomendar pausa imediata.</div>
+          </div>
+        </div>
+        <div class="insight-card neutral">
+          <div class="insight-icon">⚠</div>
+          <div>
+            <div class="insight-title">CTR em queda leve</div>
+            <div class="insight-text">O CTR médio caiu de 2.8% para 2.5% nas campanhas Meta. Os criativos estão completamente saturados — frequência acima de 6x. Necessário renovar o portfólio de anúncios em até 2 semanas.</div>
+          </div>
+        </div>
+        <div class="insight-card action">
+          <div class="insight-icon">▶</div>
+          <div>
+            <div class="insight-title">Oportunidade: remarketing</div>
+            <div class="insight-text">A campanha de remarketing de carrinho tem o melhor CPL do mês (R$ 33) e ROAS de 5.1x. Recomendamos aumentar o budget em R$ 1.500/mês e expandir o público para visitantes de produto nos últimos 60 dias.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════
+         SECTION 7 · PRÓXIMO MÊS
+         ══════════════════════════════════════════════════ -->
+    <section class="report-section" id="proximo">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">07 · Próximo Mês</div>
+          <h2 class="section-title">Plano maio 2026</h2>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+        <div>
+          <div style="font-family:var(--font-pixel);font-size:16px;text-transform:uppercase;color:var(--color-text);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--neon-500);">Ações prioritárias</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);">
+              <span style="color:var(--neon-500);flex-shrink:0;">01</span>
+              Pausar campanha Performance Max e realocar verba (+R$ 2.8k) para Search
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);">
+              <span style="color:var(--neon-500);flex-shrink:0;">02</span>
+              Renovar portfólio de criativos Meta — mínimo 6 peças novas
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);">
+              <span style="color:var(--neon-500);flex-shrink:0;">03</span>
+              Expandir remarketing para audiência de 60 dias (+R$ 1.5k)
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);">
+              <span style="color:var(--neon-500);flex-shrink:0;">04</span>
+              Implementar automação de e-mail para leads não qualificados
+            </li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);">
+              <span style="color:var(--neon-500);flex-shrink:0;">05</span>
+              Testar novo objetivo de campanha no Meta: Mensagens WhatsApp
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-family:var(--font-pixel);font-size:16px;text-transform:uppercase;color:var(--color-text);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--color-border-strong);">Metas maio</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--color-border);">
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);">ROAS geral</span>
+              <span style="font-family:var(--font-pixel);font-size:22px;color:var(--neon-500);">4.2x</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--color-border);">
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);">Leads</span>
+              <span style="font-family:var(--font-pixel);font-size:22px;color:var(--neon-500);">360</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--color-border);">
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);">CPL meta</span>
+              <span style="font-family:var(--font-pixel);font-size:22px;color:var(--neon-500);">R$ 50</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-subtle);">Receita atribuída</span>
+              <span style="font-family:var(--font-pixel);font-size:22px;color:var(--neon-500);">R$ 84k</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div style="background:var(--color-surface);border:1px solid var(--color-border);padding:24px 28px;display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+        <div>
+          <div style="font-family:var(--font-pixel);font-size:22px;color:var(--brand-primary);margin-bottom:4px;">2P Growth Lab</div>
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);letter-spacing:var(--ls-wide);">contato@doispalitosmkt.com.br · @doispalitosmkt</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);letter-spacing:var(--ls-wide);text-transform:uppercase;margin-bottom:4px;">Próxima reunião</div>
+          <div style="font-family:var(--font-pixel);font-size:24px;color:var(--color-text);">05/05/2026</div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+
+<script>
+// ── Sidebar active nav on scroll
+const sections = document.querySelectorAll('.report-section');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+function updateNav() {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateNav);
+
+// ── Smooth scroll
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ── Theme toggle
+function toggleTheme() {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+}
+
+// ── Bar charts (CSS-only, data driven)
+function renderBars(containerId, labelId, data, color) {
+  const max = Math.max(...data.map(d => d.val));
+  const container = document.getElementById(containerId);
+  const labelContainer = document.getElementById(labelId);
+  if (!container) return;
+
+  container.innerHTML = data.map(d => `
+    <div class="bar-col" style="flex:1;">
+      <span class="bar-val">${d.label2 || ''}</span>
+      <div class="bar-fill" style="height:${Math.max(4, (d.val/max)*140)}px;background:${color};opacity:0.85;transition:opacity 0.2s;"></div>
+    </div>
+  `).join('');
+
+  if (labelContainer) {
+    labelContainer.style.cssText = 'display:flex;gap:8px;margin-top:8px;';
+    labelContainer.innerHTML = data.map(d => `
+      <div style="flex:1;font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-subtle);text-align:center;">${d.label}</div>
+    `).join('');
+  }
+}
+
+const weeks = [
+  {label:'S1', val:3200, label2:'3.2k'},
+  {label:'S2', val:4100, label2:'4.1k'},
+  {label:'S3', val:3800, label2:'3.8k'},
+  {label:'S4', val:5300, label2:'5.3k'},
+];
+const googleWeeks = [
+  {label:'S1', val:1800, label2:'1.8k'},
+  {label:'S2', val:1600, label2:'1.6k'},
+  {label:'S3', val:2200, label2:'2.2k'},
+  {label:'S4', val:2600, label2:'2.6k'},
+];
+
+renderBars('meta-chart', 'meta-labels', weeks, 'var(--fuchsia-500)');
+renderBars('google-chart', 'google-labels', googleWeeks, 'var(--tolopea-400)');
+
+// ── Report meta
+const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const now = new Date();
+const periodEl = document.getElementById('report-period');
+if (periodEl) periodEl.textContent = months[now.getMonth()].substring(0,3) + ' ' + now.getFullYear();
+
+// ── Editable client name
+const clientEl = document.getElementById('report-client');
+if (clientEl) {
+  clientEl.style.cursor = 'pointer';
+  clientEl.title = 'Clique para editar';
+  clientEl.addEventListener('click', () => {
+    const v = prompt('Nome do cliente:', clientEl.textContent.trim());
+    if (v) clientEl.textContent = v;
+  });
+}
+</script>
+
+</body>
+</html>

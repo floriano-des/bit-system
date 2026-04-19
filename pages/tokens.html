@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Tokens · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 720px; line-height: 1.6; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  section { margin-top: 56px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+  .grid-tokens { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  .token-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .token-card .preview { height: 72px; display: grid; place-items: center; position: relative; overflow: hidden; }
+  .token-card .token { font-family: var(--font-mono); font-weight: 700; font-size: 12px; color: var(--brand-primary); letter-spacing: var(--ls-overline); text-transform: uppercase; }
+  .token-card .value { font-family: var(--font-mono); font-size: 13px; color: var(--color-text-muted); }
+
+  .bar { background: var(--brand-primary); height: 14px; min-width: 4px; }
+
+  .radius-card .preview { background: var(--color-surface-raised); }
+  .radius-card .preview .chip { width: 48px; height: 48px; background: var(--brand-primary); }
+
+  .shadow-card .preview { background: var(--color-surface-raised); }
+  .shadow-card .preview .chip { width: 56px; height: 40px; background: var(--color-text); }
+
+  .size-card .preview { background: var(--color-surface-raised); justify-content: flex-start; padding: 8px; }
+
+  /* Motion demo */
+  .motion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .motion-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 24px; }
+  .motion-card .label { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 16px; }
+  .motion-card .demo-btn { display: inline-block; background: var(--brand-primary); color: var(--brand-primary-ink); padding: 10px 20px; font-family: var(--font-mono); font-weight: 700; font-size: 13px; text-transform: uppercase; cursor: pointer; }
+  .motion-card .demo-btn:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--brand-accent); }
+
+  /* Z-index table */
+  .z-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .z-card { background: var(--color-surface); border: var(--border-1) solid var(--color-border); padding: 16px; text-align: center; }
+  .z-card .z-val { font-family: var(--font-pixel); font-size: 40px; color: var(--brand-primary); line-height: 1; }
+  .z-card .z-name { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / fundamentos</a>
+    <h1>Tokens</h1>
+    <p class="intro">Grade de 4px. Tudo se alinha. Espaçamento, raios, sombras, motion, tamanhos e z-index do Bit System.</p>
+  </div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<section>
+  <h2 class="section-title">Espaçamento</h2>
+  <div class="section-sub">baseado em 4px · token: --space-{n}</div>
+  <div class="grid-tokens" id="spacing"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Raios de borda</h2>
+  <div class="section-sub">baixos, pra preservar estética retrô — token: --radius-{name}</div>
+  <div class="grid-tokens" id="radii"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Sombras</h2>
+  <div class="section-sub">offset sólido, sem blur — pixel style — token: --shadow-{name}</div>
+  <div class="grid-tokens" id="shadows"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Tamanhos</h2>
+  <div class="section-sub">ícones e hit targets — token: --size-{name}</div>
+  <div class="grid-tokens" id="sizes"></div>
+</section>
+
+<section>
+  <h2 class="section-title">Motion</h2>
+  <div class="section-sub">duração + easing — linguagem retrô — tokens: --motion-{speed}, --ease-{name}</div>
+  <div class="motion-grid">
+    <div class="motion-card">
+      <div class="label">--ease-pixel · steps(8)</div>
+      <div class="demo-btn" style="transition: transform 200ms steps(8, end), box-shadow 200ms steps(8,end);">Hover me</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);margin:12px 0 0;">Step animation 8-bit. Use em hovers de elementos de marca.</p>
+    </div>
+    <div class="motion-card">
+      <div class="label">--ease-smooth · cubic-bezier</div>
+      <div class="demo-btn" style="transition: transform 200ms cubic-bezier(0.2,0.8,0.2,1), box-shadow 200ms cubic-bezier(0.2,0.8,0.2,1);">Hover me</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);margin:12px 0 0;">Padrão para botões, cards e transições de UI.</p>
+    </div>
+    <div class="motion-card">
+      <div class="label">--ease-out-back · overshoots</div>
+      <div class="demo-btn" style="transition: transform 300ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 300ms cubic-bezier(0.34,1.56,0.64,1);">Hover me</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-muted);margin:12px 0 0;">Para modais, dropdowns e aparições com personalidade.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="section-title">Z-index</h2>
+  <div class="section-sub">camadas de profundidade — token: --z-{name}</div>
+  <div class="z-grid">
+    <div class="z-card"><div class="z-val">0</div><div class="z-name">--z-base</div></div>
+    <div class="z-card"><div class="z-val">10</div><div class="z-name">--z-raised</div></div>
+    <div class="z-card"><div class="z-val">100</div><div class="z-name">--z-overlay</div></div>
+    <div class="z-card"><div class="z-val">1k</div><div class="z-name">--z-modal</div></div>
+    <div class="z-card"><div class="z-val">2k</div><div class="z-name">--z-toast</div></div>
+  </div>
+</section>
+
+<script>
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.theme-toggle button').forEach(b => {
+    b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+  });
+  localStorage.setItem('bs-theme', mode);
+}
+const saved = localStorage.getItem('bs-theme');
+if (saved) setTheme(saved);
+
+// Spacing — valores corretos do tokens.css
+const spacing = [
+  ['space-1','4px'],['space-2','8px'],['space-3','12px'],['space-4','16px'],
+  ['space-5','20px'],['space-6','24px'],['space-8','32px'],['space-10','40px'],
+  ['space-12','48px'],['space-16','64px'],['space-20','80px'],['space-24','96px'],
+];
+document.getElementById('spacing').innerHTML = spacing.map(([t,v])=>`
+  <div class="token-card">
+    <div class="preview" style="justify-content:flex-start;padding:8px;background:var(--color-surface-raised);">
+      <div class="bar" style="width:${v};max-width:100%;"></div>
+    </div>
+    <div class="token">--${t}</div>
+    <div class="value">${v}</div>
+  </div>`).join('');
+
+// Radii — nomes corretos do tokens.css
+const radii = [
+  ['radius-none','0px','Botões CTA — visual retrô'],
+  ['radius-xs','2px','Badges e labels'],
+  ['radius-sm','4px','Inputs e botões'],
+  ['radius-md','6px','Cards menores'],
+  ['radius-lg','8px','Cards e containers'],
+  ['radius-xl','12px','Modais e drawers'],
+  ['radius-2xl','16px','Componentes grandes'],
+  ['radius-full','9999px','Pill — evitar no DS'],
+];
+document.getElementById('radii').innerHTML = radii.map(([t,v,note])=>`
+  <div class="token-card radius-card">
+    <div class="preview">
+      <div class="chip" style="border-radius:${v};width:56px;height:56px;background:var(--brand-primary);"></div>
+    </div>
+    <div class="token">--${t}</div>
+    <div class="value">${v}</div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);">${note}</div>
+  </div>`).join('');
+
+// Shadows — tokens corretos do sistema
+const shadows = [
+  ['shadow-sm',  '2px 2px 0 var(--neutral-950)'],
+  ['shadow-md',  '4px 4px 0 var(--neutral-950)'],
+  ['shadow-lg',  '8px 8px 0 var(--neutral-950)'],
+  ['shadow-brand',  '4px 4px 0 var(--brand-primary)'],
+  ['shadow-accent', '4px 4px 0 var(--brand-accent)'],
+  ['shadow-inset',  'inset 0 0 0 2px var(--brand-primary)'],
+];
+document.getElementById('shadows').innerHTML = shadows.map(([t,v])=>`
+  <div class="token-card shadow-card">
+    <div class="preview">
+      <div class="chip" style="box-shadow:${v};width:56px;height:40px;background:var(--color-text);"></div>
+    </div>
+    <div class="token">--${t}</div>
+    <div class="value" style="font-size:11px;">${v}</div>
+  </div>`).join('');
+
+// Sizes
+const sizes = [
+  ['size-icon-xs','12px','Icon extra small'],
+  ['size-icon-sm','16px','Icon small'],
+  ['size-icon-md','20px','Icon medium'],
+  ['size-icon-lg','24px','Icon large (padrão)'],
+  ['size-icon-xl','32px','Icon XL'],
+  ['size-icon-2xl','48px','Icon 2XL'],
+  ['size-hit','44px','Hit target mínimo (a11y)'],
+];
+document.getElementById('sizes').innerHTML = sizes.map(([t,v,note])=>`
+  <div class="token-card size-card">
+    <div class="preview">
+      <div style="width:${v};height:${v};background:var(--brand-primary);max-width:100%;"></div>
+    </div>
+    <div class="token">--${t}</div>
+    <div class="value">${v}</div>
+    <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);">${note}</div>
+  </div>`).join('');
+</script>
+</body>
+</html>

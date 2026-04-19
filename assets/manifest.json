@@ -1,0 +1,175 @@
+{
+  "$metadata": {
+    "system": "Bit System",
+    "version": "2.0.0",
+    "brand": "2P Growth Lab (Dois Palitos)",
+    "updated": "2026-04-18",
+    "description": "Catálogo completo de assets visuais da 2P Growth Lab. Use este arquivo para selecionar o asset correto com base no contexto de aplicação.",
+    "base_path": "assets/"
+  },
+
+  "logos": {
+    "lettering": {
+      "$description": "Logo principal com texto 'doispalitos growth lab' em lowercase. 5 versões de cor.",
+      "$note": "Nunca distorcer, rotacionar, aplicar efeito, trocar a cor ou adicionar outline.",
+      "$clearspace": "Mínimo: altura da letra 'd' do lettering em todos os 4 lados.",
+      "$formats": ["PNG com transparência"],
+
+      "neon": {
+        "file": "logo-lettering-neon.png",
+        "path": "assets/logo-lettering-neon.png",
+        "color": "#00FFD1",
+        "background_recommended": "#100F0F",
+        "background_hex": "#100F0F",
+        "use_when": "Fundo preto ou escuro. Combinação-assinatura da marca. Uso padrão digital.",
+        "use_cases": ["site institucional dark", "social media dark", "apresentações dark", "email signature dark"],
+        "avoid": "Fundos claros, fundos neon, fundos coloridos sem contraste suficiente"
+      },
+      "black": {
+        "file": "logo-lettering-black.png",
+        "path": "assets/logo-lettering-black.png",
+        "color": "#100F0F",
+        "background_recommended": "#FAFAFA",
+        "background_hex": "#FAFAFA",
+        "use_when": "Fundo branco ou claro. Documentos, print, propostas comerciais.",
+        "use_cases": ["propostas PDF light", "documentos Word", "assinatura de e-mail light", "materiais impressos"],
+        "avoid": "Fundos escuros"
+      },
+      "white": {
+        "file": "logo-lettering-white.png",
+        "path": "assets/logo-lettering-white.png",
+        "color": "#FFFFFF",
+        "background_recommended": "cores vivas (neon, fúchsia, tolopea, gradientes)",
+        "background_hex_examples": ["#00FFD1", "#FF00FF", "#2409A9"],
+        "use_when": "Sobre backgrounds muito coloridos onde nem neon nem preto têm contraste.",
+        "use_cases": ["banners sobre gradiente", "headers com background neon", "materiais de evento"],
+        "avoid": "Fundos claros ou brancos"
+      },
+      "tolopea": {
+        "file": "logo-lettering-tolopea.png",
+        "path": "assets/logo-lettering-tolopea.png",
+        "color": "#2409A9",
+        "background_recommended": "#00FFD1",
+        "background_hex": "#00FFD1",
+        "use_when": "Fundo neon (#00FFD1). Banners e headers de destaque.",
+        "use_cases": ["banners neon", "CTAs visuais", "materiais promocionais"],
+        "avoid": "Fundos escuros ou neutros"
+      },
+      "fuchsia": {
+        "file": "logo-lettering-fuchsia.png",
+        "path": "assets/logo-lettering-fuchsia.png",
+        "color": "#FF00FF",
+        "background_recommended": "#100F0F",
+        "background_hex": "#100F0F",
+        "use_when": "Variação de acento. Usar com parcimônia — não é o logo padrão.",
+        "use_cases": ["campanhas especiais", "peças de destaque pontual", "variação para eventos"],
+        "avoid": "Uso cotidiano (reservar para momentos especiais)"
+      }
+    },
+
+    "symbol": {
+      "$description": "Símbolo 2P em pixel art. Para usos compactos onde o lettering não cabe.",
+      "$format": "SVG inline (path pixel art)",
+      "$grid": "16x16 pixels",
+      "$rendering": "shape-rendering: crispEdges (nunca suavizar)",
+      "$note": "Usar fill='currentColor' e controlar cor via CSS.",
+
+      "file": "logo-symbol.svg",
+      "path": "assets/logo-symbol.svg",
+      "use_when": "Favicon, avatar, ícone de app, watermark em vídeo, uso compacto abaixo de 48px.",
+      "min_size": "16px (abaixo disso perde legibilidade)",
+      "recommended_sizes": ["16px", "32px", "48px", "64px", "128px"],
+      "avoid": "Tamanhos intermediários não-múltiplos de 16 (causa anti-alias indesejado)",
+
+      "variants": {
+        "neon-on-black":    { "fill": "#00FFD1", "background": "#100F0F", "use": "Padrão dark" },
+        "black-on-neon":    { "fill": "#100F0F", "background": "#00FFD1", "use": "Inversão para fundo neon" },
+        "neon-on-tolopea":  { "fill": "#00FFD1", "background": "#2409A9", "use": "Variação estrutural" },
+        "black-on-white":   { "fill": "#100F0F", "background": "#FAFAFA", "use": "Versão light" }
+      },
+
+      "svg_path": "M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z",
+      "svg_usage": "<svg viewBox='0 0 16 16' shape-rendering='crispEdges'><path fill='currentColor' d='M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z'/></svg>"
+    }
+  },
+
+  "icons": {
+    "$description": "Sistema de ícones de linha da 2P. Todos seguem o mesmo grid e estilo.",
+    "$style": "outline / linha",
+    "$grid": "24x24",
+    "$stroke_width": "2px",
+    "$stroke_linecap": "square",
+    "$stroke_linejoin": "miter",
+    "$color": "currentColor",
+    "$format": "SVG inline via sprite ou individual",
+    "$file": "assets/icons.svg",
+
+    "usage_html": "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='square'><use href='assets/icons.svg#icon-name'/></svg>",
+
+    "categories": {
+      "general": {
+        "$description": "Ícones de uso geral para UI",
+        "arrow-right": { "id": "general-01", "use_when": "Links, CTAs, navegação para frente" },
+        "arrow-left":  { "id": "general-02", "use_when": "Voltar, navegação para trás" },
+        "check":       { "id": "general-03", "use_when": "Confirmação, seleção, sucesso" },
+        "close":       { "id": "general-04", "use_when": "Fechar, remover, cancelar" },
+        "plus":        { "id": "general-05", "use_when": "Adicionar, expandir, novo" },
+        "minus":       { "id": "general-06", "use_when": "Remover, colapsar" },
+        "menu":        { "id": "general-07", "use_when": "Menu hamburger, navegação mobile" },
+        "search":      { "id": "general-08", "use_when": "Busca, filtro" }
+      },
+      "performance": {
+        "$description": "Ícones para métricas e performance (contexto 2P)",
+        "chart-up":    { "id": "perf-01", "use_when": "Métricas subindo, ROAS positivo, growth" },
+        "chart-down":  { "id": "perf-02", "use_when": "Redução de custo (CPA/CAC caindo)" },
+        "target":      { "id": "perf-03", "use_when": "Objetivo, meta, resultado esperado" },
+        "lightning":   { "id": "perf-04", "use_when": "Performance, velocidade, power-up" },
+        "trophy":      { "id": "perf-05", "use_when": "High score, resultado excepcional, case" }
+      },
+      "gamer_pixel": {
+        "$description": "Pixel icons para toques de marca. Usar com moderação.",
+        "$style": "fill / pixel art",
+        "$grid": "16x16",
+        "$rendering": "crispEdges",
+        "heart":  { "use_when": "Curtida, favorito, easter egg de marca" },
+        "coin":   { "use_when": "INSERT COIN, início de projeto, investimento" }
+      }
+    }
+  },
+
+  "selection_guide": {
+    "$description": "Guia rápido para seleção de asset dado um contexto.",
+    "rules": [
+      {
+        "context": "Header/navbar dark",
+        "asset": "logo-lettering-neon.png",
+        "rationale": "Combinação-assinatura da marca"
+      },
+      {
+        "context": "Proposta comercial (PDF/print)",
+        "asset": "logo-lettering-black.png",
+        "rationale": "Contraste adequado em papel branco"
+      },
+      {
+        "context": "Favicon / ícone de app",
+        "asset": "logo-symbol.svg com fill #00FFD1 em fundo #100F0F",
+        "rationale": "Símbolo compacto, legível em tamanho pequeno"
+      },
+      {
+        "context": "Banner sobre gradiente neon→fúchsia",
+        "asset": "logo-lettering-white.png",
+        "rationale": "Branco garante contraste sobre qualquer gradiente vibrante"
+      },
+      {
+        "context": "Post Instagram dark",
+        "asset": "logo-lettering-neon.png",
+        "rationale": "Visual de marca forte e reconhecível"
+      },
+      {
+        "context": "Avatar / perfil social",
+        "asset": "logo-symbol.svg variante neon-on-black 400x400px",
+        "rationale": "Legibilidade em círculo e quadrado"
+      }
+    ]
+  }
+}

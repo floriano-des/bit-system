@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Componentes · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 32px; margin-bottom: 48px; padding-bottom: 32px;
+    border-bottom: var(--border-1) solid var(--color-border);
+  }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 600px; line-height: 1.6; }
+
+  .theme-toggle { display: flex; gap: 0; border: var(--border-1) solid var(--color-border); align-self: flex-start; }
+  .theme-toggle button { background: transparent; border: 0; color: var(--color-text-muted); padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--fs-caption); letter-spacing: var(--ls-wide); text-transform: uppercase; cursor: pointer; }
+  .theme-toggle button[aria-pressed="true"] { background: var(--brand-primary); color: var(--brand-primary-ink); }
+
+  .comp-section { margin-top: 64px; border-top: var(--border-1) solid var(--color-border); padding-top: 48px; }
+  .comp-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .comp-sub   { font-family: var(--font-mono); font-size: 13px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 28px; }
+
+  .demo {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    padding: 32px;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+    margin-bottom: 8px;
+  }
+  .demo.col   { flex-direction: column; align-items: stretch; gap: 8px; }
+  .demo.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .demo.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .demo-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+    letter-spacing: var(--ls-overline); text-transform: uppercase;
+    color: var(--color-text-subtle); margin: 20px 0 8px;
+  }
+  .demo-label:first-child { margin-top: 0; }
+
+  .spec-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+  .spec-table th, .spec-table td { font-family: var(--font-mono); font-size: 13px; padding: 10px 14px; border-bottom: var(--border-1) solid var(--color-border); text-align: left; }
+  .spec-table th { font-weight: 700; font-size: 11px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); background: var(--color-surface); }
+  .spec-table td:first-child { color: var(--brand-primary); font-weight: 600; font-family: var(--font-mono); }
+  .spec-table td { color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / componentes</a>
+    <h1>Componentes</h1>
+    <p class="intro">Botões, inputs, badges, cards, accordions, alerts. Todos os estados cobertos. Todos os tokens semânticos. Dark-first com suporte a light.</p>
+  </div>
+  <div class="theme-toggle" role="group" aria-label="Tema">
+    <button aria-pressed="true" onclick="setTheme('dark')">Dark</button>
+    <button aria-pressed="false" onclick="setTheme('light')">Light</button>
+  </div>
+</div>
+
+<!-- ══ BOTÕES ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Botões</h2>
+  <div class="comp-sub">3 variantes · 4 tamanhos · 5 estados · máximo 1 primary por tela</div>
+
+  <div class="demo-label">Variantes principais</div>
+  <div class="demo">
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-accent">Accent</button>
+    <button class="btn btn-ghost">Ghost</button>
+    <button class="btn btn-danger">Danger</button>
+    <button class="btn btn-whatsapp">
+      <svg width="16" height="16"><use href="../assets/icons.svg#bs-whatsapp"/></svg>
+      WhatsApp
+    </button>
+  </div>
+
+  <div class="demo-label">Tamanhos (primary)</div>
+  <div class="demo">
+    <button class="btn btn-primary btn-sm">Small</button>
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-primary btn-lg">Large</button>
+    <button class="btn btn-primary btn-xl">INSERT COIN →</button>
+  </div>
+
+  <div class="demo-label">Estados</div>
+  <div class="demo">
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-primary" disabled>Disabled</button>
+    <button class="btn btn-primary" data-loading>Loading</button>
+    <button class="btn btn-ghost">Ghost default</button>
+    <button class="btn btn-ghost" disabled>Ghost disabled</button>
+  </div>
+
+  <div class="demo-label">Com ícone</div>
+  <div class="demo">
+    <button class="btn btn-primary">
+      <svg width="16" height="16"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      Power-up ativo
+    </button>
+    <button class="btn btn-ghost">
+      Ver cases
+      <svg width="16" height="16"><use href="../assets/icons.svg#bs-arrow-right"/></svg>
+    </button>
+    <button class="btn btn-accent">
+      <svg width="16" height="16"><use href="../assets/icons.svg#bs-trophy"/></svg>
+      High Score
+    </button>
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th>Classe</th><th>Uso</th><th>Restrição</th></tr></thead>
+    <tbody>
+      <tr><td>.btn-primary</td><td>CTA principal</td><td>Máximo 1 por viewport</td></tr>
+      <tr><td>.btn-accent</td><td>CTA secundário de destaque</td><td>Hovers, variações de campanha</td></tr>
+      <tr><td>.btn-ghost</td><td>Ação secundária</td><td>Nunca sozinho como única ação</td></tr>
+      <tr><td>.btn-danger</td><td>Ações destrutivas</td><td>Confirmação obrigatória antes</td></tr>
+      <tr><td>.btn-xl</td><td>CTA hero com VT323 28px</td><td>Apenas em save points e heroes</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══ BADGES ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Badges</h2>
+  <div class="comp-sub">status · tags · labels de marca · ao vivo</div>
+
+  <div class="demo-label">Variantes</div>
+  <div class="demo">
+    <span class="badge">Default</span>
+    <span class="badge badge-brand">Brand · Neon</span>
+    <span class="badge badge-accent">Accent · Fúchsia</span>
+    <span class="badge badge-deep">Deep · Tolopea</span>
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-warning">Warning</span>
+    <span class="badge badge-danger">Danger</span>
+  </div>
+
+  <div class="demo-label">Com ícone e estado live</div>
+  <div class="demo">
+    <span class="badge badge-brand">
+      <svg width="12" height="12"><use href="../assets/icons.svg#bs-bolt"/></svg>
+      POWER-UP
+    </span>
+    <span class="badge badge-success">
+      <svg width="12" height="12"><use href="../assets/icons.svg#bs-check"/></svg>
+      CHECKPOINT
+    </span>
+    <span class="badge badge-live badge-brand">AO VIVO</span>
+    <span class="badge badge-live badge-danger">URGENTE</span>
+    <span class="badge badge-live badge-success">ATIVO</span>
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th>Classe</th><th>Cor</th><th>Uso típico</th></tr></thead>
+    <tbody>
+      <tr><td>.badge-brand</td><td>#00FFD1 neon</td><td>"NEW", "LIVE", "HIGH SCORE", destaques primários</td></tr>
+      <tr><td>.badge-accent</td><td>#FF00FF fúchsia</td><td>Novidades, campanhas especiais, power-ups</td></tr>
+      <tr><td>.badge-deep</td><td>#2409A9 tolopea</td><td>Categoria, status estrutural, versão</td></tr>
+      <tr><td>.badge-live</td><td>currentColor piscante</td><td>Ao vivo, online, transmitindo</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══ INPUTS ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Inputs</h2>
+  <div class="comp-sub">text · email · select · textarea · checkbox · radio</div>
+
+  <div class="demo-label">Campos de texto e select</div>
+  <div class="demo grid2">
+    <div>
+      <label class="label">Nome completo</label>
+      <input class="input" type="text" placeholder="Como chama o Player 1?" />
+      <span class="field-help">Nome como aparece no CNPJ.</span>
+    </div>
+    <div>
+      <label class="label">E-mail</label>
+      <input class="input" type="email" value="email@invalido" aria-invalid="true" />
+      <span class="field-error">E-mail inválido — revise e tente de novo.</span>
+    </div>
+    <div>
+      <label class="label">Faturamento mensal</label>
+      <select class="input">
+        <option>Selecione...</option>
+        <option>Até R$ 100k</option>
+        <option>R$ 100k – 500k</option>
+        <option selected>R$ 500k – 2M</option>
+        <option>R$ 2M+</option>
+      </select>
+    </div>
+    <div>
+      <label class="label">Mensagem</label>
+      <textarea class="input" rows="3" placeholder="Qual boss você quer derrotar?"></textarea>
+    </div>
+  </div>
+
+  <div class="demo-label">Checkbox &amp; radio</div>
+  <div class="demo" style="gap: 24px; align-items: flex-start;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="checkbox" class="checkbox" checked /> Mídia paga performance
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="checkbox" class="checkbox" /> Conteúdo &amp; social
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="checkbox" class="checkbox" checked /> CRM &amp; automação
+      </label>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="radio" class="radio" name="budget" checked /> Até R$ 5k/mês em mídia
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="radio" class="radio" name="budget" /> R$ 5k – 20k/mês em mídia
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; font-family:var(--font-mono); font-size:15px; color:var(--color-text); cursor:pointer;">
+        <input type="radio" class="radio" name="budget" /> R$ 20k+/mês em mídia
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CARDS ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Cards</h2>
+  <div class="comp-sub">base · sombra neon · sombra fúchsia · hover interativo</div>
+
+  <div class="demo-label">Variantes de sombra</div>
+  <div class="demo grid3">
+    <div class="card">
+      <span class="badge" style="margin-bottom:12px;">Base</span>
+      <h3 style="font-family:var(--font-pixel);font-size:32px;text-transform:uppercase;color:var(--color-text);margin:0 0 8px;">Sem sombra</h3>
+      <p style="font-family:var(--font-mono);font-size:14px;color:var(--color-text-muted);margin:0;line-height:1.6;">Para conteúdo secundário e listas.</p>
+    </div>
+    <div class="card card--brand">
+      <span class="badge badge-brand" style="margin-bottom:12px;">Brand</span>
+      <h3 style="font-family:var(--font-pixel);font-size:32px;text-transform:uppercase;color:var(--brand-primary);margin:0 0 8px;">Shadow neon</h3>
+      <p style="font-family:var(--font-mono);font-size:14px;color:var(--color-text-muted);margin:0;line-height:1.6;">Para cards de destaque primário.</p>
+    </div>
+    <div class="card card--accent">
+      <span class="badge badge-accent" style="margin-bottom:12px;">Accent</span>
+      <h3 style="font-family:var(--font-pixel);font-size:32px;text-transform:uppercase;color:var(--brand-accent);margin:0 0 8px;">Shadow fúchsia</h3>
+      <p style="font-family:var(--font-mono);font-size:14px;color:var(--color-text-muted);margin:0;line-height:1.6;">Campanhas e destaques de acento.</p>
+    </div>
+  </div>
+
+  <div class="demo-label">Hover interativo — passe o mouse</div>
+  <div class="demo grid3">
+    <div class="card card--hover">
+      <div style="font-family:var(--font-pixel);font-size:72px;color:var(--brand-primary);line-height:1;">+320%</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);margin:8px 0 0;letter-spacing:var(--ls-wide);text-transform:uppercase;">ROAS médio · 12 co-ops</p>
+    </div>
+    <div class="card card--hover">
+      <div style="font-family:var(--font-pixel);font-size:72px;color:var(--brand-primary);line-height:1;">-42%</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);margin:8px 0 0;letter-spacing:var(--ls-wide);text-transform:uppercase;">CPA médio · 90 dias</p>
+    </div>
+    <div class="card card--hover">
+      <div style="font-family:var(--font-pixel);font-size:72px;color:var(--brand-primary);line-height:1;">38</div>
+      <p style="font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);margin:8px 0 0;letter-spacing:var(--ls-wide);text-transform:uppercase;">Clientes co-op ativo</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ALERTS ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Alerts</h2>
+  <div class="comp-sub">feedback inline · estados · notificações</div>
+
+  <div class="demo col">
+    <div class="alert alert-success">
+      <svg width="20" height="20" style="flex-shrink:0;color:var(--color-success)"><use href="../assets/icons.svg#bs-check"/></svg>
+      <div><strong>Checkpoint!</strong> Campanha publicada com sucesso. Level up iniciado.</div>
+    </div>
+    <div class="alert alert-warning">
+      <svg width="20" height="20" style="flex-shrink:0;color:var(--color-warning)"><use href="../assets/icons.svg#bs-alert"/></svg>
+      <div><strong>Atenção.</strong> CAC subiu 12% esta semana. Recomendamos revisão da segmentação.</div>
+    </div>
+    <div class="alert alert-danger">
+      <svg width="20" height="20" style="flex-shrink:0;color:var(--color-danger)"><use href="../assets/icons.svg#bs-close"/></svg>
+      <div><strong>Erro crítico.</strong> Budget esgotado antes do previsto. Campanha pausada automaticamente.</div>
+    </div>
+    <div class="alert alert-info">
+      <svg width="20" height="20" style="flex-shrink:0;color:var(--color-info)"><use href="../assets/icons.svg#bs-info"/></svg>
+      <div><strong>Novidade.</strong> Nova feature de relatório disponível no seu HUD.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACCORDION ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Accordion</h2>
+  <div class="comp-sub">FAQ · seções colapsáveis · perguntas frequentes</div>
+
+  <div class="demo col">
+    <details class="accordion" open>
+      <summary>Em quanto tempo vejo resultado?</summary>
+      <div class="accordion-body">Os primeiros ajustes saem nas 2 primeiras semanas. O <em>level up</em> real acontece entre 60 e 90 dias — quando cruzamos dados de mídia, site, CRM e atendimento com dado real.</div>
+    </details>
+    <details class="accordion">
+      <summary>Qual o contrato mínimo?</summary>
+      <div class="accordion-body">3 meses. Menos do que isso não dá tempo para testar, aprender e otimizar. A 2P não assina contratos de 12 meses logo de cara — queremos ganhar a renovação com resultado.</div>
+    </details>
+    <details class="accordion">
+      <summary>Vocês gerenciam o budget de mídia?</summary>
+      <div class="accordion-body">Sim. O budget fica em contas do cliente — você é o dono. A 2P gerencia e você vê cada centavo gasto em tempo real no dashboard.</div>
+    </details>
+  </div>
+</section>
+
+<!-- ══ NAVBAR ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Navbar</h2>
+  <div class="comp-sub">.navbar-top (topo de aviso) + .navbar (barra principal)</div>
+
+  <div style="border: var(--border-1) solid var(--color-border); overflow: hidden;">
+    <div class="navbar-top">
+      <span>◉ Player 2 mode: ativado</span>
+      <span>contato@doispalitosmkt.com.br</span>
+    </div>
+    <div class="navbar" style="position: static;">
+      <img src="../assets/logo-lettering-neon.png" alt="doispalitos" style="height: 28px;" />
+      <div style="display: flex; gap: 32px;">
+        <a href="#">Missões</a>
+        <a href="#">Cases</a>
+        <a href="#">Manifesto</a>
+        <a href="#">Blog</a>
+      </div>
+      <button class="btn btn-primary btn-sm">PRESS START</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LAYOUT ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Layout Helpers</h2>
+  <div class="comp-sub">container · grid · stack · row</div>
+
+  <div class="demo-label">Grids</div>
+  <div class="demo col" style="gap: 16px;">
+    <div class="bs-grid-2">
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-2 · col 1</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-2 · col 2</div>
+    </div>
+    <div class="bs-grid-3">
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-3 · col 1</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-3 · col 2</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-3 · col 3</div>
+    </div>
+    <div class="bs-grid-4">
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-4</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-4</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-4</div>
+      <div class="card" style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--color-text-subtle);">.bs-grid-4</div>
+    </div>
+  </div>
+
+  <div class="demo-label">Row e Stack</div>
+  <div class="demo col" style="gap: 16px;">
+    <div class="bs-row" style="background:var(--color-surface-raised);padding:16px;">
+      <button class="btn btn-primary btn-sm">.bs-row</button>
+      <button class="btn btn-ghost btn-sm">flex horizontal</button>
+      <button class="btn btn-ghost btn-sm">gap 16px</button>
+      <button class="btn btn-ghost btn-sm">wrap</button>
+    </div>
+    <div class="bs-stack" style="background:var(--color-surface-raised);padding:16px;">
+      <div class="card">.bs-stack · item 1</div>
+      <div class="card">.bs-stack · item 2 (gap 16px automático)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EFEITOS ══ -->
+<section class="comp-section">
+  <h2 class="comp-title">Efeitos de marca</h2>
+  <div class="comp-sub">scanlines · cursor piscante · pixelate</div>
+
+  <div class="demo">
+    <div class="card fx-scanlines" style="flex:1;min-height:120px;display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-pixel);font-size:32px;color:var(--brand-primary);">.fx-scanlines</span>
+    </div>
+    <div class="card" style="flex:1;min-height:120px;display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-pixel);font-size:32px;color:var(--brand-primary);">READY_<span class="fx-cursor"></span></span>
+    </div>
+    <div class="card" style="flex:1;min-height:120px;display:flex;align-items:center;justify-content:center;background:var(--brand-primary);">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges" width="64" height="64" class="fx-pixelate">
+        <path fill="#100F0F" d="M1,2 h5 v1 h1 v4 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h-1 v1 h5 v2 h-7 v-2 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-1 h1 v-2 h-4 v1 h-2 v-2 h1 z M9,2 h6 v1 h1 v5 h-1 v1 h-4 v5 h-2 z M11,4 v3 h3 v-3 z"/>
+      </svg>
+    </div>
+  </div>
+
+  <table class="spec-table">
+    <thead><tr><th>Classe</th><th>Efeito</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td>.fx-scanlines</td><td>Overlay de linhas CRT via ::after</td><td>Fundos escuros, heroes, banners</td></tr>
+      <tr><td>.fx-cursor</td><td>Bloco piscante ▊ via ::after</td><td>Consoles, CTAs, finais de linha</td></tr>
+      <tr><td>.fx-pixelate</td><td>image-rendering: pixelated</td><td>Logos SVG, ícones pixel art</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.theme-toggle button').forEach(b => {
+    b.setAttribute('aria-pressed', b.textContent.toLowerCase() === mode);
+  });
+  localStorage.setItem('bs-theme', mode);
+}
+const saved = localStorage.getItem('bs-theme');
+if (saved) setTheme(saved);
+</script>
+</body>
+</html>

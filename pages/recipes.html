@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Recipes · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 0 0 120px; max-width: 100%; }
+  .shell { padding: 48px 64px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 720px; line-height: 1.6; }
+
+  section { margin-top: 56px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+
+  /* Code block */
+  .code-block {
+    background: var(--neutral-950);
+    border: var(--border-1) solid var(--neutral-800);
+    padding: 20px 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--neon-400);
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+    margin-top: 12px;
+  }
+  .code-block .kw { color: var(--fuchsia-400); }
+  .code-block .str { color: var(--neon-300); }
+  .code-block .comment { color: var(--neutral-500); }
+
+  /* Demo wrapper */
+  .demo-area {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    padding: 40px;
+    margin-bottom: 12px;
+  }
+  .demo-area.full-bleed { padding: 0; overflow: hidden; }
+  .note { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; margin-bottom: 40px; }
+
+  /* Recipe card layout */
+  .recipe-section {
+    border-bottom: var(--border-1) solid var(--color-border);
+    padding-bottom: 48px;
+    margin-bottom: 0;
+  }
+  .recipe-section:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / building blocks</a>
+    <h1>Recipes</h1>
+  </div>
+  <div class="intro">Composições assinadas da 2P. São mais que componentes — são blocos com a cara da marca, prontos pra copy/cola. Começar por aqui é sempre mais rápido do que construir do zero.</div>
+</div>
+
+<!-- ══ MISSION CARD ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Mission Card</h2>
+  <div class="section-sub">features · serviços · pilares · como funciona</div>
+
+  <div class="demo-area">
+    <div class="bs-grid-3">
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">01</span>
+        <h3 class="recipe-mission__title">Mídia Paga</h3>
+        <p class="recipe-mission__body">Google, Meta, TikTok e LinkedIn gerenciados como um ecossistema. Sem silos, sem campanha esquecida no ar.</p>
+        <a class="recipe-mission__link" href="#">Ver detalhes →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">02</span>
+        <h3 class="recipe-mission__title">Criativo</h3>
+        <p class="recipe-mission__body">Copies que convertem, criativos que param o scroll. Toda peça nasce de dado — não de achismo.</p>
+        <a class="recipe-mission__link" href="#">Ver detalhes →</a>
+      </div>
+      <div class="recipe-mission">
+        <span class="recipe-mission__num">03</span>
+        <h3 class="recipe-mission__title">Analytics</h3>
+        <p class="recipe-mission__body">Dashboard ao vivo, relatório semanal, retro mensal. Você vê o que está acontecendo antes de precisar perguntar.</p>
+        <a class="recipe-mission__link" href="#">Ver detalhes →</a>
+      </div>
+    </div>
+  </div>
+  <div class="note">Hover: translate(-4px, -4px) + shadow neon. Número com prefixo "LV" automático via CSS.</div>
+
+  <div class="code-block"><span class="comment"><!-- Mission Card: feature com nível, título, descrição e link --></span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-mission"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;span</span> class=<span class="str">"recipe-mission__num"</span><span class="kw">&gt;</span>01<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;h3</span> class=<span class="str">"recipe-mission__title"</span><span class="kw">&gt;</span>Nome do Serviço<span class="kw">&lt;/h3&gt;</span>
+  <span class="kw">&lt;p</span> class=<span class="str">"recipe-mission__body"</span><span class="kw">&gt;</span>Descrição do serviço.<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;a</span> class=<span class="str">"recipe-mission__link"</span> href=<span class="str">"#"</span><span class="kw">&gt;</span>Ver detalhes →<span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;/div&gt;</span></div>
+</section>
+
+<!-- ══ BOSS STATS ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Boss Stats</h2>
+  <div class="section-sub">métricas · resultados · números de impacto</div>
+
+  <div class="demo-area">
+    <div class="bs-grid-4">
+      <div class="recipe-boss-stats">
+        <div class="recipe-boss-stats__label">ROAS Médio</div>
+        <div class="recipe-boss-stats__value">+320%</div>
+        <div class="recipe-boss-stats__delta">↑ vs agência anterior</div>
+      </div>
+      <div class="recipe-boss-stats">
+        <div class="recipe-boss-stats__label">Queda de CPA</div>
+        <div class="recipe-boss-stats__value">-42%</div>
+        <div class="recipe-boss-stats__delta">↓ em 90 dias</div>
+      </div>
+      <div class="recipe-boss-stats">
+        <div class="recipe-boss-stats__label">Clientes ativos</div>
+        <div class="recipe-boss-stats__value">38</div>
+        <div class="recipe-boss-stats__delta">↑ +12 YTD</div>
+      </div>
+      <div class="recipe-boss-stats" style="border-top: var(--border-4) solid var(--brand-accent);">
+        <div class="recipe-boss-stats__label">Melhor resultado</div>
+        <div class="recipe-boss-stats__value">900%</div>
+        <div class="recipe-boss-stats__delta" style="color: var(--brand-accent);">★ HIGH SCORE</div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Use border-top accent para o "high score" card. Delta vermelho para métricas que sobem quando deveriam descer (ex: CAC).</div>
+
+  <div class="code-block"><span class="comment"><!-- Boss Stats: métrica grande + label + delta --></span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-boss-stats"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-boss-stats__label"</span><span class="kw">&gt;</span>ROAS Médio<span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-boss-stats__value"</span><span class="kw">&gt;</span>+320%<span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-boss-stats__delta"</span><span class="kw">&gt;</span>↑ vs agência anterior<span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="comment">/* Delta negativo (custo subindo = ruim): */</span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-boss-stats__delta recipe-boss-stats__delta--down"</span><span class="kw">&gt;</span>↑ CAC subiu<span class="kw">&lt;/div&gt;</span></div>
+</section>
+
+<!-- ══ SAVE POINT ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Save Point</h2>
+  <div class="section-sub">CTA principal · seção de conversão · banner de promessa</div>
+
+  <div class="demo-area full-bleed">
+    <section class="recipe-save-point">
+      <h2>PRONTO PRA JOGAR?</h2>
+      <p>Você chegou até aqui. O próximo nível é uma conversa de 20 minutos. Sem proposta genérica, sem enrolação — só diagnóstico direto.</p>
+      <a class="btn btn-xl" href="#" style="background: var(--neutral-950); color: var(--brand-primary);">INSERT COIN →</a>
+    </section>
+  </div>
+  <div class="note">Fundo neon, texto preto. Estrelas decorativas via ::before/::after. Botão deve ter background escuro para contrastar.</div>
+
+  <div class="code-block"><span class="comment"><!-- Save Point: CTA principal em neon, com estrelas decorativas --></span>
+<span class="kw">&lt;section</span> class=<span class="str">"recipe-save-point"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;h2&gt;</span>PRONTO PRA JOGAR?<span class="kw">&lt;/h2&gt;</span>
+  <span class="kw">&lt;p&gt;</span>Descrição do CTA.<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;a</span> class=<span class="str">"btn btn-xl"</span> href=<span class="str">"#"</span>
+     style=<span class="str">"background: var(--neutral-950); color: var(--brand-primary);"</span><span class="kw">&gt;</span>
+    INSERT COIN →
+  <span class="kw">&lt;/a&gt;</span>
+<span class="kw">&lt;/section&gt;</span></div>
+</section>
+
+<!-- ══ PLAYER CARD ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Player Card</h2>
+  <div class="section-sub">depoimentos · testimonials · cases de clientes</div>
+
+  <div class="demo-area">
+    <div class="bs-grid-3">
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Trocamos a última agência pela 2P e, em 90 dias, nosso CPA caiu 42%. A diferença é que eles pensam junto com a gente — não só entregam relatório."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">MR</div>
+          <div>
+            <div class="recipe-player__name">Marcelo Ribas</div>
+            <div class="recipe-player__role">CMO · Acme Logística</div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Em 6 meses, saímos de R$30k pra R$200k de faturamento mensal. A 2P praticamente jogou co-op com a gente o tempo todo."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">JL</div>
+          <div>
+            <div class="recipe-player__name">Juliana Lima</div>
+            <div class="recipe-player__role">Fundadora · Studio JL</div>
+          </div>
+        </div>
+      </div>
+      <div class="recipe-player">
+        <div class="recipe-player__stars">★★★★★</div>
+        <p class="recipe-player__quote">"Pela primeira vez eu entendo o que está sendo feito com meu budget. Dashboard ao vivo, reunião semanal objetiva. Nunca mais agência que some."</p>
+        <div class="recipe-player__who">
+          <div class="recipe-player__avatar">RP</div>
+          <div>
+            <div class="recipe-player__name">Rafael Pinto</div>
+            <div class="recipe-player__role">CEO · Distribuidora Pinto</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Avatar usa iniciais do nome. Stars em VT323 via token --color-warning. Usar bs-grid-3 para grade de 3 depoimentos.</div>
+
+  <div class="code-block"><span class="comment"><!-- Player Card: depoimento com estrelas, citação e autor --></span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-player"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-player__stars"</span><span class="kw">&gt;</span>★★★★★<span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;p</span> class=<span class="str">"recipe-player__quote"</span><span class="kw">&gt;</span>"Depoimento aqui."<span class="kw">&lt;/p&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-player__who"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;div</span> class=<span class="str">"recipe-player__avatar"</span><span class="kw">&gt;</span>AB<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;div&gt;</span>
+      <span class="kw">&lt;div</span> class=<span class="str">"recipe-player__name"</span><span class="kw">&gt;</span>Nome Sobrenome<span class="kw">&lt;/div&gt;</span>
+      <span class="kw">&lt;div</span> class=<span class="str">"recipe-player__role"</span><span class="kw">&gt;</span>Cargo · Empresa<span class="kw">&lt;/div&gt;</span>
+    <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span></div>
+</section>
+
+<!-- ══ CONSOLE ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Console</h2>
+  <div class="section-sub">hero visual · dados ao vivo · elemento de marca tech</div>
+
+  <div class="demo-area">
+    <div class="bs-grid-2">
+      <div class="recipe-console">
+        <div class="recipe-console__line"><span class="recipe-console__prompt">&gt;</span> 2p-lab --status</div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> clientes_ativos   = <span class="recipe-console__value">38</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> roas_medio        = <span class="recipe-console__value">+320%</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> cpa_medio         = <span class="recipe-console__value">-42%</span></div>
+        <div class="recipe-console__line"><span class="recipe-console__prompt">$</span> modo              = <span class="recipe-console__value">HARDCORE</span></div>
+        <div class="recipe-console__line" style="margin-top: var(--space-4);"><span class="recipe-console__prompt">&gt;</span> ready_<span class="fx-cursor"></span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: center; padding: 24px;">
+        <p class="t-body c-muted">O Console é o elemento visual que mais representa a identidade tech-retrô da 2P. Use no lado direito de heroes, em seções de dados e como visual de preview de dashboard.</p>
+        <p class="t-body c-muted" style="margin-top: 12px;">As três bolinhas <code style="color: var(--brand-primary)">● ● ●</code> no topo são automáticas via <code style="color: var(--brand-primary)">::before</code>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="note">Cursor piscante via .fx-cursor. Valores em var(--brand-accent). Prompt em var(--brand-primary).</div>
+
+  <div class="code-block"><span class="comment"><!-- Console: terminal visual de marca --></span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-console"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-console__line"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;span</span> class=<span class="str">"recipe-console__prompt"</span><span class="kw">&gt;</span>&gt;<span class="kw">&lt;/span&gt;</span> 2p-lab --status
+  <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-console__line"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;span</span> class=<span class="str">"recipe-console__prompt"</span><span class="kw">&gt;</span>$<span class="kw">&lt;/span&gt;</span> roas =
+    <span class="kw">&lt;span</span> class=<span class="str">"recipe-console__value"</span><span class="kw">&gt;</span>+320%<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-console__line"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;span</span> class=<span class="str">"recipe-console__prompt"</span><span class="kw">&gt;</span>&gt;<span class="kw">&lt;/span&gt;</span> ready_<span class="kw">&lt;span</span> class=<span class="str">"fx-cursor"</span><span class="kw">&gt;&lt;/span&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span></div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<section class="recipe-section">
+  <h2 class="section-title">Ticker</h2>
+  <div class="section-sub">faixa rolante · avisos · social proof em movimento</div>
+
+</div><!-- fecha shell para o ticker ser full-width -->
+
+  <div class="recipe-ticker" style="margin-bottom: 40px;">
+    <div class="recipe-ticker__track">
+      <span>ROAS +320%</span>
+      <span>CAC -42%</span>
+      <span>LEADS +180%</span>
+      <span>38 CLIENTES ATIVOS</span>
+      <span>MODO: HARDCORE</span>
+      <span>HIGH SCORE DESBLOQUEADO</span>
+      <span>PRESS START</span>
+      <!-- duplicado pro loop contínuo -->
+      <span>ROAS +320%</span>
+      <span>CAC -42%</span>
+      <span>LEADS +180%</span>
+      <span>38 CLIENTES ATIVOS</span>
+      <span>MODO: HARDCORE</span>
+      <span>HIGH SCORE DESBLOQUEADO</span>
+      <span>PRESS START</span>
+    </div>
+  </div>
+
+<div class="shell">
+  <div class="note">Duplicar os itens do track para loop contínuo sem salto. Velocidade: 40s linear infinite.</div>
+
+  <div class="code-block"><span class="comment"><!-- Ticker: faixa rolante de métricas/mensagens --></span>
+<span class="kw">&lt;div</span> class=<span class="str">"recipe-ticker"</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;div</span> class=<span class="str">"recipe-ticker__track"</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;span&gt;</span>ROAS +320%<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;span&gt;</span>CAC -42%<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;span&gt;</span>PRESS START<span class="kw">&lt;/span&gt;</span>
+    <span class="comment">&lt;!-- duplicar todos os spans para loop contínuo --&gt;</span>
+    <span class="kw">&lt;span&gt;</span>ROAS +320%<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;span&gt;</span>CAC -42%<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;span&gt;</span>PRESS START<span class="kw">&lt;/span&gt;</span>
+  <span class="kw">&lt;/div&gt;</span>
+<span class="kw">&lt;/div&gt;</span></div>
+
+</div><!-- fecha shell -->
+</body>
+</html>

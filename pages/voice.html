@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<title>Voz & Copy · Bit System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../tokens.css" />
+<link rel="stylesheet" href="../components.css" />
+<style>
+  body { padding: 48px 64px 120px; max-width: 1440px; margin: 0 auto; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-bottom: 48px; padding-bottom: 32px; border-bottom: var(--border-1) solid var(--color-border); }
+  .back { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-subtle); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+  h1 { font-family: var(--font-pixel); font-size: 96px; line-height: 0.9; margin: 8px 0 0; color: var(--brand-primary); text-transform: uppercase; }
+  .intro { font-family: var(--font-mono); font-size: 18px; color: var(--color-text-muted); max-width: 720px; line-height: 1.6; }
+
+  section { margin-top: 56px; }
+  .section-title { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; margin: 0 0 4px; color: var(--color-text); }
+  .section-sub { font-family: var(--font-mono); font-size: 14px; letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 32px; }
+
+  /* Pilares */
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .pillar {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    border-top: var(--border-4) solid var(--brand-primary);
+    padding: 32px;
+  }
+  .pillar.accent { border-top-color: var(--brand-accent); }
+  .pillar.deep   { border-top-color: var(--brand-deep); }
+  .pillar.neutral { border-top-color: var(--neutral-600); }
+  .pillar h3 { font-family: var(--font-pixel); font-size: 32px; text-transform: uppercase; margin: 0 0 12px; color: var(--color-text); }
+  .pillar p  { font-family: var(--font-mono); font-size: 15px; color: var(--color-text-muted); line-height: 1.65; margin: 0; }
+
+  /* Glossário */
+  .glossary { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--color-border); border: var(--border-1) solid var(--color-border); }
+  .gloss-item { background: var(--color-surface); padding: 20px 24px; display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: start; }
+  .gloss-term { font-family: var(--font-pixel); font-size: 24px; color: var(--brand-primary); text-transform: uppercase; }
+  .gloss-def  { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.5; }
+
+  /* Fórmulas */
+  .formulas { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .formula {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    border-left: var(--border-4) solid var(--brand-primary);
+    padding: 24px 32px;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .formula.accent { border-left-color: var(--brand-accent); }
+  .formula.deep   { border-left-color: var(--brand-deep); }
+  .formula-label { font-family: var(--font-mono); font-weight: 700; font-size: 11px; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); }
+  .formula-example { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; color: var(--color-text); line-height: 1.1; }
+
+  /* Do / Don't */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .do-col, .dont-col { display: flex; flex-direction: column; gap: 12px; }
+  .do-col .col-header { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; color: var(--color-success); margin-bottom: 4px; }
+  .dont-col .col-header { font-family: var(--font-pixel); font-size: 28px; text-transform: uppercase; color: var(--color-danger); margin-bottom: 4px; }
+  .do-item, .dont-item {
+    padding: 16px 20px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .do-item   { background: var(--color-success-bg); border-left: 3px solid var(--color-success); color: var(--color-text); }
+  .dont-item { background: var(--color-danger-bg);  border-left: 3px solid var(--color-danger);  color: var(--color-text); }
+  .do-item strong, .dont-item strong { display: block; font-weight: 700; margin-bottom: 4px; }
+
+  /* Microcopy */
+  .microcopy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .micro-card {
+    background: var(--color-surface);
+    border: var(--border-1) solid var(--color-border);
+    padding: 20px;
+  }
+  .micro-context { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--color-text-subtle); margin-bottom: 10px; }
+  .micro-text    { font-family: var(--font-pixel); font-size: 22px; text-transform: uppercase; color: var(--brand-primary); line-height: 1.1; margin-bottom: 8px; }
+  .micro-note    { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-subtle); line-height: 1.4; }
+
+  /* Persona de marca */
+  .persona { background: var(--color-surface); border: var(--border-2) solid var(--brand-primary); padding: 48px; }
+  .persona-lead { font-family: var(--font-pixel); font-size: 40px; text-transform: uppercase; color: var(--brand-primary); margin-bottom: 32px; }
+  .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .persona-item h4 { font-family: var(--font-mono); font-weight: 700; font-size: 12px; letter-spacing: var(--ls-overline); text-transform: uppercase; color: var(--brand-accent); margin: 0 0 8px; }
+  .persona-item p  { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a class="back" href="../index.html">← bit-system / marca</a>
+    <h1>Voz &amp;<br>Copy</h1>
+  </div>
+  <div class="intro">A 2P tem uma voz inconfundível. Retrô-gamer, técnica, direta, sem enrolação. Este guia é a fonte da verdade pra qualquer texto que sai com a cara da 2P.</div>
+</div>
+
+<!-- PILARES -->
+<section>
+  <h2 class="section-title">Os 4 pilares</h2>
+  <div class="section-sub">todo texto da 2P precisa tocar esses pontos</div>
+  <div class="pillars">
+    <div class="pillar">
+      <h3>Direta</h3>
+      <p>Sem rodeios, sem enrolação. A 2P vai direto ao ponto. Verbos no imperativo. Frases curtas. Se o texto pode ser cortado à metade sem perder sentido, corte.</p>
+    </div>
+    <div class="pillar accent">
+      <h3>Técnica</h3>
+      <p>Fale de ROAS, CAC, CPA, funil, LTV, CTR sem medo. O cliente da 2P é sofisticado o suficiente. Quando for traduzir, use metáforas de videogame — não explique o óbvio.</p>
+    </div>
+    <div class="pillar deep">
+      <h3>Retrô-gamer</h3>
+      <p>O jargão gamer não é ornamento — é a linguagem da marca. START, CHECKPOINT, LEVEL UP, BOSS, INSERT COIN. Use como se fossem palavras normais, porque pra 2P são.</p>
+    </div>
+    <div class="pillar neutral">
+      <h3>Aponta pra ação</h3>
+      <p>Todo bloco de texto termina em CTA ou em uma pergunta direta. Nunca deixe o leitor sem próximo passo. "E aí?" é uma resposta proibida — sempre dê o próximo movimento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONA -->
+<section>
+  <h2 class="section-title">A voz em 1 parágrafo</h2>
+  <div class="section-sub">calibre seu texto aqui</div>
+  <div class="persona">
+    <div class="persona-lead">A 2P fala como um jogador veterano que virou sócio do seu negócio.</div>
+    <div class="persona-grid">
+      <div class="persona-item">
+        <h4>Tom</h4>
+        <p>Confiante sem ser arrogante. Técnico sem ser intimidador. Irreverente sem ser descuidado. Direto sem ser grosseiro.</p>
+      </div>
+      <div class="persona-item">
+        <h4>Registro</h4>
+        <p>Português do Brasil, paulistano. Informal, mas profissional. Gírias moderadas ("da hora", "fala sério"). Sem formalismo de e-mail corporativo.</p>
+      </div>
+      <div class="persona-item">
+        <h4>Nunca é</h4>
+        <p>Pomposa. Genérica. Corporativa. Cheia de buzzwords. Passiva. Sem ação. Sem próximo passo. Sem personalidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOSSÁRIO -->
+<section>
+  <h2 class="section-title">Glossário gamer</h2>
+  <div class="section-sub">vocabulário de marca — use livremente</div>
+  <div class="glossary">
+    <div class="gloss-item">
+      <div class="gloss-term">START</div>
+      <div class="gloss-def">CTA inicial — começar uma conversa, dar o primeiro passo, abrir o projeto. <em>"Aperte START pra jogar."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">CHECKPOINT</div>
+      <div class="gloss-def">Marco atingido, entrega concluída, etapa vencida. <em>"Checkpoint desbloqueado: campanha no ar."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">LEVEL UP</div>
+      <div class="gloss-def">Crescimento, evolução de métrica, novo ciclo de resultados. <em>"ROAS subiu 40%. Level up."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">POWER-UP</div>
+      <div class="gloss-def">Serviço adicional, otimização extra, feature nova. <em>"Ativamos o power-up de remarketing."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">BOSS</div>
+      <div class="gloss-def">Desafio grande, cliente estratégico, campanha complexa. <em>"Esse briefing é um boss de final de fase."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">SAVE GAME</div>
+      <div class="gloss-def">Relatório, case publicado, material salvo para referência futura. <em>"Relatório de março: save game completo."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">RESPAWN</div>
+      <div class="gloss-def">Retomada de campanha, recomeço após teste ruim, pivot de estratégia. <em>"Campanha respawnando com nova segmentação."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">GAME OVER</div>
+      <div class="gloss-def">Projeto finalizado, campanha encerrada, ciclo fechado. <em>"Q4 encerrado. Game over — com high score."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">2P · CO-OP</div>
+      <div class="gloss-def">A agência é o Player 2 — parceiro co-op do cliente. <em>"A gente joga co-op. Sua vitória é a nossa."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">INSERT COIN</div>
+      <div class="gloss-def">Primeiro investimento, início de projeto, hora de colocar budget. <em>"INSERT COIN. Vamos jogar."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">HUD</div>
+      <div class="gloss-def">Painel de controle, dashboard, relatório ao vivo. <em>"Seu HUD de resultados atualizado."</em></div>
+    </div>
+    <div class="gloss-item">
+      <div class="gloss-term">HIGH SCORE</div>
+      <div class="gloss-def">Melhor resultado histórico, recorde de campanha. <em>"+320% de ROAS. Novo high score."</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- FÓRMULAS -->
+<section>
+  <h2 class="section-title">Fórmulas de headline</h2>
+  <div class="section-sub">estruturas aprovadas — copie e adapte</div>
+  <div class="formulas">
+    <div class="formula">
+      <div class="formula-label">Fórmula 01<br>Comando pixel</div>
+      <div class="formula-example">PRESS START TO LEVEL UP<br><span style="font-size:18px; font-family: var(--font-mono); color: var(--color-text-muted); font-family: var(--font-mono);">→ VT323, caixa alta, CTAs e heroes</span></div>
+    </div>
+    <div class="formula">
+      <div class="formula-label">Fórmula 01<br>variações</div>
+      <div class="formula-example" style="font-size:22px;">INSIRA FICHA. VAMOS JOGAR. · CHECKPOINT DESBLOQUEADO. · PRONTO PRA O HARD MODE?</div>
+    </div>
+    <div class="formula accent">
+      <div class="formula-label">Fórmula 02<br>Oposição</div>
+      <div class="formula-example" style="font-size:20px;">AGÊNCIA COMUM É MODO FÁCIL.<br>NÓS JOGAMOS NO HARDCORE.</div>
+    </div>
+    <div class="formula accent">
+      <div class="formula-label">Fórmula 02<br>variações</div>
+      <div class="formula-example" style="font-size:20px;">RELATÓRIO-PLACEBO É PRO PLAYER 1. A 2P ENTREGA HIGH SCORE.</div>
+    </div>
+    <div class="formula deep">
+      <div class="formula-label">Fórmula 03<br>Métrica + gamer</div>
+      <div class="formula-example" style="font-size:22px;">+320% DE ROAS. NOVO HIGH SCORE DESBLOQUEADO.</div>
+    </div>
+    <div class="formula deep">
+      <div class="formula-label">Fórmula 03<br>variações</div>
+      <div class="formula-example" style="font-size:20px;">-42% DE CPA. BOSS DERROTADO. · +180% DE LEADS. LEVEL 3 ATINGIDO.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MICROCOPY -->
+<section>
+  <h2 class="section-title">Biblioteca de microcopy</h2>
+  <div class="section-sub">textos de UI prontos pra usar</div>
+  <div class="microcopy-grid">
+    <div class="micro-card">
+      <div class="micro-context">CTA principal</div>
+      <div class="micro-text">INSERT COIN →</div>
+      <div class="micro-note">Botão primário de conversão. Página inicial, proposta, landing.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">CTA hero</div>
+      <div class="micro-text">PRESS START</div>
+      <div class="micro-note">Alternativa pra "começar agora". Mais visual, mais marca.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">CTA WhatsApp</div>
+      <div class="micro-text">FALAR COM A 2P →</div>
+      <div class="micro-note">Direto. Sem "entre em contato" ou "agende uma reunião".</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Estado vazio</div>
+      <div class="micro-text">GAME OVER?<br>AINDA NÃO.</div>
+      <div class="micro-note">Tela sem dados, sem resultados ainda. Com CTA de ação.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Loading</div>
+      <div class="micro-text">CARREGANDO...</div>
+      <div class="micro-note">Estado de carregamento. Sem "aguarde" ou "processando".</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Sucesso</div>
+      <div class="micro-text">CHECKPOINT!</div>
+      <div class="micro-note">Confirmação de ação concluída. Formulário enviado, cadastro feito.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Erro</div>
+      <div class="micro-text">OPS. RESPAWN.</div>
+      <div class="micro-note">Erro de formulário ou falha de sistema. Seguido de instrução clara.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Badge "novo"</div>
+      <div class="micro-text">NEW GAME</div>
+      <div class="micro-note">Feature nova, serviço novo, produto lançado.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Badge "destaque"</div>
+      <div class="micro-text">HIGH SCORE</div>
+      <div class="micro-note">Case de resultado excepcional, serviço mais popular.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Badge "ao vivo"</div>
+      <div class="micro-text">● AO VIVO</div>
+      <div class="micro-note">Live, evento, dashboard em tempo real. Ponto piscando.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Nav: serviços</div>
+      <div class="micro-text">MISSÕES</div>
+      <div class="micro-note">Alternativa gamer para "serviços" na navegação principal.</div>
+    </div>
+    <div class="micro-card">
+      <div class="micro-context">Nav: cases</div>
+      <div class="micro-text">HALL OF FAME</div>
+      <div class="micro-note">Alternativa gamer para "cases" ou "portfólio".</div>
+    </div>
+  </div>
+</section>
+
+<!-- DO / DON'T -->
+<section>
+  <h2 class="section-title">Faça / Evite</h2>
+  <div class="section-sub">exemplos reais de copy certo e errado</div>
+  <div class="do-dont">
+    <div class="do-col">
+      <div class="col-header">✓ FAÇA</div>
+      <div class="do-item">
+        <strong>CTAs diretos e imperativos</strong>
+        "Falar com a 2P" · "Ver cases" · "INSERT COIN" · "PRESS START"
+      </div>
+      <div class="do-item">
+        <strong>Métricas com contexto gamer</strong>
+        "+320% de ROAS. Novo high score desbloqueado pela co-op com a Loja X."
+      </div>
+      <div class="do-item">
+        <strong>Headlines em caixa alta (VT323)</strong>
+        "PRESS START TO LEVEL UP" · "CHECKPOINT DESBLOQUEADO."
+      </div>
+      <div class="do-item">
+        <strong>Jargão técnico sem desculpas</strong>
+        "Seu CAC caiu 38%. Seu LTV subiu. Isso é o que a gente chama de level up."
+      </div>
+      <div class="do-item">
+        <strong>Português do Brasil, informal-profissional</strong>
+        "A gente cuida do tráfego. Você cuida do produto. Co-op mode ativado."
+      </div>
+      <div class="do-item">
+        <strong>Texto curto com próximo passo claro</strong>
+        "Em 90 dias você tem dados pra decidir. Fala com a gente."
+      </div>
+    </div>
+    <div class="dont-col">
+      <div class="col-header">✗ EVITE</div>
+      <div class="dont-item">
+        <strong>Buzzwords genéricas</strong>
+        "Soluções inovadoras e estratégicas" · "Unleash your potential" · "Disruptive" · "Synergy"
+      </div>
+      <div class="dont-item">
+        <strong>Emojis</strong>
+        O sistema visual da 2P é pixel art — não emoji. 🚀❌ · ✅❌ · 💪❌
+      </div>
+      <div class="dont-item">
+        <strong>Formalismo de corporação</strong>
+        "Att." · "Segue em anexo" · "Vimos por meio deste" · "Nos colocamos à disposição"
+      </div>
+      <div class="dont-item">
+        <strong>Texto sem CTA ou próxima ação</strong>
+        Nunca termine um bloco sem dizer o que o leitor faz a seguir.
+      </div>
+      <div class="dont-item">
+        <strong>Corpo em VT323</strong>
+        A fonte pixel é só pra display. Parágrafo em VT323 = ilegível.
+      </div>
+      <div class="dont-item">
+        <strong>Passivo e sem posição</strong>
+        "Podemos eventualmente ajudar..." · "Talvez valha a pena considerar..." — A 2P tem ponto de vista. Use.
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
