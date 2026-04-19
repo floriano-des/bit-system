@@ -1,5 +1,5 @@
 # SKILL · Bit System
-## Guia de consumo para agentes de IA — 2P Growth Lab
+## Guia de consumo para agentes de IA - 2P Growth Lab
 
 > **Este arquivo é a entrada principal para qualquer IA que precise produzir peças visuais, textuais ou de código usando o Design System da 2P Growth Lab (Dois Palitos).** Leia-o completamente antes de gerar qualquer output.
 
@@ -22,7 +22,7 @@
 
 ```
 tokens.css          → FONTE DA VERDADE visual (cores, tipo, espaçamento, sombras)
-tokens.json         → tokens em JSON estruturado — use este para leitura por IA
+tokens.json         → tokens em JSON estruturado - use este para leitura por IA
 components.css      → componentes base + recipes prontos para uso
 assets/manifest.json → catálogo de assets (logos, ícones) com metadados
 
@@ -38,7 +38,7 @@ pages/icons.html        → referência: biblioteca de ícones
 
 ---
 
-## 3. PALETA DE CORES — QUICK REFERENCE
+## 3. PALETA DE CORES - QUICK REFERENCE
 
 > Regra: componentes sempre consomem tokens semânticos (`--color-*`), nunca primitivos diretos.
 
@@ -54,13 +54,13 @@ pages/icons.html        → referência: biblioteca de ícones
 
 ### Regras invioláveis de cor
 - Nunca mais de **1 CTA neon por tela**. Segundo CTA usa `.btn-ghost` ou `.btn-accent`.
-- Nunca neon sobre fúchsia — contraste insuficiente.
-- Cores de feedback (`--color-success`, `--color-warning`, `--color-danger`) apenas para status — nunca decorativo.
+- Nunca neon sobre fúchsia - contraste insuficiente.
+- Cores de feedback (`--color-success`, `--color-warning`, `--color-danger`) apenas para status - nunca decorativo.
 - Em tema light, substituir neon por `--tolopea-800` em texto (contraste).
 
 ---
 
-## 4. TIPOGRAFIA — QUICK REFERENCE
+## 4. TIPOGRAFIA - QUICK REFERENCE
 
 | Família | Uso | Import |
 |---|---|---|
@@ -69,7 +69,7 @@ pages/icons.html        → referência: biblioteca de ícones
 
 ```css
 /* Import já incluído em tokens.css */
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Inconsolata:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2-family=VT323&family=Inconsolata:wght@400;500;600;700;800;900&display=swap');
 ```
 
 ### Escala (tokens)
@@ -108,7 +108,7 @@ Base: **4px**. Tokens nomeados por múltiplo:
 
 ---
 
-## 6. COMPONENTES — COMO USAR
+## 6. COMPONENTES - COMO USAR
 
 ### Setup mínimo para qualquer HTML
 ```html
@@ -191,14 +191,14 @@ Use `data-theme="light"` para relatórios, propostas e PDFs.
 
 ```html
 <details class="accordion">
-  <summary>Qual o prazo de entrega dos resultados?</summary>
+  <summary>Qual o prazo de entrega dos resultados-</summary>
   <div class="accordion-body">Resposta aqui.</div>
 </details>
 ```
 
 ---
 
-## 7. RECIPES — COMPOSIÇÕES ASSINADAS 2P
+## 7. RECIPES - COMPOSIÇÕES ASSINADAS 2P
 
 Recipes são blocos compostos com a assinatura visual da marca. Use-os em vez de construir do zero.
 
@@ -224,7 +224,7 @@ Recipes são blocos compostos com a assinatura visual da marca. Use-os em vez de
 ### Save Point (CTA/banner principal)
 ```html
 <section class="recipe-save-point">
-  <h2>PRONTO PRA JOGAR?</h2>
+  <h2>PRONTO PRA JOGAR-</h2>
   <p>Seu próximo nível começa com uma conversa. Sem enrolação, sem proposta genérica.</p>
   <a class="btn btn-xl" href="#">INSERT COIN →</a>
 </section>
@@ -287,7 +287,7 @@ Recipes são blocos compostos com a assinatura visual da marca. Use-os em vez de
 
 ---
 
-## 10. TOM DE VOZ — QUICK REFERENCE
+## 10. TOM DE VOZ - QUICK REFERENCE
 
 ### Fórmulas de headline aprovadas
 
@@ -324,7 +324,7 @@ Recipes são blocos compostos com a assinatura visual da marca. Use-os em vez de
 
 ---
 
-## 11. LOGOS — COMO ESCOLHER
+## 11. LOGOS - COMO ESCOLHER
 
 | Arquivo | Fundo recomendado | Uso |
 |---|---|---|
@@ -343,15 +343,15 @@ Ver catálogo completo: `assets/manifest.json`
 
 ## 12. CHECKLIST ANTES DE ENTREGAR UMA PEÇA
 
-- [ ] Importei `tokens.css` e `components.css`?
-- [ ] Defini `data-theme="dark"` ou `"light"` no `<html>`?
-- [ ] Há no máximo 1 CTA neon primário por tela?
-- [ ] Usei apenas VT323 e Inconsolata?
-- [ ] VT323 está em caixa alta em todos os usos?
-- [ ] Cores de feedback apenas para status (não decorativo)?
-- [ ] O copy termina com CTA ou pergunta direta?
-- [ ] Usei tokens semânticos (`--color-*`) — não primitivos diretos?
-- [ ] Testei em dark e light se a peça precisa dos dois?
+- [ ] Importei `tokens.css` e `components.css`-
+- [ ] Defini `data-theme="dark"` ou `"light"` no `<html>`-
+- [ ] Há no máximo 1 CTA neon primário por tela-
+- [ ] Usei apenas VT323 e Inconsolata-
+- [ ] VT323 está em caixa alta em todos os usos-
+- [ ] Cores de feedback apenas para status (não decorativo)-
+- [ ] O copy termina com CTA ou pergunta direta-
+- [ ] Usei tokens semânticos (`--color-*`) - não primitivos diretos-
+- [ ] Testei em dark e light se a peça precisa dos dois-
 
 ---
 

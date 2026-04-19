@@ -73,25 +73,25 @@
 
 <section>
   <h2 class="section-title">Raios de borda</h2>
-  <div class="section-sub">baixos, pra preservar estética retrô — token: --radius-{name}</div>
+  <div class="section-sub">baixos, pra preservar estética retrô - token: --radius-{name}</div>
   <div class="grid-tokens" id="radii"></div>
 </section>
 
 <section>
   <h2 class="section-title">Sombras</h2>
-  <div class="section-sub">offset sólido, sem blur — pixel style — token: --shadow-{name}</div>
+  <div class="section-sub">offset sólido, sem blur - pixel style - token: --shadow-{name}</div>
   <div class="grid-tokens" id="shadows"></div>
 </section>
 
 <section>
   <h2 class="section-title">Tamanhos</h2>
-  <div class="section-sub">ícones e hit targets — token: --size-{name}</div>
+  <div class="section-sub">ícones e hit targets - token: --size-{name}</div>
   <div class="grid-tokens" id="sizes"></div>
 </section>
 
 <section>
   <h2 class="section-title">Motion</h2>
-  <div class="section-sub">duração + easing — linguagem retrô — tokens: --motion-{speed}, --ease-{name}</div>
+  <div class="section-sub">duração + easing - linguagem retrô - tokens: --motion-{speed}, --ease-{name}</div>
   <div class="motion-grid">
     <div class="motion-card">
       <div class="label">--ease-pixel · steps(8)</div>
@@ -113,7 +113,7 @@
 
 <section>
   <h2 class="section-title">Z-index</h2>
-  <div class="section-sub">camadas de profundidade — token: --z-{name}</div>
+  <div class="section-sub">camadas de profundidade - token: --z-{name}</div>
   <div class="z-grid">
     <div class="z-card"><div class="z-val">0</div><div class="z-name">--z-base</div></div>
     <div class="z-card"><div class="z-val">10</div><div class="z-name">--z-raised</div></div>
@@ -134,7 +134,7 @@ function setTheme(mode) {
 const saved = localStorage.getItem('bs-theme');
 if (saved) setTheme(saved);
 
-// Spacing — valores corretos do tokens.css
+// Spacing - valores corretos do tokens.css
 const spacing = [
   ['space-1','4px'],['space-2','8px'],['space-3','12px'],['space-4','16px'],
   ['space-5','20px'],['space-6','24px'],['space-8','32px'],['space-10','40px'],
@@ -149,16 +149,16 @@ document.getElementById('spacing').innerHTML = spacing.map(([t,v])=>`
     <div class="value">${v}</div>
   </div>`).join('');
 
-// Radii — nomes corretos do tokens.css
+// Radii - nomes corretos do tokens.css
 const radii = [
-  ['radius-none','0px','Botões CTA — visual retrô'],
+  ['radius-none','0px','Botões CTA - visual retrô'],
   ['radius-xs','2px','Badges e labels'],
   ['radius-sm','4px','Inputs e botões'],
   ['radius-md','6px','Cards menores'],
   ['radius-lg','8px','Cards e containers'],
   ['radius-xl','12px','Modais e drawers'],
   ['radius-2xl','16px','Componentes grandes'],
-  ['radius-full','9999px','Pill — evitar no DS'],
+  ['radius-full','9999px','Pill - evitar no DS'],
 ];
 document.getElementById('radii').innerHTML = radii.map(([t,v,note])=>`
   <div class="token-card radius-card">
@@ -170,7 +170,7 @@ document.getElementById('radii').innerHTML = radii.map(([t,v,note])=>`
     <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-subtle);">${note}</div>
   </div>`).join('');
 
-// Shadows — tokens corretos do sistema
+// Shadows - tokens corretos do sistema
 const shadows = [
   ['shadow-sm',  '2px 2px 0 var(--neutral-950)'],
   ['shadow-md',  '4px 4px 0 var(--neutral-950)'],

@@ -1,6 +1,6 @@
-# Bit System — 2P Growth Lab
+# Bit System - 2P Growth Lab
 
-Design System oficial da **Dois Palitos Growth Lab** (2P Growth Lab) — uma
+Design System oficial da **Dois Palitos Growth Lab** (2P Growth Lab) - uma
 agência de marketing de performance que se posiciona como *laboratório de
 crescimento* e não como "agência padrão". A identidade visual é inspirada em
 consoles de videogame 8/16-bit e pixel art: START, CHECKPOINT, SAVE GAME,
@@ -19,7 +19,7 @@ posts de redes sociais, propostas e qualquer peça digital da 2P.
 - **Direta, desafiadora, sem enrolação.** A 2P se compara a um jogador que
   *não morre no primeiro chefão*. Frases como "SEM MEDO DE PERDER A PARTIDA"
   e "INSERT COIN TO START" são bem-vindas em headlines.
-- **Informal, mas técnica.** Fale de ROAS, CAC, CPA, funil, LTV — sem medo
+- **Informal, mas técnica.** Fale de ROAS, CAC, CPA, funil, LTV - sem medo
   do jargão. Mas traduza com metáforas de videogame quando possível:
   *"seu funil está no modo fácil"*, *"vamos subir de level"*.
 - **Brasileira.** Português do Brasil, tom paulistano. Gírias moderadas são
@@ -40,7 +40,7 @@ posts de redes sociais, propostas e qualquer peça digital da 2P.
 | **BOSS** | Desafio grande (cliente grande, campanha complexa) |
 | **RESPAWN** | Retomada, recomeço após teste ruim |
 | **GAME OVER** | Campanha encerrada, projeto finalizado |
-| **2P (Player 2)** | A agência é o "jogador 2" — o parceiro de co-op do cliente |
+| **2P (Player 2)** | A agência é o "jogador 2" - o parceiro de co-op do cliente |
 | **CO-OP** | Parceria, trabalho conjunto |
 | **HUD** | Painel / dashboard do cliente |
 | **INSERT COIN** | Primeiro investimento, começo do projeto |
@@ -48,22 +48,22 @@ posts de redes sociais, propostas e qualquer peça digital da 2P.
 
 ### Headline framework
 
-**Fórmula 1 — comando direto em caixa alta (VT323):**
+**Fórmula 1 - comando direto em caixa alta (VT323):**
 > PRESS START TO LEVEL UP
 > INSIRA FICHA. VAMOS JOGAR.
 > CHECKPOINT DESBLOQUEADO.
 
-**Fórmula 2 — oposição (o outro é o jogo fácil, a 2P é o hard mode):**
+**Fórmula 2 - oposição (o outro é o jogo fácil, a 2P é o hard mode):**
 > AGÊNCIA COMUM É MODO FÁCIL. NÓS JOGAMOS NO HARDCORE.
 
-**Fórmula 3 — métrica com metáfora gamer:**
+**Fórmula 3 - métrica com metáfora gamer:**
 > +320% DE ROAS. NOVO HIGH SCORE DESBLOQUEADO.
 
 ### O que evitar
 
-- "Soluções inovadoras e estratégicas" — genérico de agência padrão.
+- "Soluções inovadoras e estratégicas" - genérico de agência padrão.
 - Emojis (o ícone visual é o pixel, não o emoji).
-- "Parceiros" soltos sem contexto — use "co-op" ou "player 2".
+- "Parceiros" soltos sem contexto - use "co-op" ou "player 2".
 - Gradientes complexos de 4+ cores em textos.
 - "Unleash your potential", "synergy", "disruptive" e outro corporativês traduzido.
 
@@ -73,7 +73,7 @@ posts de redes sociais, propostas e qualquer peça digital da 2P.
 
 ### Princípios visuais
 
-1. **Retrô-gamer nos acentos, moderno na base.** O sistema NÃO é 100% pixel art —
+1. **Retrô-gamer nos acentos, moderno na base.** O sistema NÃO é 100% pixel art -
    a base é limpa (Poppins, Inconsolata, espaçamento generoso). O pixel entra
    nos CTAs (VT323 32px em botões), badges, headlines-punch e elementos de marca.
 2. **Alto contraste sempre.** Verde neon em preto é a assinatura. Acessibilidade
@@ -87,20 +87,20 @@ posts de redes sociais, propostas e qualquer peça digital da 2P.
 
 ### Paleta resumida
 
-- **Primary / Neon** `#00FFD1` (rgb 0,255,209) — CTAs principais, destaques.
-- **Accent / Fuchsia** `#FF00FF` — hover states, acentos, personalidade.
-- **Secondary / Tolopea** `#2409A9` — backgrounds estruturais, títulos.
-- **Neutral Black** `#100F0F` (16,15,15) — fundo principal do dark theme.
-- **Neutral White** `#FAFAFA` — fundo principal do light theme.
+- **Primary / Neon** `#00FFD1` (rgb 0,255,209) - CTAs principais, destaques.
+- **Accent / Fuchsia** `#FF00FF` - hover states, acentos, personalidade.
+- **Secondary / Tolopea** `#2409A9` - backgrounds estruturais, títulos.
+- **Neutral Black** `#100F0F` (16,15,15) - fundo principal do dark theme.
+- **Neutral White** `#FAFAFA` - fundo principal do light theme.
 - **Feedback** success `#4CFF4C`, warning `#FFD54C`, error `#FF7C71`.
 
 Escala completa em `tokens.css` e nas páginas de preview.
 
 ### Tipografia resumida
 
-- **Headlines pixel (punch)**: VT323 — use em CTAs, números grandes,
+- **Headlines pixel (punch)**: VT323 - use em CTAs, números grandes,
   headlines-assinatura. Sempre caixa alta. Tamanhos: 24, 32, 48, 64, 104px.
-- **Headlines & labels**: Poppins Bold/SemiBold — títulos de seção, labels
+- **Headlines & labels**: Poppins Bold/SemiBold - títulos de seção, labels
   de UI, navegação. Inter SemiBold é a alternativa.
 - **Body**: Inconsolata (monoespaçada) 16–18px para textos longos, caption,
   metadata. Poppins Regular como alternativa para textos mais institucionais.
@@ -122,8 +122,8 @@ Escala baseada em 4px. Tokens: `spacing-none`, `spacing-xs` (4), `spacing-sm` (8
 ### Sombras
 
 Apenas duas, ambas sólidas, offset `5px 5px 0`:
-- **Shadow Green** `5px 5px 0 #00FFD1` — cards primários.
-- **Shadow Fuchsia** `5px 5px 0 #FF00FF` — cards de destaque, CTAs.
+- **Shadow Green** `5px 5px 0 #00FFD1` - cards primários.
+- **Shadow Fuchsia** `5px 5px 0 #FF00FF` - cards de destaque, CTAs.
 
 ### Grid
 
@@ -161,7 +161,7 @@ README.md               → este arquivo
 
 ## Começando
 
-1. Abra `index.html` no navegador — hub principal.
+1. Abra `index.html` no navegador - hub principal.
 2. Para construir algo novo, importe `tokens.css` e `components.css` e siga
    os padrões das páginas em `examples/`.
 3. Consulte `SKILL.md` se for um agente automatizado produzindo peças.

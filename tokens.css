@@ -1,8 +1,8 @@
 /* ================================================================
    BIT SYSTEM · Design Tokens
-   2P Growth Lab — design system INTERNO da agência
+   2P Growth Lab - design system INTERNO da agência
    ----------------------------------------------------------------
-   ESCOPO: tudo que a 2P produz com a cara da 2P —
+   ESCOPO: tudo que a 2P produz com a cara da 2P -
    landings, propostas, pitch-decks, relatórios internos,
    social, apresentações comerciais, site institucional.
 
@@ -22,14 +22,14 @@
      Use sempre a camada semântica.
    ================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Inconsolata:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2-family=VT323&family=Inconsolata:wght@400;500;600;700;800;900&display=swap');
 
 /* ================================================================
-   CAMADA 1 — PRIMITIVOS (paleta crua, nunca consumir em componente)
+   CAMADA 1 - PRIMITIVOS (paleta crua, nunca consumir em componente)
    ================================================================ */
 :root {
   /* Escala corrigida: 900 = mais escuro/saturado, 50 = mais claro
-     (convenção Tailwind/Material — familiar pros devs) */
+     (convenção Tailwind/Material - familiar pros devs) */
 
   /* Neon (primary) */
   --neon-50:  #E6FFFB;
@@ -90,10 +90,10 @@
   --red-600:    #E53935;
 
   /* ============================================================
-     CAMADA 3 — ESCALAS FUNDACIONAIS (compartilhadas entre temas)
+     CAMADA 3 - ESCALAS FUNDACIONAIS (compartilhadas entre temas)
      ============================================================ */
 
-  /* Espaçamento — 4px base, nome numérico (multiplicador de 4px) */
+  /* Espaçamento - 4px base, nome numérico (multiplicador de 4px) */
   --space-0:   0;
   --space-1:   4px;
   --space-2:   8px;
@@ -109,7 +109,7 @@
   --space-24:  96px;
   --space-32:  128px;
 
-  /* Radii — mantido baixo pra preservar estética retrô */
+  /* Radii - mantido baixo pra preservar estética retrô */
   --radius-none: 0;
   --radius-xs:   2px;
   --radius-sm:   4px;
@@ -125,7 +125,7 @@
   --border-3: 3px;
   --border-4: 4px;
 
-  /* Sizes — ícones, hit targets */
+  /* Sizes - ícones, hit targets */
   --size-icon-xs:   12px;
   --size-icon-sm:   16px;
   --size-icon-md:   20px;
@@ -134,7 +134,7 @@
   --size-icon-2xl:  48px;
   --size-hit:       44px;   /* mínimo touch */
 
-  /* Typography — fontes */
+  /* Typography - fontes */
   --font-pixel: 'VT323', 'Consolas', ui-monospace, monospace;
   --font-mono:  'Inconsolata', 'JetBrains Mono', ui-monospace, monospace;
   --font-sans:  'Inconsolata', 'JetBrains Mono', ui-monospace, monospace;
@@ -161,7 +161,7 @@
   --ls-wide:     0.04em;
   --ls-overline: 0.12em;
 
-  /* Motion — linguagem retrô */
+  /* Motion - linguagem retrô */
   --motion-fast:     100ms;
   --motion-base:     200ms;
   --motion-slow:     400ms;
@@ -183,11 +183,11 @@
   --z-modal:   1000;
   --z-toast:   2000;
 
-  /* Focus ring — a11y importante */
+  /* Focus ring - a11y importante */
   --focus-ring: 0 0 0 3px var(--neon-500);
 
   /* ============================================================
-     CAMADA 2 — SEMÂNTICOS · BRAND (cor-marca da 2P — fixa)
+     CAMADA 2 - SEMÂNTICOS · BRAND (cor-marca da 2P - fixa)
      ============================================================ */
   --brand-primary:        var(--neon-500);
   --brand-primary-hover:  var(--neon-400);
@@ -198,7 +198,7 @@
 }
 
 /* ================================================================
-   CAMADA 2 — SEMÂNTICOS · DARK (tema padrão 2P)
+   CAMADA 2 - SEMÂNTICOS · DARK (tema padrão 2P)
    ================================================================ */
 :root,
 [data-theme="dark"] {
@@ -258,7 +258,7 @@
 }
 
 /* ================================================================
-   CAMADA 2 — SEMÂNTICOS · LIGHT (relatórios, print, docs)
+   CAMADA 2 - SEMÂNTICOS · LIGHT (relatórios, print, docs)
    ================================================================ */
 [data-theme="light"] {
   color-scheme: light;
@@ -332,7 +332,7 @@ a {
 }
 a:hover { color: var(--color-text-link-hover); }
 
-/* Focus ring global — a11y */
+/* Focus ring global - a11y */
 :focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -399,7 +399,7 @@ a:hover { color: var(--color-text-link-hover); }
 .fx-pixelate { image-rendering: pixelated; }
 
 /* ================================================================
-   ALIASES DE COMPATIBILIDADE — v1 → v2
+   ALIASES DE COMPATIBILIDADE - v1 → v2
    Mantém páginas legadas funcionando enquanto migram para tokens
    semânticos. Remover em v3.
    ----------------------------------------------------------------
@@ -413,7 +413,7 @@ a:hover { color: var(--color-text-link-hover); }
   --t-fast:       var(--motion-fast);
   --t-base:       var(--motion-base);
 
-  /* Gradiente terciário (não existe no v2 — mantido como alias) */
+  /* Gradiente terciário (não existe no v2 - mantido como alias) */
   --gradient-secondary: var(--gradient-deep);
   --gradient-tertiary:  linear-gradient(135deg, var(--neon-500), var(--tolopea-800));
 }

@@ -61,7 +61,7 @@
         "color": "#FF00FF",
         "background_recommended": "#100F0F",
         "background_hex": "#100F0F",
-        "use_when": "Variação de acento. Usar com parcimônia — não é o logo padrão.",
+        "use_when": "Variação de acento. Usar com parcimônia - não é o logo padrão.",
         "use_cases": ["campanhas especiais", "peças de destaque pontual", "variação para eventos"],
         "avoid": "Uso cotidiano (reservar para momentos especiais)"
       }
