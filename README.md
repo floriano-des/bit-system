@@ -71,6 +71,7 @@ Setup mínimo:
 - Tema alternativo: `light`, para propostas, relatórios e materiais mais editoriais
 - Display: `VT323`
 - Texto e interface: `Inconsolata`
+- Download oficial das fontes: [VT323](https://fonts.google.com/specimen/VT323) e [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
 
 As decisões de contraste, foco e uso por contexto ficam em `tokens.json` e no CSS modular em `styles/`.
 
